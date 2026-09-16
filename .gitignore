@@ -1,0 +1,27 @@
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# 临时与废稿
+_trash/
+tmp/
+*.tmp
+*.bak
+*.bak-*
+*~
+
+# 依赖与构建产物
+node_modules/
+dist/
+.cache/
+
+# 日志
+*.log
+
+# 本地密钥 / 环境（严禁提交）
+.env
+.env.*
+*.key
