@@ -11,9 +11,6 @@
 </head>
 <body>
 
-<!-- 背景动态：稀疏节点 + 连线 + 缓慢漂移（V3 §25） -->
-<canvas id="bg" aria-hidden="true"></canvas>
-
 <div class="pbar" id="pbar" aria-hidden="true"></div>
 
 <div class="page">
@@ -33,6 +30,8 @@
 
 <!-- ══════════════ 01 Hero（V3 §17） ══════════════ -->
 <section class="section hero" id="top">
+  <!-- 背景动态改为 Hero 内部图层（V4 P0-01：原来被 section 的不透明背景盖住，实际看不见）-->
+  <canvas class="hero__network" id="bg" aria-hidden="true"></canvas>
   <div class="wrap hero__grid">
     <div>
       <h1 class="hero__name reveal">付昕</h1>
@@ -62,10 +61,11 @@
 <!-- ══════════════ 02 能力概览（V3 §18：只做 3 个） ══════════════ -->
 <section class="section is-light ability" id="ability">
   <div class="wrap">
-    <div class="label-en reveal">What I Do</div>
-    <h2 class="reveal" style="margin:var(--s-4) 0 0">三件事，一条成长线</h2>
-    <p class="lead measure reveal" style="margin-top:var(--s-4)">
-      从完整产品设计，到真实商业与制造，再到 AI 与机器人的实机落地。</p>
+    <div class="ability__head reveal">
+      <span class="label-en">What I Do</span>
+      <span class="ability__claim">三件事，一条成长线</span>
+      <span class="ability__claim-sub">产品设计 → 商业与制造 → AI 与机器人</span>
+    </div>
 
     <div class="ability__grid">
       <article class="ability__card reveal" tabindex="0">
@@ -73,7 +73,6 @@
         <div>
           <div class="ability__idx">01</div>
           <h3 class="ability__cn">产品设计</h3>
-          <div class="label-en ability__en">Product Design</div>
           <div class="ability__chain">用户研究 <em>→</em> 产品定义 <em>→</em> 造型 <em>→</em> 结构 <em>→</em> 验证 <em>→</em> 交付</div>
         </div>
         <div class="ability__rep">代表：DOGGIE · Lumora 光健康伴护仪</div>
@@ -84,7 +83,6 @@
         <div>
           <div class="ability__idx">02</div>
           <h3 class="ability__cn">商业与制造</h3>
-          <div class="label-en ability__en">Commercial &amp; Physical</div>
           <div class="ability__chain">真实需求 <em>→</em> 多轮迭代 <em>→</em> 手板 <em>→</em> 制造</div>
         </div>
         <div class="ability__rep">代表：10+ 商业设计任务 · CNC 多工序轮岗</div>
@@ -95,7 +93,6 @@
         <div>
           <div class="ability__idx">03</div>
           <h3 class="ability__cn">AI 与机器人</h3>
-          <div class="label-en ability__en">AI &amp; Robotics</div>
           <div class="ability__chain">交互 <em>→</em> AI 系统 <em>→</em> ESP32 <em>→</em> 实机原型</div>
         </div>
         <div class="ability__rep">代表：优必选 UBTECH · 桌面陪伴型机器人 · DesignDNA</div>
@@ -104,25 +101,20 @@
   </div>
 </section>
 
-<!-- ══════════════ 03 工业设计章节幕 ══════════════ -->
-<section class="section chapter" id="work">
-  <span class="chapter__rail">Selected Work · 04 — 06</span>
-  <div class="wrap chapter__inner">
-    <div class="label-en chapter__en reveal">Selected Work · Industrial Design</div>
-    <h2 class="chapter__title reveal">先看实体产品的基本盘</h2>
-    <p class="chapter__line reveal">从场景研究、结构分件到实拍验证——三个项目分别证明完整设计能力、空间整合能力与商业落地能力。</p>
-  </div>
-</section>
-
 <!-- ══════════════ 04 DOGGIE 多功能宠物牵引绳 ══════════════ -->
 <section class="section is-light project" id="p-doggie">
   <div class="wrap">
+    <!-- 原「工业设计章节幕」压成一条细带（V4 P0-02：HR 看完 Hero 后要尽快看到第一个作品）-->
+    <div class="work-head" id="work">
+      <span class="label-en">Selected Work · 01 — 05</span>
+      <span class="label-en">Industrial Design / AI Product</span>
+    </div>
     <div class="project__grid">
       <div class="project__rail" aria-hidden="true">
-          <div class="project__num">04</div>
-          <div class="project__railname">DOGGIE · 04</div>
+          <div class="project__num">01</div>
+          <div class="project__railname">DOGGIE · 01</div>
         </div>
-      <div>
+      <div class="project__body">
         <div class="label-en project__en reveal">Independent Project · Industrial Design · 2025</div>
         <h2 class="project__title reveal">DOGGIE 多功能宠物牵引绳</h2>
         <div class="project__tags reveal">
@@ -139,19 +131,13 @@
         </figure>
 
         <p class="project__lede measure reveal">
-          宠物「出门—活动—回家」的连续过程里，牵引、玩具携带、垃圾袋收纳、入户前脚底清洁这些高频需求
-          分散在不同用品和步骤里——把同一次外出链路中的高频需求，整合进一个随身牵引产品。</p>
+          围绕宠物「出门—活动—回家」的连续场景整合高频需求，并通过多轮纸模握持测试真实调整产品比例。</p>
 
         <div class="project__aux">
           <figure class="media media--zoom reveal">
             <img src="./assets/img/id/doggie-explode.webp" width="1800" height="1012"
                  alt="概念结构与分件爆炸图" loading="lazy">
             <figcaption>概念结构与分件</figcaption>
-          </figure>
-          <figure class="media media--zoom reveal">
-            <img src="./assets/img/id/doggie-cmf.webp" width="1800" height="1012"
-                 alt="CMF 配色方案" loading="lazy">
-            <figcaption>CMF 配色方案</figcaption>
           </figure>
         </div>
 
@@ -288,7 +274,7 @@
     <a class="next-preview" href="#p-lumora">
       <div class="next-preview__row">
         <div>
-          <div class="label-en next-preview__en">Next Project · 05</div>
+          <div class="label-en next-preview__en">Next · 02</div>
           <div class="next-preview__title">Lumora 光健康伴护仪</div>
           <div class="next-preview__tags">
             <span class="tag">适老设计</span><span class="tag">空间整合</span>
@@ -309,10 +295,10 @@
   <div class="wrap">
     <div class="project__grid">
       <div class="project__rail" aria-hidden="true">
-          <div class="project__num">05</div>
-          <div class="project__railname">LUMORA · 05</div>
+          <div class="project__num">02</div>
+          <div class="project__railname">LUMORA · 02</div>
         </div>
-      <div>
+      <div class="project__body">
         <div class="label-en project__en reveal">Independent Project · Industrial Design · 2025</div>
         <h2 class="project__title reveal">Lumora 光健康伴护仪</h2>
         <div class="project__tags reveal">
@@ -334,11 +320,6 @@
             <img src="./assets/img/id/lumora-views.webp" width="1600" height="2263"
                  alt="Lumora 外观与多视图" loading="lazy">
             <figcaption>外观方案与完整多视图</figcaption>
-          </figure>
-          <figure class="media media--zoom reveal">
-            <img src="./assets/img/id/lumora-detail.webp" width="612" height="792"
-                 alt="Lumora 细节" loading="lazy">
-            <figcaption>结构与部件细节</figcaption>
           </figure>
         </div>
 
@@ -436,7 +417,7 @@
     <a class="next-preview" href="#p-wateralarm">
       <div class="next-preview__row">
         <div>
-          <div class="label-en next-preview__en">Next Project · 06</div>
+          <div class="label-en next-preview__en">Next · 03</div>
           <div class="next-preview__title">落水报警终端</div>
           <div class="next-preview__tags">
             <span class="tag">商业项目</span><span class="tag">约 6 轮迭代</span>
@@ -457,10 +438,10 @@
   <div class="wrap">
     <div class="project__grid">
       <div class="project__rail" aria-hidden="true">
-          <div class="project__num">06</div>
-          <div class="project__railname">WATER ALARM · 06</div>
+          <div class="project__num">03</div>
+          <div class="project__railname">WATER ALARM · 03</div>
         </div>
-      <div>
+      <div class="project__body">
         <div class="label-en project__en reveal">Commercial Project · Industrial Design · 2026</div>
         <h2 class="project__title reveal">落水报警终端</h2>
         <div class="project__tags reveal">
@@ -483,11 +464,6 @@
             <img src="./assets/img/id/wateralarm-04-scene.webp" width="1920" height="1080"
                  alt="穿戴与海上使用场景" loading="lazy">
             <figcaption>穿戴与海上使用场景</figcaption>
-          </figure>
-          <figure class="media media--zoom reveal">
-            <img src="./assets/img/id/wateralarm-06-material.webp" width="1537" height="856"
-                 alt="材质与造型说明" loading="lazy">
-            <figcaption>材质与造型说明</figcaption>
           </figure>
         </div>
 
@@ -569,9 +545,9 @@
 
 <!-- ══════════════ 07 工业 → AI 过渡幕 ══════════════ -->
 <section class="section chapter" style="background:linear-gradient(180deg, var(--c-light), var(--c-bg)); color:var(--c-text-dark)">
-  <span class="chapter__rail">From Product To System · 08 — 09</span>
+  <span class="chapter__rail">From Product To System</span>
   <div class="wrap chapter__inner">
-    <div class="label-en chapter__en reveal" style="margin-top:var(--s-8)">From Product To System · 04 — 05</div>
+    <div class="label-en chapter__en reveal" style="margin-top:var(--s-8)">From Product To System</div>
     <h2 class="chapter__title reveal">从实体产品 → 智能系统</h2>
     <p class="chapter__line reveal" style="color:var(--c-muted)">产品设计是基本盘。接下来两件，是把同样的能力推到 AI、机器人与软硬件系统里。</p>
   </div>
@@ -582,22 +558,25 @@
   <div class="wrap">
     <div class="project__grid">
       <div class="project__rail" aria-hidden="true">
-          <div class="project__num">08</div>
-          <div class="project__railname">DESKTOP ROBOT · 08</div>
+          <div class="project__num">04</div>
+          <div class="project__railname">DESKTOP ROBOT · 04</div>
         </div>
-      <div>
+      <div class="project__body">
         <div class="status-badge reveal"><span class="status-badge__dot"></span>RUNNING PROTOTYPE · 已运行原型</div>
-        <div class="label-en project__en reveal" style="margin-top:var(--s-4)">AI Product · Self-initiated · 2026</div>
+        <div class="label-en project__en reveal" style="margin-top:var(--s-4)">毕业设计 · AI Product · 2026–2027</div>
         <h2 class="project__title reveal">桌面陪伴型机器人</h2>
         <div class="project__tags reveal">
           <span class="tag">AI 产品</span><span class="tag">能力模块化</span>
           <span class="tag">ESP32 实机</span><span class="tag">语音闭环</span>
         </div>
 
-        <figure class="media media--zoom project__media wide reveal">
-          <img src="./assets/img/ai/robot-hero.webp" width="1279" height="1706"
+        <figure class="cover reveal">
+          <img class="cover__main" src="./assets/img/ai/robot-hero.webp"
                alt="桌面陪伴型机器人 实机原型" loading="lazy">
-          <figcaption>ESP32 实机原型</figcaption>
+          <span class="cover__badge"><span class="status-badge__dot"></span>Running Prototype</span>
+          <img class="cover__inset" src="./assets/img/ai/robot-screen.webp"
+               alt="双眼屏幕状态" loading="lazy">
+          <figcaption>ESP32 实机 · 多轮语音闭环已验收</figcaption>
         </figure>
 
         <p class="project__lede measure reveal">
@@ -715,7 +694,7 @@
     <a class="next-preview" href="#p-designdna">
       <div class="next-preview__row">
         <div>
-          <div class="label-en next-preview__en">Next Project · 09</div>
+          <div class="label-en next-preview__en">Next · 05</div>
           <div class="next-preview__title">DesignDNA 工业设计协同工作台</div>
           <div class="next-preview__tags">
             <span class="tag">问题抽象</span><span class="tag">产品规则</span>
@@ -736,10 +715,10 @@
   <div class="wrap">
     <div class="project__grid">
       <div class="project__rail" aria-hidden="true">
-          <div class="project__num">09</div>
-          <div class="project__railname">DESIGN DNA · 09</div>
+          <div class="project__num">05</div>
+          <div class="project__railname">DESIGN DNA · 05</div>
         </div>
-      <div>
+      <div class="project__body">
         <div class="label-en project__en reveal">Self-initiated · AI Workflow · Web MVP · 2026</div>
         <h2 class="project__title reveal">DesignDNA 工业设计协同工作台</h2>
         <div class="project__tags reveal">
@@ -767,11 +746,6 @@
             <img src="./assets/img/designdna/mvp-02-constraints.webp" width="2526" height="1363"
                  alt="约束地图 Fixed / Controlled / Free" loading="lazy">
             <figcaption>锁定阶段 · 约束地图三态</figcaption>
-          </figure>
-          <figure class="media media--zoom reveal">
-            <img src="./assets/img/designdna/mvp-04-review.webp" width="2526" height="1363"
-                 alt="评审与对比矩阵" loading="lazy">
-            <figcaption>评审阶段 · 对照约束打分</figcaption>
           </figure>
         </div>
 

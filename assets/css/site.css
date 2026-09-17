@@ -4,12 +4,14 @@
    ============================================================ */
 
 /* ── 背景动态层（V3 §25：稀疏节点 / 连线 / 缓慢漂移，禁止满屏粒子）── */
-#bg {
-  position: fixed; inset: 0; z-index: 0;
+/* ══ V4 P0-01：动态背景不再是全局最底层 ══
+   原来 canvas 固定在 z-index 0，而所有 .section 都有不透明背景 → 背景被整片盖住，
+   JS 画得再勤肉眼也看不见。现在改为 Hero 内部图层，Hero 自己留出空间给动态。 */
+.hero__network {
+  position: absolute; inset: 0; z-index: 0;
   /* canvas 是替换元素：只写 inset:0 不会拉伸，必须显式给宽高 */
   width: 100%; height: 100%;
-  pointer-events: none; opacity: .85;
-  transition: opacity var(--t-ui) var(--ease-out);
+  pointer-events: none;
 }
 .page { position: relative; z-index: 1; }
 
@@ -21,7 +23,11 @@
 .nav__links { display: flex; gap: var(--s-5); align-items: center; }
 
 /* ── Hero（V3 §17）────────────────────────────────────── */
-.hero { padding-block: clamp(48px, 8vw, 120px) clamp(56px, 9vw, 140px); }
+.hero {
+  position: relative; overflow: hidden;
+  padding-block: clamp(48px, 8vw, 120px) clamp(56px, 9vw, 140px);
+}
+.hero__grid { position: relative; z-index: 2; }
 .hero__grid {
   /* 文字列定宽 + 人像右对齐：版面放宽后避免中间出现大片空档 */
   display: grid; grid-template-columns: minmax(0, 700px) minmax(0, 1fr);
@@ -414,3 +420,145 @@ ol.numlist li { margin-bottom: 4px; }
   .contact__rows { grid-template-columns: 1fr; }
   .spec { grid-template-columns: repeat(2, 1fr); }
 }
+
+
+/* ══════════════════════════════════════════════════════════
+   V4 第一批 · 结构急救（2026-09-17）
+   原则：默认状态做减法；项目是主角；交互要么真做要么不写
+   ══════════════════════════════════════════════════════════ */
+
+/* ── P0-02 能力区压成 240–320px 的能力带（原来一项就 230px+，HR 要滚很久才看到作品）── */
+.ability { padding-block: clamp(40px, 4.6vw, 76px); }
+.ability__grid { margin-top: var(--s-6); }
+.ability__card { min-height: 0; padding-block: var(--s-4) var(--s-3); }
+.ability__idx { font-size: clamp(22px, 2vw, 30px); margin-bottom: var(--s-2); }
+.ability__cn { font-size: clamp(19px, 1.6vw, 24px); }
+.ability__chain { margin-top: var(--s-2); }
+.ability__rep { margin-top: var(--s-3); font-size: var(--fs-caption); }
+
+/* ── P0-02 「Selected Work」由整屏章节幕收成一条细带 ── */
+.work-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
+  border-bottom: 1px solid var(--line); padding-bottom: var(--s-3);
+  margin-bottom: var(--s-7);
+}
+.work-head .label-en { color: var(--c-accent); }
+.work-head .label-en:last-child { color: var(--fg-muted); }
+@media (max-width: 720px) {
+  .work-head { margin-bottom: var(--s-5); }
+  .work-head .label-en:last-child { display: none; }
+}
+
+/* ── P0-13 NEXT 不再是额外大章节：压到 120–180px 的轻 teaser ── */
+.next-preview { display: block; padding-block: var(--s-5); }
+.next-preview__row { align-items: center; gap: var(--s-5); }
+.next-preview__title { font-size: clamp(20px, 1.9vw, 30px); margin-top: 4px; }
+.next-preview__tags { display: none; }             /* 收起成 teaser，标签不再占位 */
+.next-preview__thumb { width: clamp(150px, 18vw, 260px); flex: none; }
+.next-preview__thumb img { border-radius: var(--r-card); }
+.next-preview__en { color: var(--c-accent); }
+@media (max-width: 720px) {
+  .next-preview__thumb { width: 120px; }
+}
+
+/* ── P0-06 Robot 封面：统一 4:3 容器，不让竖图把收起态撑到 1.5 屏 ── */
+.cover {
+  position: relative; margin: 0;
+  aspect-ratio: 4 / 3; overflow: hidden;
+  border-radius: var(--r-media); background: var(--c-surface-2);
+}
+.cover__main { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.cover__inset {
+  position: absolute; right: clamp(10px, 1.4vw, 20px); bottom: clamp(10px, 1.4vw, 20px);
+  width: clamp(96px, 13vw, 190px); aspect-ratio: 3 / 4; object-fit: cover;
+  border-radius: var(--r-card); border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+.cover__badge {
+  position: absolute; left: clamp(10px, 1.4vw, 20px); top: clamp(10px, 1.4vw, 20px);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--ls-label);
+  text-transform: uppercase; color: #F5F5F2;
+  background: rgba(11,12,14,.7); border: 1px solid rgba(255,106,26,.5);
+  border-radius: var(--r-pill); padding: 6px 12px; backdrop-filter: blur(6px);
+}
+.cover figcaption { position: absolute; left: 0; right: 0; bottom: 0;
+  padding: var(--s-6) var(--s-5) var(--s-4); color: #E7E7E4;
+  background: linear-gradient(180deg, transparent, rgba(11,12,14,.82));
+  font-size: var(--fs-caption); }
+@media (max-width: 720px) {
+  .cover { aspect-ratio: 4 / 3; }
+  .cover__inset { width: 88px; }
+}
+
+/* ── V4 P0-02 能力带：整段压到 240–320px ── */
+.ability__head {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--s-4);
+  margin-bottom: var(--s-5);
+}
+.ability__claim { font-size: clamp(17px, 1.4vw, 21px); font-weight: 600; letter-spacing: -.01em; }
+.ability__claim-sub { font-size: var(--fs-caption); color: var(--fg-muted); }
+.ability__grid { margin-top: 0; }
+.ability__card { padding-block: var(--s-3) var(--s-4); }
+.ability__cn { margin-bottom: 0; }
+.ability__chain { margin-top: var(--s-3); line-height: 1.55; }
+
+/* ── V4 P0-13 NEXT 压成 120–180px 的轻 teaser ── */
+.next-preview { padding-block: var(--s-4); }
+.next-preview__thumb {
+  width: clamp(132px, 13vw, 190px); flex: none;
+  aspect-ratio: 16 / 10; overflow: hidden;
+}
+.next-preview__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.next-preview__title { font-size: clamp(18px, 1.6vw, 26px); }
+@media (max-width: 720px) {
+  .ability__claim-sub { display: none; }
+  .next-preview__thumb { width: 108px; }
+}
+
+/* ══ V4 P0-04 项目收起态：图文两栏，做到约 1 屏 ══
+   原来主图铺满整列 → 单张图 718–1149px，收起态 1.9–2.8 屏。
+   改为：文字一栏 + 主图一栏（4:3），辅助图降为文字栏里的小证据。 */
+.project { padding-block: clamp(52px, 5.6vw, 96px); }
+.project__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  column-gap: clamp(28px, 3.6vw, 64px);
+  align-items: start;
+}
+.project__body > * { grid-column: 1; }
+.project__body > .project__media,
+.project__body > .cover {
+  grid-column: 2; grid-row: 1 / span 60; align-self: center;
+}
+.project__media {
+  aspect-ratio: 4 / 3; overflow: hidden; margin-bottom: 0;
+}
+.project__media img { width: 100%; height: 100%; object-fit: cover; }
+.project__media figcaption, .cover figcaption { padding-top: var(--s-2); }
+.project__body > .project__aux { max-width: 330px; margin-top: var(--s-5); }
+.project__body > .project__aux figure { margin: 0; }
+.project__body > .project__tags { margin-bottom: var(--s-3); }
+.project__body > .project__lede { margin-top: var(--s-4); }
+
+/* 能力带再收紧一点（385 → 目标 240–320）*/
+.ability { padding-block: clamp(34px, 3.8vw, 62px); }
+.ability__head { margin-bottom: var(--s-4); }
+
+@media (max-width: 1080px) {
+  .project__body { grid-template-columns: minmax(0, 1fr); }
+  .project__body > .project__media,
+  .project__body > .cover { grid-column: 1; grid-row: auto; margin-top: var(--s-5); }
+  .project__body > .project__aux { max-width: none; }
+}
+
+/* V4 第一批收尾微调：能力带进 240–320、NEXT 进 120–180 */
+.ability { padding-block: clamp(26px, 3.1vw, 50px); }
+.ability__card { padding-block: var(--s-2) var(--s-3); }
+.next-preview { padding-block: var(--s-3); }
+.next-preview__thumb { width: clamp(120px, 11vw, 172px); }
+
+/* 项目标题断行：避免「多功/能」这种把词劈开（V4：项目第一眼要强）*/
+.project__title, .about__lede, .contact__title, .chapter__title { text-wrap: balance; }
+.project__title { word-break: keep-all; }
+.project__lede, .hero__lede, .lead { text-wrap: pretty; }
