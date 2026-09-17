@@ -968,3 +968,9 @@ ol.numlist li { margin-bottom: 4px; }
 #p-designdna .tstates { margin-top: var(--s-4); max-width: 780px; }
 .tstates__row { padding: 9px 0; min-height: 38px; }
 .tstates__note { margin-top: var(--s-2); }
+
+
+/* 用户 2026-09-17 拍板：客户品牌可保留 → §13.2 的两张迭代小图回到收起态。
+   为控总高（§30），小图比主视觉缩一档、间距收紧。 */
+#p-wateralarm .project__aux--pair { max-width: 820px; gap: var(--s-3); margin-top: var(--s-4); }
+#p-wateralarm .project__aux--pair figcaption { font-size: var(--fs-caption); }
