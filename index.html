@@ -216,9 +216,7 @@
             <div class="step__idx">05 · PROTOTYPE</div>
             <h3 class="step__title">纸模验证</h3>
             <div class="step__body">
-              <p>多轮纸质模型握持测试。</p>
-              <p class="step__note">纸模原始照片已遗失；如需出示，只放<b>明确标注为「方法复原示意」</b>的图，
-                不作为真实留档照片。</p>
+              <p>通过多轮纸模握持测试调整把手宽度、长度与整体比例。</p>
             </div>
           </div>
 
@@ -531,10 +529,6 @@
           </div>
         </div>
 
-        <p class="step__note" style="margin-top:var(--s-4)">
-          口径：2026-09-17 用户决定<b>取消匿名化</b>——图片不裁、不修、不遮挡，直接使用原始效果图
-          （图中含客户品牌与产品代号）。未确认量产；2026.05–08 约 234 个工作文件。</p>
-
         <p><button class="expand-toggle" type="button" data-collapse="wa-body">收起项目 ↑</button></p>
       </div></div></div>
     </div>
@@ -678,7 +672,6 @@
             <p>电机动作模块 · 系统状态驱动动作 · 无线外部设备 Demo ·
               <b>用户访谈（计划 8–12 名长期桌面学习 / 工作 / 创作用户）</b> · 样机用户测试 ·
               动作自然度评价 · 状态可理解度评价。</p>
-            <p class="step__note">口径：以上为<b>计划，不是已完成</b>。</p>
           </div>
         </div>
 
@@ -772,35 +765,19 @@
 
         <div class="step">
           <div class="step__idx">02 · PRODUCT DNA</div>
-          <h3 class="step__title">动态 Product DNA 提取</h3>
+          <h3 class="step__title">针对当前产品动态提取特征</h3>
           <div class="step__body">
-            <p>工作台先读基准图、识别产品类型，再把产品拆成 <b>6 个可指认的设计维度</b>，
-              并在每个维度下写出<b>该产品自己的</b>特征描述与细节。</p>
-            <p class="step__note">口径：<b>槽位固定、内容自适应</b>。这 6 个维度是当前实现的
-              <b>维度骨架</b>，不是跨品类通用模型；每个产品得到的是完全不同的特征项。</p>
-          </div>
-          <div class="tbl-wrap step__media">
-            <table class="tbl">
-              <caption>跨品类实测对照（工作台真实输出）</caption>
-              <thead><tr><th>维度骨架</th><th>便携式双单元音响</th><th>手提式烧水壶</th></tr></thead>
-              <tbody>
-                <tr><td>主体轮廓</td><td>竖直矩形箱体 + 顶部一体式门形提手</td><td>圆筒壶身 + 收窄锥台肩 + 圆形壶盖 + 拱形提手</td></tr>
-                <tr><td>核心比例</td><td>箱体高宽比约 1.5:1；单元直径占正面宽 22–25%</td><td>壶身宽约总高 80%；提手高约总高 35%</td></tr>
-                <tr><td>交互布局</td><td>顶部窄横向控制带（input / play / volume / tape）</td><td>提手 + 壶盖中央旋钮；无电子界面</td></tr>
-                <tr><td>倒角与边界</td><td>直线边界 + 小幅圆角；扬声器多层圆环过渡</td><td>大圆角与连续弧面；壶盖多道水平环形边界</td></tr>
-                <tr><td>表面层级</td><td>红色主箱体 / 深色控制带 / 黑色声学组件同心分层</td><td>镜面金属壶身 / 深色锥台肩 / 黑色提手三分区</td></tr>
-                <tr><td>标志特征</td><td>正面双圆形扬声器 + 左侧外露竖向结构件</td><td>黑色倒 U 形提手 + 三段式色材组合 + 左侧上扬壶嘴</td></tr>
-              </tbody>
-            </table>
-            <p class="step__note">两个案例均无可见 Logo / 品牌文字，模型自述「不可辨识可确认的 Logo、品牌文字或型号标记」。</p>
+            <p>工作台先读基准图、识别产品类型，再<b>针对这一件产品</b>提取它的关键设计特征，
+              并在每条特征下写出具体的判断依据。</p>
+            <p>换一件产品，提取出的特征项完全不同。</p>
           </div>
         </div>
 
         <div class="step">
-          <div class="step__idx">03 · THREE STATES</div>
+          <div class="step__idx">03 · CONSTRAINTS</div>
           <h3 class="step__title">Fixed / Controlled / Free</h3>
           <div class="step__body">
-            <p>把每条提取出的特征映射到三态，并写明原因与重要度（1–5）。三态直接编译进生成 prompt：</p>
+            <p>把每条提取出的特征映射到三态，并写明原因；三态直接编译进生成指令：</p>
           </div>
           <div class="tbl-wrap step__media">
             <table class="tbl">
@@ -811,59 +788,38 @@
                 <tr><td><code>free</code></td><td>自由</td><td>放开探索</td><td><code>FREE TO EXPLORE</code></td></tr>
               </tbody>
             </table>
-            <table class="tbl" style="margin-top:var(--s-5)">
-              <caption>实测（两个跨品类案例都跑过完整链路）</caption>
-              <thead><tr><th>案例</th><th>约束条数</th><th>三态分布</th></tr></thead>
-              <tbody>
-                <tr><td>便携式双单元音响</td><td>14 条</td><td><b>4 固定 / 7 受控 / 3 自由</b></td></tr>
-                <tr><td>手提式烧水壶</td><td>15 条</td><td><b>4 固定 / 8 受控 / 3 自由</b></td></tr>
-              </tbody>
-            </table>
-            <p class="step__note">每条约束含「特征名称 · 所属维度 · 原因说明 · 重要度（1–5）· 英文指令」，
-              并可<b>手动钉住</b>（钉住的条目重新生成时不会被覆盖）。两个产品的三态比例接近，
-              但内容完全不同——音响钉的是「双扬声器开孔、顶部控制区、可携提承重」，
-              水壶钉的是「宽矮比例、圆筒加锥台轮廓、壶嘴上扬、提手与壶盖关系」。</p>
-            <p class="step__note">工作台自己的定位：「它不懂你的模具和供应链，最终拍板的是你」。
-              一条 Fixed 都没有时会警告「生成时没有任何硬约束，结果很可能面目全非」。</p>
+            <p class="step__note">每条都可<b>手动钉住</b> —— 钉住的条目在后续重新生成时不会被覆盖。</p>
           </div>
         </div>
 
         <div class="step">
-          <div class="step__idx">04 · STRATEGY</div>
-          <h3 class="step__title">探索策略</h3>
+          <div class="step__idx">04 · EXPLORATION</div>
+          <h3 class="step__title">在约束范围内探索</h3>
           <div class="step__body">
-            <p>三档策略按激进程度递增，每一档给出<b>具体的设计语言命名</b>（工作台真实输出）：</p>
-            <ul>
-              <li><b>便携式双单元音响</b>：运动装备分层精修 + 精密黑红 CMF ／ 圆角嵌套箱体 + 运动护框融合 ／ 智能表盘护甲 + 运动鞋底式一体骨架</li>
-              <li><b>手提式烧水壶</b>：复古轮廓精修与连续环带强化 ／ 肩部张力重构与拱顶提手对比 ／ 环形阶梯体块与悬浮拱架探索</li>
-            </ul>
-            <p>另有<b>四种发散方式</b>（造型 / 思维 / 色彩材料 / 造型融合）与<b>九宫格批量发散</b>
-              （造型九宫格、CMF 九宫格，3×3＝9 个完整方向）。</p>
+            <p>按激进程度给出三档探索策略，每一档都用具体的设计语言命名；
+              另有四种发散方式与<b>九宫格批量发散</b>（3×3＝9 个完整方向）。</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step__idx">05 · REVIEW</div>
-          <h3 class="step__title">评审 / 矩阵比较</h3>
+          <h3 class="step__title">评审与比较</h3>
           <div class="step__body">
-            <p>评审维度：<b>约束符合度 · 可制造性 · 保持度 · 创新度 · 市场契合</b>；
-              结论为 采纳 / 继续迭代 / 否决，并逐条给出符合度与文字证据。</p>
-            <p><b>实测</b>：约束符合度 <b>96–100%</b>，逐条 <code>pass</code>。</p>
-            <p>硬规则：一旦检测到 <b>Fixed 约束被破坏</b>，直接判定「这一版无论多好看都不能直接采纳
-              —— 它改了不该改的地方」。</p>
+            <p>评审维度：约束符合度 · 可制造性 · 保持度 · 创新度 · 市场契合；
+              结论为 采纳 / 继续迭代 / 否决。</p>
+            <p>硬规则：一旦检测到 <b>Fixed 约束被破坏</b>，这一版无论多好看都不能直接采纳。</p>
             <p>另有<b>变体树</b>（父子迭代）、原图对照与<b>对比矩阵</b>。</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step__idx">06 · WEB MVP</div>
-          <h3 class="step__title">Web MVP</h3>
+          <h3 class="step__title">真实界面与案例</h3>
           <div class="step__body">
-            <p>已做成<b>可运行的本地 Web 测试原型</b>：左栏为项目 / 简报 / 基准图 / 参考图，
-              中间画布支持变体树 · 单图 · 原图对照 · 对比矩阵，右栏即四步工作流
+            <p>已做成<b>可运行的本地 Web 测试原型</b>：左侧为项目与基准图，
+              中间画布支持变体树 · 单图 · 原图对照 · 对比矩阵，右侧即四步工作流
               （理解 → 锁定 → 探索 → 评审）。</p>
             <p>本人负责需求定义、规则组织、交互调整与真实产品图验证；实现借助 AI 完成。</p>
-            <p class="step__note">口径：不表述为独立软件工程能力。</p>
           </div>
           <div class="step__pair step__media">
             <figure class="media media--zoom">
@@ -874,15 +830,6 @@
               <img src="./assets/img/designdna/mvp-05-canvas.webp" width="2526" height="1363"
                    alt="变体树画布" loading="lazy"><figcaption>变体树画布</figcaption>
             </figure>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step__idx">07 · VALIDATION</div>
-          <h3 class="step__title">验证</h3>
-          <div class="step__body">
-            <p>用真实产品图验证，并根据失败案例、易用性问题持续迭代。</p>
-            <p class="step__note">可补强：测试产品数量；「无约束 vs DesignDNA 约束」的 Before / After 对照。</p>
           </div>
         </div>
 
@@ -1059,18 +1006,6 @@
         <span class="mw__info"><b>个人 AI 设计工具组</b><i>AIGC Skill Hub · Design Camera · 模型与环境切换 · 额度查看</i></span>
       </button>
 
-      <div class="mw mw--play" style="grid-column:span 3">
-        <img src="./assets/img/more/proto-tetris.webp" alt="三款可玩网页原型" loading="lazy">
-        <span class="mw__info">
-          <b>三款可玩网页原型</b><i>可直接在站内玩</i>
-          <span class="mw__links">
-            <a href="./demo/games/tetris/" target="_blank" rel="noopener">俄罗斯方块 ↗</a>
-            <a href="./demo/games/fruit/" target="_blank" rel="noopener">切西瓜 ↗</a>
-            <a href="./demo/games/breakout/" target="_blank" rel="noopener">打方块 ↗</a>
-          </span>
-        </span>
-      </div>
-
       <button class="mw" type="button" data-lb="./assets/img/more/visual-1.webp"
               data-lb-cap="视觉设计" style="grid-column:span 3">
         <img src="./assets/img/more/visual-1.webp" alt="视觉设计" loading="lazy">
@@ -1083,6 +1018,18 @@
         <span class="mw__info"><b>其他课程作品</b><i>课程与产品练习产出</i></span>
       </button>
 
+
+      <div class="mw mw--play" style="grid-column:span 6">
+        <img src="./assets/img/more/proto-tetris.webp" alt="网页小实验" loading="lazy">
+        <span class="mw__info">
+          <b>Experiments · 网页小实验</b><i>三个可玩原型，属兴趣补充，不是主线方向</i>
+          <span class="mw__links">
+            <a href="./demo/games/tetris/" target="_blank" rel="noopener">俄罗斯方块 ↗</a>
+            <a href="./demo/games/fruit/" target="_blank" rel="noopener">切西瓜 ↗</a>
+            <a href="./demo/games/breakout/" target="_blank" rel="noopener">打方块 ↗</a>
+          </span>
+        </span>
+      </div>
     </div>
   </div>
 </section>
