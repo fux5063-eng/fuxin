@@ -852,3 +852,107 @@ ol.numlist li { margin-bottom: 4px; }
   #p-wateralarm .project__body { display: block; }
   #p-wateralarm .project__media { max-width: 380px; margin: 0 auto !important; }
 }
+
+
+/* ══ V4.1 §22：NEXT 只做「一行文字 + 一个箭头」，48–72px，不放缩略图、不放标签 ══ */
+.next-preview { display: block; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.next-preview__row { display: flex; align-items: baseline; gap: var(--s-4);
+  min-height: 64px; padding-block: var(--s-3); }
+.next-preview__thumb, .next-preview__tags { display: none !important; }
+.next-preview__title { font-size: clamp(17px, 1.35vw, 21px); letter-spacing: -.01em; }
+.next-preview__en { margin: 0; }
+
+/* ══ V4.1 §23：取消独立「工业 → AI」转场区。
+   浅色区（落水报警）尾部自然渐入深色，Robot 开头续上 —— 不再单独占一整段。 ══ */
+#p-wateralarm {
+  background: linear-gradient(180deg,
+    var(--bg) 0%,
+    var(--bg) calc(100% - 190px),
+    var(--c-bg) 100%);
+  padding-bottom: clamp(120px, 12vw, 200px);
+}
+#p-robot { padding-top: clamp(72px, 7vw, 120px); }
+
+
+/* ══ V4.1 §23：消除「小图 + 大片空白」 ══
+   DOGGIE 的辅助图是 16:9 宽幅（1600×900），被限在 150px 小框里既看不清、右边又空一大片。
+   让它铺满文字列宽度（约 560px），信息可读且不留空。 */
+#p-doggie .project__aux { max-width: 100%; }
+#p-doggie .project__aux .media { margin: 0; }
+#p-doggie .project__aux img { width: 100%; height: auto; }
+
+
+/* ══ V4.1 §24：More Work 两级卡片、统一比例 ══ */
+.morework__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(16px, 2vw, 28px) !important; }
+.morework__grid > .mw--cover { grid-column: auto !important; grid-row: auto !important; }
+.morework__grid > .mw--cover img { width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: cover; object-position: center; display: block; }
+.morework__grid > .mw--cover .mw__info { position: static; padding: var(--s-3) 0 0;
+  background: none; }
+.morework__grid > .mw--play { grid-column: 1 / -1 !important; grid-row: auto !important;
+  min-height: 0 !important; padding: var(--s-5) 0; display: flex; align-items: center;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+/* ══ V4.1 §25/§26：About 降权压缩 —— 次要经历收成一眼可扫的列表 ══ */
+.about__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.about__other { margin-top: clamp(40px, 4.5vw, 72px); }
+.about__list { list-style: none; margin: var(--s-4) 0 0; padding: 0;
+  border-top: 1px solid var(--line); }
+.about__list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: var(--s-4); padding: var(--s-3) 0; border-bottom: 1px solid var(--line);
+  font-size: var(--fs-small); align-items: baseline; }
+.about__list li b { font-weight: 600; }
+.about__list li span { color: var(--fg-muted); font-size: var(--fs-caption); }
+@media (max-width: 720px) {
+  .morework__grid { grid-template-columns: 1fr !important; }
+  .about__grid { grid-template-columns: 1fr !important; }
+  .about__list li { grid-template-columns: 1fr; gap: var(--s-1); }
+}
+
+
+/* ── 修正三处被既有规则盖过的样式（都是实测发现，不是猜的）── */
+
+/* ① More Work 封面：既有 .mw img { height:210px; flex:1 1 auto } 会压掉 aspect-ratio，
+      导致实测比例 7.97 而不是 4:3。改成 block 布局 + 强制 auto。 */
+.morework__grid > .mw--cover { display: block !important; }
+.morework__grid > .mw--cover img {
+  display: block !important; width: 100% !important; height: auto !important;
+  flex: none !important; aspect-ratio: 4 / 3 !important;
+  object-fit: cover !important; object-position: center !important;
+  border-radius: var(--r-card);
+  transition: transform var(--t-image) var(--ease-out);
+}
+.morework__grid > .mw--cover:hover img { transform: scale(1.02); }
+
+/* ② 项目辅助图：.project__aux 是 2 列栅格，只有 1 张图时只占一半宽（实测 286px 而非铺满）。
+      单张时改成 1 列。 */
+.project__aux > figure:only-child { grid-column: 1 / -1; }
+#p-doggie .project__aux { grid-template-columns: 1fr; }
+
+/* ③ NEXT 行：min-height 与 padding 叠加导致实测 115px（§22 要求 48–72px）。 */
+.next-preview__row { min-height: 0 !important; padding-block: 0 !important;
+  align-items: center !important; }
+.next-preview { padding-block: 11px; }
+.next-preview__en, .next-preview__title { margin: 0 !important; }
+
+
+/* NEXT 再收紧：实测 85px，§22 要求 48–72px */
+.next-preview { padding-block: 8px !important; }
+.next-preview__en { font-size: 11px !important; line-height: 1.2 !important; }
+.next-preview__title { font-size: 19px !important; line-height: 1.25 !important; }
+
+
+/* ④ 根因：.morework__grid 行高写死 168px（旧的不规则网格留下的），
+      把 4:3 封面裁成一条 168px 高的带子。改为按内容定高。 */
+.morework__grid { grid-auto-rows: auto !important; }
+.morework__grid > .mw--cover { height: auto !important; }
+
+
+/* ⑤ 瘦身：四张封面一行排完（§24 要求两级尺寸 + 统一比例，且整区要短）
+      2 列会让 More Work 涨到 2.0 屏。 */
+.morework__grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+@media (max-width: 1080px) { .morework__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 560px)  { .morework__grid { grid-template-columns: 1fr !important; } }
+.morework__grid > .mw--cover .mw__info b { font-size: var(--fs-small); }
+.morework__grid > .mw--cover .mw__info i { font-size: var(--fs-caption); color: var(--fg-muted); font-style: normal; }

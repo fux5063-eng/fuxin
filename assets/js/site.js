@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v11-v41-b1';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v12-v41-b2';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -430,6 +430,27 @@
       else if (e.key === 'ArrowRight') show(lbIdx + 1);
     });
     lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  /* V4.1 §24 修正：More Work 卡片用 data-lb / data-lb-cap 指定大图与说明，
+     但这些属性此前在 JS 里完全没有处理 —— 点了没反应（死交互）。这里接上。 */
+  var lbOpenSingle = function (src, cap) {
+    lbGroup = [];
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lastFocus = document.activeElement;
+    lbImg.src = src;
+    lbImg.alt = cap || '';
+    lbCap.textContent = cap || '';
+    lbCount.textContent = '';
+    lbPrev.hidden = true;
+    lbNext.hidden = true;
+    lb.querySelector('.lb__close').focus();
+  };
+  document.querySelectorAll('[data-lb]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;   /* 卡片内的可玩原型链接照常新开标签页 */
+      lbOpenSingle(el.getAttribute('data-lb'), el.getAttribute('data-lb-cap') || '');
+    });
+  });
     lb.addEventListener('touchend', function (e) {
       if (touchX === null) return;
       var dx = e.changedTouches[0].clientX - touchX;
