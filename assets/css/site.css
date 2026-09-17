@@ -562,3 +562,124 @@ ol.numlist li { margin-bottom: 4px; }
 .project__title, .about__lede, .contact__title, .chapter__title { text-wrap: balance; }
 .project__title { word-break: keep-all; }
 .project__lede, .hero__lede, .lead { text-wrap: pretty; }
+
+
+/* ══════════════════════════════════════════════════════════
+   V4 第三批 · 动态与交互（2026-09-17）
+   V4 原话：把交互需求写成一句文字 ≠ 实现交互需求
+   ══════════════════════════════════════════════════════════ */
+
+/* ── P0-11 Lumora：使用态 / 收纳态 真切换 ── */
+.state-switch {
+  position: relative; overflow: hidden; margin: 0;
+  aspect-ratio: 4 / 3; background: #EDECEA; border-radius: var(--r-media);
+}
+.state-switch__img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  transition: opacity var(--t-ui) var(--ease-out);
+}
+.state-switch__img.is-fading { opacity: 0; }
+.state-switch__ctl {
+  position: absolute; left: 50%; bottom: 46px; transform: translateX(-50%);
+  display: flex; gap: 2px; padding: 4px;
+  background: rgba(11,12,14,.74); border-radius: var(--r-pill);
+  backdrop-filter: blur(6px);
+}
+.state-switch__btn {
+  appearance: none; border: 0; background: transparent; color: #C9CBCF;
+  font: inherit; font-size: 12px; letter-spacing: .06em;
+  padding: 8px 16px; min-height: 34px; border-radius: var(--r-pill);
+  cursor: pointer; transition: background var(--t-hover), color var(--t-hover);
+}
+.state-switch__btn.is-on { background: var(--c-accent); color: #0B0C0E; font-weight: 600; }
+.state-switch__btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.state-switch__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: var(--s-6) var(--s-4) var(--s-3); margin: 0;
+  color: #2A2B2E; background: linear-gradient(180deg, transparent, rgba(237,236,234,.92));
+  font-size: var(--fs-caption);
+}
+.state-switch__cap { color: #4A4B4E; }
+
+/* ── P0-11 Robot：系统链路（真节点，可点可悬停）── */
+.chain {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--s-2); margin-top: var(--s-5);
+}
+.chain__node {
+  appearance: none; background: transparent; color: var(--fg);
+  border: 1px solid var(--line); border-radius: var(--r-pill);
+  font: inherit; font-size: 13px; padding: 8px 13px; min-height: 36px;
+  cursor: pointer;
+  transition: border-color var(--t-hover) var(--ease-out),
+              color var(--t-hover) var(--ease-out),
+              background var(--t-hover) var(--ease-out);
+}
+.chain__node:hover, .chain__node:focus-visible { border-color: var(--c-accent); color: var(--c-accent); }
+.chain__node.is-lit {
+  border-color: var(--c-accent); color: var(--c-accent);
+  background: var(--c-accent-soft);
+}
+.chain__node--fb.is-lit { background: rgba(127,211,154,.14); border-color: #7FD39A; color: #7FD39A; }
+.chain__gap { color: var(--line); font-family: var(--font-mono); font-size: 12px; user-select: none; }
+.chain__note {
+  margin-top: var(--s-3); min-height: 1.7em;
+  font-size: var(--fs-caption); color: var(--fg-muted);
+}
+
+/* ── P0-11 DesignDNA：三态约束轻交互 ── */
+.tstates { margin-top: var(--s-5); border-top: 1px solid var(--line); }
+.tstates__row {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+  width: 100%; appearance: none; border: 0; background: transparent;
+  border-bottom: 1px solid var(--line); color: var(--fg);
+  font: inherit; padding: 12px 0; min-height: 46px; cursor: pointer; text-align: left;
+  transition: color var(--t-hover);
+}
+.tstates__row:hover, .tstates__row:focus-visible { color: var(--c-accent); }
+.tstates__val {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--ls-label);
+  text-transform: uppercase; color: var(--fg-muted);
+  border: 1px solid var(--line); border-radius: var(--r-pill); padding: 4px 11px;
+  transition: background var(--t-hover), color var(--t-hover), border-color var(--t-hover);
+}
+.tstates__row.is-on .tstates__val {
+  background: var(--c-accent); border-color: var(--c-accent); color: #0B0C0E;
+}
+.tstates__note {
+  margin-top: var(--s-3); min-height: 1.7em;
+  font-size: var(--fs-caption); color: var(--fg-muted);
+}
+
+/* ── P0-12 工业 → AI 过渡：本地画布（不锁滚动、不进 WebGL）── */
+.chapter { position: relative; overflow: hidden; }
+.chapter__canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+.chapter__inner { position: relative; z-index: 2; }
+
+/* ── P1-01 项目图可点开（Lightbox gallery）── */
+.media--zoom img, .cover__main, .state-switch__img { cursor: zoom-in; }
+
+/* ── P1-01 Lightbox：前后翻 + 序号 ── */
+.lb__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(21,23,26,.85);
+  color: var(--c-text-dark); font-size: 18px; cursor: pointer;
+  transition: border-color var(--t-hover), color var(--t-hover);
+}
+.lb__nav:hover { border-color: var(--c-accent); color: var(--c-accent); }
+.lb__nav--prev { left: clamp(10px, 2vw, 28px); }
+.lb__nav--next { right: clamp(10px, 2vw, 28px); }
+.lb__nav[hidden] { display: none; }
+.lb__count {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--ls-label);
+  color: var(--fg-muted);
+}
+@media (max-width: 720px) {
+  .lb__nav { width: 44px; height: 44px; }
+  .state-switch__ctl { bottom: 40px; }
+  .chain__node { font-size: 12px; padding: 7px 11px; }
+}

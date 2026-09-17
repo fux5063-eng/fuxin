@@ -304,10 +304,18 @@
           <span class="tag">尺寸规划</span><span class="tag">多状态设计</span>
         </div>
 
-        <figure class="media media--zoom project__media wide reveal">
-          <img src="./assets/img/id/lumora-hero.webp" width="1235" height="1092"
-               alt="Lumora 光健康伴护仪 使用场景" loading="lazy">
-          <figcaption>完整产品使用态</figcaption>
+        <figure class="cover state-switch reveal" id="lumora-switch" data-state="open">
+          <img class="state-switch__img" src="./assets/img/id/lumora-open.webp"
+               alt="Lumora 光健康伴护仪 使用态" loading="lazy">
+          <div class="state-switch__ctl" role="group" aria-label="Lumora 产品状态切换">
+            <button class="state-switch__btn is-on" type="button" data-state="open"
+                    data-src="./assets/img/id/lumora-open.webp"
+                    data-alt="Lumora 光健康伴护仪 使用态">使用态</button>
+            <button class="state-switch__btn" type="button" data-state="stowed"
+                    data-src="./assets/img/id/lumora-stowed.webp"
+                    data-alt="Lumora 光健康伴护仪 收纳态">收纳态</button>
+          </div>
+          <figcaption class="state-switch__cap" id="lumora-cap">展开最高 1280mm · 可调灯臂</figcaption>
         </figure>
 
         <p class="project__lede measure reveal">
@@ -538,8 +546,9 @@
 <!-- ── NEXT → 07 过渡幕（原有章节幕已在下文）── -->
 
 <!-- ══════════════ 07 工业 → AI 过渡幕 ══════════════ -->
-<section class="section chapter" style="background:linear-gradient(180deg, var(--c-light), var(--c-bg)); color:var(--c-text-dark)">
-  <span class="chapter__rail">From Product To System</span>
+<section class="section chapter" data-transition="product-to-system">
+  <canvas class="chapter__canvas" id="transition-canvas" aria-hidden="true"></canvas>
+
   <div class="wrap chapter__inner">
     <div class="label-en chapter__en reveal" style="margin-top:var(--s-8)">From Product To System</div>
     <h2 class="chapter__title reveal">从实体产品 → 智能系统</h2>
@@ -584,6 +593,23 @@
             <figcaption>双眼屏幕与扬声器</figcaption>
           </figure>
         </div>
+
+        <div class="chain reveal" id="robot-chain" aria-label="系统链路">
+          <button class="chain__node" type="button" data-note="用户说话 → 本地唤醒词命中，进入多轮会话">语音</button>
+          <span class="chain__gap" aria-hidden="true">→</span>
+          <button class="chain__node" type="button" data-note="ASR 转写 → 模型 API → TTS 合成，已跑通多轮闭环">ASR / LLM / TTS</button>
+          <span class="chain__gap" aria-hidden="true">→</span>
+          <button class="chain__node" type="button" data-note="私人后台：硬件通信、状态同步、模型接入与指令下发">私人后台</button>
+          <span class="chain__gap" aria-hidden="true">→</span>
+          <button class="chain__node" type="button" data-note="把意图翻译成动作与设备指令">控制层</button>
+          <span class="chain__gap" aria-hidden="true">→</span>
+          <button class="chain__node" type="button" data-note="ESP32-S3 实机执行，含灯光模块有线外接">ESP32</button>
+          <span class="chain__gap" aria-hidden="true">→</span>
+          <button class="chain__node" type="button" data-note="动作 / 外接设备执行">动作 / 设备</button>
+          <span class="chain__gap" aria-hidden="true">←</span>
+          <button class="chain__node chain__node--fb" type="button" data-note="执行结果回传，驱动屏幕表情与状态反馈，会话结束回到待机">Feedback</button>
+        </div>
+        <p class="chain__note" id="chain-note">点亮路径：语音 → 后台 → 实机执行 → 反馈</p>
 
         <p class="reveal">
           <button class="expand-toggle" type="button" aria-expanded="false" aria-controls="robot-body">
@@ -741,6 +767,19 @@
             <figcaption>锁定阶段 · 约束地图三态</figcaption>
           </figure>
         </div>
+
+        <div class="tstates reveal" id="dna-states">
+          <button class="tstates__row" type="button" data-note="轮廓决定「这是同一件产品」，改了就不像它了">
+            <b>主体轮廓</b><span class="tstates__val is-fixed">Fixed</span>
+          </button>
+          <button class="tstates__row" type="button" data-note="交互区域可以优化，但不能取消或挪走">
+            <b>交互区域</b><span class="tstates__val is-controlled">Controlled</span>
+          </button>
+          <button class="tstates__row" type="button" data-note="CMF 放开探索，是改款最主要的自由度">
+            <b>CMF</b><span class="tstates__val is-free">Free</span>
+          </button>
+        </div>
+        <p class="tstates__note" id="tstates-note">点一行看这条约束能改到什么程度</p>
 
         <p class="reveal">
           <button class="expand-toggle" type="button" aria-expanded="false" aria-controls="dna-body">
@@ -1103,11 +1142,14 @@
 </footer>
 
 <!-- ══════════════ Lightbox（V3 §39） ══════════════ -->
-<div class="lb" id="lb" hidden>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="图片查看">
   <button class="lb__close" type="button" aria-label="关闭">✕</button>
+  <button class="lb__nav lb__nav--prev" type="button" aria-label="上一张" hidden>←</button>
+  <button class="lb__nav lb__nav--next" type="button" aria-label="下一张" hidden>→</button>
   <figure class="lb__fig">
     <img class="lb__img" alt="">
     <figcaption class="lb__cap"></figcaption>
+    <div class="lb__count"></div>
   </figure>
 </div>
 

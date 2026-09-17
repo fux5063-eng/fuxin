@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v8-v4batch2';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v9-v4batch3';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -40,6 +40,10 @@
   }
   function collapse(box) {
     clearTimer(box);
+    /* V4 P1-02：收起后不让视口跳动 —— 先量住"展开区是否整个在视口上方"，
+       短了多少就在终态补回多少滚动量，用户感觉仍在原位置。 */
+    var docBefore = document.documentElement.scrollHeight;
+    var docked = box.getBoundingClientRect().bottom < 0;
     box.style.height = box.scrollHeight + 'px';   /* 先固定当前高度 */
     box.getBoundingClientRect();                  /* 强制回流 */
     box.setAttribute('data-open', 'false');       /* 先改状态（守卫依赖它）*/
@@ -47,7 +51,13 @@
     /* 终态强制：离屏元素不产生帧时 transition 不会推进，
        这里保证"收起"这个结果无论如何都落到 0。 */
     timers.set(box, window.setTimeout(function () {
-      if (box.getAttribute('data-open') !== 'true') box.style.height = '0px';
+      if (box.getAttribute('data-open') !== 'true') {
+        box.style.height = '0px';
+        if (docked) {
+          var shrink = docBefore - document.documentElement.scrollHeight;
+          if (shrink > 2) window.scrollBy(0, -shrink);
+        }
+      }
     }, 520));
   }
   function setOpen(box, open) {
@@ -71,11 +81,7 @@
       setOpen(box, open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (isCollapse) {
-        btn.textContent = labelOpen;
-        if (!open) {
-          var host = btn.closest('section');
-          if (host) host.scrollIntoView({ block: 'start' });
-        }
+        btn.textContent = labelOpen;   /* V4 P1-02：不再自动 scrollIntoView */
       } else {
         btn.textContent = open ? labelOpen : labelClose;
       }
@@ -169,19 +175,239 @@
     });
   });
 
-  /* ── 6. Lightbox（V3 §39：深色、大图、Esc 关闭）── */
+  /* ══ V4 第三批：项目专属交互（V4 原话：把交互需求写进网页 ≠ 实现交互需求）══ */
+
+  /* ── 1. Lumora：使用态 / 收纳态 真切换 ── */
+  (function () {
+    var sw = document.getElementById('lumora-switch');
+    if (!sw) return;
+    var img = sw.querySelector('.state-switch__img');
+    var cap = sw.querySelector('.state-switch__cap');
+    var btns = [].slice.call(sw.querySelectorAll('.state-switch__btn'));
+    var CAPS = {
+      open: '展开最高 1280mm · 可调灯臂',
+      stowed: '收纳总高 572mm · 折叠 + 脚轮移动'
+    };
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var st = b.getAttribute('data-state');
+        if (sw.getAttribute('data-state') === st) return;
+        sw.setAttribute('data-state', st);
+        btns.forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        if (cap) cap.textContent = CAPS[st] || '';
+        img.classList.add('is-fading');
+        var pre = new Image();
+        var done = function () {
+          img.src = pre.src;
+          img.alt = b.getAttribute('data-alt') || '';
+          img.classList.remove('is-fading');
+        };
+        pre.onload = done;
+        pre.onerror = done;
+        pre.src = b.getAttribute('data-src');
+      });
+    });
+  })();
+
+  /* ── 2. Robot：系统链路真点亮（进入视口自动跑一次 + 悬停看节点说明）── */
+  (function () {
+    var chain = document.getElementById('robot-chain');
+    if (!chain) return;
+    var nodes = [].slice.call(chain.querySelectorAll('.chain__node'));
+    var note = document.getElementById('chain-note');
+    var DEFAULT_NOTE = '点亮路径：语音 → 后台 → 实机执行 → 反馈';
+    var played = false;
+    function focusNode(n) {
+      nodes.forEach(function (x) { x.classList.toggle('is-lit', x === n); });
+      if (note) note.textContent = n.getAttribute('data-note') || '';
+    }
+    nodes.forEach(function (n) {
+      n.addEventListener('mouseenter', function () { focusNode(n); });
+      n.addEventListener('focus', function () { focusNode(n); });
+      n.addEventListener('click', function () { focusNode(n); });
+    });
+    function play() {
+      if (played) return;
+      played = true;
+      nodes.forEach(function (n, i) {
+        window.setTimeout(function () { n.classList.add('is-lit'); }, 150 * i);
+        window.setTimeout(function () {
+          if (!n.matches(':hover') && document.activeElement !== n) n.classList.remove('is-lit');
+        }, 150 * i + 760);
+      });
+      window.setTimeout(function () { if (note) note.textContent = DEFAULT_NOTE; },
+        150 * nodes.length + 760);
+    }
+    if (reduce.matches) return;
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { play(); io.disconnect(); }
+      }, { threshold: 0.35 });
+      io.observe(chain);
+    } else {
+      play();
+    }
+  })();
+
+  /* ── 3. DesignDNA：三态约束轻交互（点一行 → 橙色状态 + 说明变化）── */
+  (function () {
+    var box = document.getElementById('dna-states');
+    if (!box) return;
+    var rows = [].slice.call(box.querySelectorAll('.tstates__row'));
+    var note = document.getElementById('tstates-note');
+    var DEFAULT_NOTE = '点一行看这条约束能改到什么程度';
+    rows.forEach(function (r) {
+      r.addEventListener('click', function () {
+        var wasOn = r.classList.contains('is-on');
+        rows.forEach(function (x) { x.classList.remove('is-on'); });
+        if (wasOn) {
+          if (note) note.textContent = DEFAULT_NOTE;
+        } else {
+          r.classList.add('is-on');
+          if (note) note.textContent = r.getAttribute('data-note') || '';
+        }
+      });
+    });
+  })();
+
+  /* ── 4. 工业 → AI 过渡：产品轮廓 → 拆成节点 → 出现连线 ──
+     纯 canvas 2D、滚动驱动、不锁滚动、快速滚动直接跳到该有的状态。 */
+  (function () {
+    var sec = document.querySelector('[data-transition="product-to-system"]');
+    var cv = document.getElementById('transition-canvas');
+    if (!sec || !cv) return;
+    if (reduce.matches || (window.matchMedia && matchMedia('(max-width: 720px)').matches)) {
+      cv.style.display = 'none';
+      return;
+    }
+    var ctx = cv.getContext('2d');
+    var W = 1, H = 1, SCALE = 1, N = 9, nodes = [];
+    function size() {
+      var r = sec.getBoundingClientRect();
+      W = Math.max(1, Math.round(r.width));
+      H = Math.max(1, Math.round(r.height));
+      SCALE = Math.min(window.devicePixelRatio || 1, 1);
+      cv.width = Math.round(W * SCALE);
+      cv.height = Math.round(H * SCALE);
+      ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
+      nodes = [];
+      for (var i = 0; i < N; i++) {
+        nodes.push({
+          x: W * (0.09 + i * 0.102),
+          y: H * (0.5 + Math.sin(i * 0.95 + 0.6) * 0.19)
+        });
+      }
+    }
+    function progress() {
+      var r = sec.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
+    }
+    function draw() {
+      var p = progress();
+      ctx.clearRect(0, 0, W, H);
+      /* ① 产品轮廓（0 → 0.34 淡出）*/
+      var a1 = Math.max(0, 1 - p / 0.34);
+      if (a1 > 0.02) {
+        ctx.globalAlpha = a1 * 0.55;
+        ctx.strokeStyle = '#FF6A1A';
+        ctx.lineWidth = 1.3;
+        var bw = Math.min(W * 0.26, 320), bh = Math.min(H * 0.46, 200);
+        var x0 = W / 2 - bw / 2, y0 = H / 2 - bh / 2 + H * 0.06, rr = 26;
+        ctx.beginPath();
+        ctx.moveTo(x0 + rr, y0);
+        ctx.arcTo(x0 + bw, y0, x0 + bw, y0 + bh, rr);
+        ctx.arcTo(x0 + bw, y0 + bh, x0, y0 + bh, rr);
+        ctx.arcTo(x0, y0 + bh, x0, y0, rr);
+        ctx.arcTo(x0, y0, x0 + bw, y0, rr);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x0 + bw * 0.32, y0);
+        ctx.lineTo(x0 + bw * 0.68, y0);
+        ctx.stroke();
+      }
+      /* ② 连线（0.52 → 1）*/
+      var a3 = Math.max(0, Math.min(1, (p - 0.52) / 0.48));
+      ctx.globalAlpha = 1;
+      for (var i = 1; i < nodes.length; i++) {
+        var ln = Math.max(0, Math.min(1, a3 * (nodes.length - 1) - (i - 1)));
+        if (ln <= 0) continue;
+        var a = nodes[i - 1], b = nodes[i];
+        ctx.globalAlpha = ln * 0.42;
+        ctx.strokeStyle = '#8B8D90';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(a.x + (b.x - a.x) * ln, a.y + (b.y - a.y) * ln);
+        ctx.stroke();
+      }
+      /* ③ 节点（0.18 → 0.66 依次出现）*/
+      var a2 = Math.max(0, Math.min(1, (p - 0.18) / 0.48));
+      for (var k = 0; k < nodes.length; k++) {
+        var ap = Math.max(0, Math.min(1, a2 * nodes.length - k));
+        if (ap <= 0) continue;
+        ctx.globalAlpha = ap * 0.85;
+        ctx.fillStyle = (k % 3 === 0) ? '#FF6A1A' : '#B9BBC0';
+        ctx.beginPath();
+        ctx.arc(nodes[k].x, nodes[k].y, (k % 3 === 0) ? 3.2 : 2.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+    size();
+    draw();
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var r = sec.getBoundingClientRect();
+        if (r.bottom > -120 && r.top < window.innerHeight + 120) draw();
+        ticking = false;
+      });
+    }, { passive: true });
+    window.addEventListener('resize', function () { size(); draw(); });
+  })();
+
+  /* ── 5. Lightbox gallery（V4 P1-01：项目图分组、前后翻、序号、键盘、滑动、关闭回原位）── */
   var lb = document.getElementById('lb');
   if (lb) {
     var lbImg = lb.querySelector('.lb__img');
     var lbCap = lb.querySelector('.lb__cap');
-    var lastFocus = null;
-    function lbOpen(src, cap) {
-      lbImg.src = src;
-      lbCap.textContent = cap || '';
+    var lbCount = lb.querySelector('.lb__count');
+    var lbPrev = lb.querySelector('.lb__nav--prev');
+    var lbNext = lb.querySelector('.lb__nav--next');
+    var lbGroup = [], lbIdx = 0, lastFocus = null, touchX = null;
+
+    function capOf(im) {
+      var fig = im.closest('figure');
+      var c = fig ? fig.querySelector('figcaption') : null;
+      return (c && c.textContent.trim()) || im.getAttribute('alt') || '';
+    }
+    function groupOf(im) {
+      var sec = im.closest('section') || document.body;
+      return [].slice.call(sec.querySelectorAll('.media--zoom img, .cover__main, .state-switch__img'));
+    }
+    function show(i) {
+      if (!lbGroup.length) return;
+      lbIdx = (i + lbGroup.length) % lbGroup.length;
+      var im = lbGroup[lbIdx];
+      lbImg.src = im.currentSrc || im.src;
+      lbImg.alt = im.getAttribute('alt') || '';
+      lbCap.textContent = capOf(im);
+      lbCount.textContent = (lbIdx + 1) + ' / ' + lbGroup.length;
+      var many = lbGroup.length > 1;
+      lbPrev.hidden = !many;
+      lbNext.hidden = !many;
+    }
+    function lbOpen(im) {
+      lbGroup = groupOf(im);
       lb.hidden = false;
       document.body.style.overflow = 'hidden';
       lastFocus = document.activeElement;
-      lb.querySelector('.lb__close').focus();
+      var c = lb.querySelector('.lb__close');
+      if (c) c.focus();
+      show(lbGroup.indexOf(im));
     }
     function lbClose() {
       lb.hidden = true;
@@ -189,16 +415,27 @@
       document.body.style.overflow = '';
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
-    document.querySelectorAll('[data-lb]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        lbOpen(el.getAttribute('data-lb'), el.getAttribute('data-lb-cap'));
+    [].slice.call(document.querySelectorAll('.media--zoom img, .cover__main, .state-switch__img'))
+      .forEach(function (im) {
+        im.addEventListener('click', function () { lbOpen(im); });
       });
-    });
     lb.querySelector('.lb__close').addEventListener('click', lbClose);
+    lbPrev.addEventListener('click', function () { show(lbIdx - 1); });
+    lbNext.addEventListener('click', function () { show(lbIdx + 1); });
     lb.addEventListener('click', function (e) { if (e.target === lb) lbClose(); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !lb.hidden) lbClose();
+      if (lb.hidden) return;
+      if (e.key === 'Escape') lbClose();
+      else if (e.key === 'ArrowLeft') show(lbIdx - 1);
+      else if (e.key === 'ArrowRight') show(lbIdx + 1);
     });
+    lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 44) show(lbIdx + (dx < 0 ? 1 : -1));
+      touchX = null;
+    }, { passive: true });
   }
 
   /* ── 6. 背景动态：稀疏节点 + 连线 + 缓慢漂移（V3 §25）── */
