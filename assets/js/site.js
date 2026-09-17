@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v9-v4batch3';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v10-v4batch4';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 

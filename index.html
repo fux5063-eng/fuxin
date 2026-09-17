@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>付昕｜产品设计 × AI × 智能硬件</title>
 <meta name="description" content="付昕，产品设计 × AI × 智能硬件。以产品设计为基本盘，具备真实商业设计、机器人产品实践与 AI 智能硬件原型经验。">
+<meta name="theme-color" content="#0B0C0E">
+<link rel="canonical" href="https://fux5063-eng.github.io/fuxin/">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="icon" href="./favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:url" content="https://fux5063-eng.github.io/fuxin/">
+<meta property="og:title" content="付昕｜产品设计 × AI × 智能硬件">
+<meta property="og:description" content="以产品设计为基本盘，具备真实商业设计、机器人产品实践与 AI 智能硬件原型经验。五个核心项目：DOGGIE 宠物牵引绳 · Lumora 光健康伴护仪 · 落水报警终端 · 桌面陪伴型机器人 · DesignDNA。">
+<meta property="og:image" content="https://fux5063-eng.github.io/fuxin/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="付昕 · 产品设计 × AI × 智能硬件">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="付昕｜产品设计 × AI × 智能硬件">
+<meta name="twitter:description" content="产品设计为基本盘，真实商业设计 + 机器人产品实践 + AI 智能硬件原型。">
+<meta name="twitter:image" content="https://fux5063-eng.github.io/fuxin/assets/og-image.png">
 <script>document.documentElement.className += ' js-reveal';</script>
 <link rel="stylesheet" href="./assets/css/tokens.css">
 <link rel="stylesheet" href="./assets/css/site.css">
@@ -23,7 +41,7 @@
       <a class="nav__link" href="#work">项目</a>
       <a class="nav__link" href="#experience">经历</a>
       <a class="nav__link" href="#about">关于</a>
-      <a class="nav__link" href="./download/付昕-简历.pdf">简历 <span class="accent">↓</span></a>
+      <a class="nav__link" href="./download/付昕-简历.pdf" download="付昕-简历.pdf">简历 <span class="accent">↓</span></a>
     </nav>
   </div>
 </header>
@@ -48,11 +66,14 @@
       </div>
       <div class="hero__cta reveal">
         <a class="btn btn--primary" href="#work">查看精选项目 ↓</a>
-        <a class="btn btn--ghost" href="./download/付昕-简历.pdf">下载简历</a>
+        <a class="btn btn--ghost" href="./download/付昕-简历.pdf" download="付昕-简历.pdf">下载简历</a>
+        <a class="btn btn--ghost" href="./download/付昕-简历.pdf" target="_blank" rel="noopener">在线查看</a>
       </div>
     </div>
     <div class="hero__portrait reveal">
-      <img src="./assets/img/hero/portrait.webp" width="1086" height="1357"
+      <img src="./assets/img/hero/portrait.webp"
+               srcset="./assets/img/hero/portrait-720.webp 720w, ./assets/img/hero/portrait.webp 1086w"
+               sizes="(max-width: 1080px) 100vw, 36vw" width="1086" height="1357"
            alt="付昕" fetchpriority="high">
     </div>
   </div>
@@ -69,7 +90,9 @@
 
     <div class="ability__grid">
       <article class="ability__card reveal" tabindex="0">
-        <img class="ability__peek" src="./assets/img/id/doggie-hero.webp" alt="" aria-hidden="true">
+        <img class="ability__peek" src="./assets/img/id/doggie-hero.webp"
+               srcset="./assets/img/id/doggie-hero-720.webp 720w, ./assets/img/id/doggie-hero-1200.webp 1200w, ./assets/img/id/doggie-hero.webp 2000w"
+               sizes="(max-width: 720px) 100vw, 50vw" alt="" aria-hidden="true">
         <div>
           <div class="ability__idx">01</div>
           <h3 class="ability__cn">产品设计</h3>
@@ -89,7 +112,9 @@
       </article>
 
       <article class="ability__card reveal" tabindex="0">
-        <img class="ability__peek" src="./assets/img/ai/robot-hero.webp" alt="" aria-hidden="true">
+        <img class="ability__peek" src="./assets/img/ai/robot-hero.webp"
+               srcset="./assets/img/ai/robot-hero-720.webp 720w, ./assets/img/ai/robot-hero-1200.webp 1200w, ./assets/img/ai/robot-hero.webp 1279w"
+               sizes="(max-width: 720px) 100vw, 50vw" alt="" aria-hidden="true">
         <div>
           <div class="ability__idx">03</div>
           <h3 class="ability__cn">AI 与机器人</h3>
@@ -125,7 +150,9 @@
         </div>
 
         <figure class="media media--zoom project__media wide reveal">
-          <img src="./assets/img/id/doggie-hero.webp" width="2000" height="1125"
+          <img src="./assets/img/id/doggie-hero.webp"
+               srcset="./assets/img/id/doggie-hero-720.webp 720w, ./assets/img/id/doggie-hero-1200.webp 1200w, ./assets/img/id/doggie-hero.webp 2000w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="2000" height="1125"
                alt="DOGGIE 多功能宠物牵引绳 主渲染" loading="lazy">
           <figcaption>最终产品主渲染</figcaption>
         </figure>
@@ -306,13 +333,19 @@
 
         <figure class="cover state-switch reveal" id="lumora-switch" data-state="open">
           <img class="state-switch__img" src="./assets/img/id/lumora-open.webp"
+               srcset="./assets/img/id/lumora-open-720.webp 720w, ./assets/img/id/lumora-open.webp 900w"
+               sizes="(max-width: 720px) 100vw, 50vw"
                alt="Lumora 光健康伴护仪 使用态" loading="lazy">
           <div class="state-switch__ctl" role="group" aria-label="Lumora 产品状态切换">
             <button class="state-switch__btn is-on" type="button" data-state="open"
                     data-src="./assets/img/id/lumora-open.webp"
+               srcset="./assets/img/id/lumora-open-720.webp 720w, ./assets/img/id/lumora-open.webp 900w"
+               sizes="(max-width: 720px) 100vw, 50vw"
                     data-alt="Lumora 光健康伴护仪 使用态">使用态</button>
             <button class="state-switch__btn" type="button" data-state="stowed"
                     data-src="./assets/img/id/lumora-stowed.webp"
+               srcset="./assets/img/id/lumora-stowed-720.webp 720w, ./assets/img/id/lumora-stowed.webp 900w"
+               sizes="(max-width: 720px) 100vw, 50vw"
                     data-alt="Lumora 光健康伴护仪 收纳态">收纳态</button>
           </div>
           <figcaption class="state-switch__cap" id="lumora-cap">展开最高 1280mm · 可调灯臂</figcaption>
@@ -323,7 +356,9 @@
 
         <div class="project__aux">
           <figure class="media media--zoom reveal">
-            <img src="./assets/img/id/lumora-views.webp" width="1600" height="2263"
+            <img src="./assets/img/id/lumora-views.webp"
+               srcset="./assets/img/id/lumora-views-720.webp 720w, ./assets/img/id/lumora-views-1200.webp 1200w, ./assets/img/id/lumora-views.webp 1600w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="1600" height="2263"
                  alt="Lumora 外观与多视图" loading="lazy">
             <figcaption>外观方案与完整多视图</figcaption>
           </figure>
@@ -467,7 +502,9 @@
 
         <div class="project__aux">
           <figure class="media media--zoom reveal">
-            <img src="./assets/img/id/wateralarm-04-scene.webp" width="1920" height="1080"
+            <img src="./assets/img/id/wateralarm-04-scene.webp"
+               srcset="./assets/img/id/wateralarm-04-scene-720.webp 720w, ./assets/img/id/wateralarm-04-scene-1200.webp 1200w, ./assets/img/id/wateralarm-04-scene.webp 1920w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="1920" height="1080"
                  alt="穿戴与海上使用场景" loading="lazy">
             <figcaption>穿戴与海上使用场景</figcaption>
           </figure>
@@ -493,7 +530,9 @@
             <p class="step__note">比例、造型、细节在多个方向间并行比较。</p>
           </div>
           <figure class="media media--zoom step__media">
-            <img src="./assets/img/id/wateralarm-01-early.webp" width="1537" height="855"
+            <img src="./assets/img/id/wateralarm-01-early.webp"
+               srcset="./assets/img/id/wateralarm-01-early-720.webp 720w, ./assets/img/id/wateralarm-01-early-1200.webp 1200w, ./assets/img/id/wateralarm-01-early.webp 1537w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="1537" height="855"
                  alt="早期多方向造型发散" loading="lazy">
             <figcaption>早期多方向造型发散</figcaption>
           </figure>
@@ -575,6 +614,8 @@
 
         <figure class="cover reveal">
           <img class="cover__main" src="./assets/img/ai/robot-hero.webp"
+               srcset="./assets/img/ai/robot-hero-720.webp 720w, ./assets/img/ai/robot-hero-1200.webp 1200w, ./assets/img/ai/robot-hero.webp 1279w"
+               sizes="(max-width: 720px) 100vw, 50vw"
                alt="桌面陪伴型机器人 实机原型" loading="lazy">
           <span class="cover__badge"><span class="status-badge__dot"></span>Running Prototype</span>
           <img class="cover__inset" src="./assets/img/ai/robot-screen.webp"
@@ -721,7 +762,9 @@
           </div>
         </div>
         <figure class="media next-preview__thumb">
-          <img src="./assets/img/designdna/mvp-01-dna.webp" width="2526" height="1363"
+          <img src="./assets/img/designdna/mvp-01-dna.webp"
+               srcset="./assets/img/designdna/mvp-01-dna-720.webp 720w, ./assets/img/designdna/mvp-01-dna-1200.webp 1200w, ./assets/img/designdna/mvp-01-dna.webp 2000w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="2526" height="1363"
                alt="DesignDNA 工作台" loading="lazy">
         </figure>
       </div>
@@ -746,7 +789,9 @@
         </div>
 
         <figure class="media media--zoom project__media wide reveal">
-          <img src="./assets/img/designdna/mvp-01-dna.webp" width="2526" height="1363"
+          <img src="./assets/img/designdna/mvp-01-dna.webp"
+               srcset="./assets/img/designdna/mvp-01-dna-720.webp 720w, ./assets/img/designdna/mvp-01-dna-1200.webp 1200w, ./assets/img/designdna/mvp-01-dna.webp 2000w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="2526" height="1363"
                alt="DesignDNA 工作台 MVP 界面" loading="lazy">
           <figcaption>真实 Web MVP · 理解阶段（Product DNA 提取）</figcaption>
         </figure>
@@ -912,7 +957,9 @@
                 <p>约 3 个软件版本 · 约 12 项问题 · 2 项个人 Bug · 5+ 类控制 / 交互方式，
                   跟进修复、延后与后续验证。</p>
                 <figure class="media media--zoom step__media" style="max-width:460px">
-                  <img src="./assets/img/exp/ubtech-walker-c1.webp" width="1920" height="1080"
+                  <img src="./assets/img/exp/ubtech-walker-c1.webp"
+               srcset="./assets/img/exp/ubtech-walker-c1-720.webp 720w, ./assets/img/exp/ubtech-walker-c1-1200.webp 1200w, ./assets/img/exp/ubtech-walker-c1.webp 1920w"
+               sizes="(max-width: 720px) 100vw, 50vw" width="1920" height="1080"
                        alt="Walker C1 公开产品照" loading="lazy">
                   <figcaption>Walker C1 官方公开产品照（非内部拍摄）</figcaption>
                 </figure>
@@ -1132,7 +1179,7 @@
     </div>
 
     <p class="contact__cta reveal">
-      <a class="btn btn--primary" href="./download/付昕-简历.pdf">下载简历 ↓</a>
+      <a class="btn btn--primary" href="./download/付昕-简历.pdf" download="付昕-简历.pdf">下载简历 ↓</a>
       <a class="btn btn--ghost" href="#top" style="margin-left:var(--s-3)">Back to Top ↑</a>
     </p>
 

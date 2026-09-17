@@ -683,3 +683,54 @@ ol.numlist li { margin-bottom: 4px; }
   .state-switch__ctl { bottom: 40px; }
   .chain__node { font-size: 12px; padding: 7px 11px; }
 }
+
+
+/* ══════════════════════════════════════════════════════════
+   V4 第四批 · 移动端与传播（2026-09-17）
+   验收尺寸：320×568 / 360×800 / 375×812 / 390×844，必须无横向滚动
+   ══════════════════════════════════════════════════════════ */
+
+/* ── P1-07 移动端导航：先隐藏英文名，再逐级让位，确保 320px 不溢出 ── */
+@media (max-width: 720px) {
+  .nav__brand span { display: none; }
+  .nav__inner { gap: var(--s-3); }
+  .nav__links { gap: var(--s-3); }
+  .nav__link { font-size: 13px; }
+}
+@media (max-width: 460px) {
+  .nav__links { gap: var(--s-2); }
+  .nav__link { font-size: 12.5px; letter-spacing: 0; }
+  .nav__link[href="#about"] { display: none; }
+}
+@media (max-width: 350px) {
+  .nav__brand { font-size: 14px; }
+  .nav__link[href="#experience"] { display: none; }
+}
+
+/* ── P1-06 移动端项目 Rail：真正取消吸顶（原 CSS 藏的是 .rail-num/.rail-en，类名根本不存在）── */
+@media (max-width: 720px) {
+  .project__rail {
+    position: static; flex-direction: row; align-items: baseline;
+    gap: var(--s-3); padding-top: 0; margin-bottom: var(--s-2);
+  }
+  .project__railname {
+    writing-mode: horizontal-tb; text-orientation: mixed; max-height: none;
+  }
+  .project__rail::after { display: none; }
+  .project__num { font-size: clamp(30px, 8vw, 46px); }
+}
+
+/* ── P2-06 小屏防溢出：表格改为容器内横向滚动，长邮箱可断行 ── */
+@media (max-width: 720px) {
+  .tbl { min-width: 520px; }
+  .tbl-wrap { -webkit-overflow-scrolling: touch; }
+  .contact__rows a { word-break: break-all; }
+  .project__title { word-break: normal; overflow-wrap: anywhere; }
+  .hero__evidence { gap: var(--s-3); }
+}
+
+/* ── P1-01 Lightbox 移动端：左右按钮不压住图，滑动为主 ── */
+@media (max-width: 720px) {
+  .lb { padding: 56px 12px 64px; }
+  .lb__img { max-height: 70vh; }
+}
