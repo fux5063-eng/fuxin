@@ -1,0 +1,416 @@
+/* ============================================================
+   付昕｜新作品集网站 · 页面样式
+   只负责版式与组件摆放；所有数值取自 tokens.css（不得在此硬编码颜色/字号）
+   ============================================================ */
+
+/* ── 背景动态层（V3 §25：稀疏节点 / 连线 / 缓慢漂移，禁止满屏粒子）── */
+#bg {
+  position: fixed; inset: 0; z-index: 0;
+  /* canvas 是替换元素：只写 inset:0 不会拉伸，必须显式给宽高 */
+  width: 100%; height: 100%;
+  pointer-events: none; opacity: .85;
+  transition: opacity var(--t-ui) var(--ease-out);
+}
+.page { position: relative; z-index: 1; }
+
+/* ── 导航（V3 §38）────────────────────────────────────── */
+.nav__inner { display: flex; align-items: center; justify-content: space-between; }
+.nav__brand { font-weight: 600; letter-spacing: .01em; text-decoration: none; color: var(--fg); }
+.nav__brand span { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); letter-spacing: var(--ls-wide); }
+.nav__links { display: flex; gap: var(--s-5); align-items: center; }
+
+/* ── Hero（V3 §17）────────────────────────────────────── */
+.hero { padding-block: clamp(48px, 8vw, 120px) clamp(56px, 9vw, 140px); }
+.hero__grid {
+  /* 文字列定宽 + 人像右对齐：版面放宽后避免中间出现大片空档 */
+  display: grid; grid-template-columns: minmax(0, 700px) minmax(0, 1fr);
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 96px); align-items: center;
+}
+.hero__name { font-size: var(--fs-hero-name); font-weight: 600;
+  line-height: 1.04; letter-spacing: var(--ls-tight); margin-bottom: var(--s-4); }
+.hero__role { font-size: var(--fs-hero-role); font-weight: 500; margin-bottom: var(--s-5); }
+.hero__role i { font-style: normal; color: var(--c-accent); }   /* × 用橙色 */
+.hero__lede { font-size: var(--fs-lead); line-height: 1.62; color: var(--fg);
+  max-width: var(--text-col); margin-bottom: var(--s-6); }
+.hero__meta { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4);
+  color: var(--fg-muted); font-size: var(--fs-caption); margin-bottom: var(--s-6); }
+.hero__evidence { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-bottom: var(--s-7); }
+.hero__evidence div {
+  border-left: 2px solid var(--c-accent); padding-left: var(--s-3);
+  font-size: var(--fs-caption); color: var(--fg-muted); line-height: 1.5;
+}
+.hero__evidence b { display: block; color: var(--fg); font-size: var(--fs-body);
+  font-weight: 600; font-family: var(--font-mono); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.hero__portrait { position: relative; justify-self: end; width: var(--hero-portrait); }
+.hero__portrait img { display: block; width: 100%; height: auto;
+  border-radius: var(--r-container); }
+
+/* ── 能力概览（V3 §18：只做 3 个）────────────────────── */
+.ability { padding-block: var(--section-py); }
+/* V3 §45：网站不是 SaaS 卡片站 —— 能力概览不用「白底圆角卡」，
+   改用「顶细线 + 大编号 + 大留白」的编辑式分栏，靠排版而非容器分层。 */
+.ability__grid { display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; margin-top: var(--s-8); }
+.ability__card {
+  position: relative; overflow: hidden;
+  border: 0; border-top: 1px solid var(--line); border-radius: 0;
+  background: transparent;
+  padding: var(--s-5) var(--s-6) var(--s-7) 0; min-height: 230px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: border-color var(--t-hover) var(--ease-out);
+}
+.ability__card + .ability__card { padding-left: var(--s-6); }
+.ability__card:hover, .ability__card:focus-visible { border-top-color: var(--c-accent); }
+.ability__peek {                     /* Hover 时轻微出现的项目裁切图 */
+  position: absolute; right: -6%; bottom: -8%; width: 58%;
+  aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--r-card); opacity: 0; transform: scale(1.04);
+  transition: opacity var(--t-image) var(--ease-out),
+              transform var(--t-image) var(--ease-out);
+  pointer-events: none; filter: saturate(.92);
+}
+.ability__card:hover .ability__peek,
+.ability__card:focus-visible .ability__peek,
+.ability__card[data-peek="on"] .ability__peek { opacity: .42; transform: scale(1); }
+.ability__idx { font-family: var(--font-mono); line-height: 1; letter-spacing: 0;
+  font-size: clamp(26px, 2.6vw, 38px); color: var(--c-accent);
+  margin-bottom: var(--s-5); }
+.ability__cn { font-size: var(--fs-h3); font-weight: 600; margin: var(--s-3) 0 var(--s-2);
+  position: relative; z-index: 1; }
+.ability__en { margin-bottom: var(--s-4); position: relative; z-index: 1; }
+.ability__chain { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); line-height: 1.9; position: relative; z-index: 1; }
+.ability__chain em { font-style: normal; color: var(--c-accent); }
+.ability__rep { font-size: var(--fs-caption); color: var(--fg-muted);
+  margin-top: var(--s-3); position: relative; z-index: 1; }
+
+/* ── 章节幕（工业设计过渡 / 工业→AI 过渡）──────────────── */
+.chapter { position: relative; overflow: hidden; }
+.chapter__inner { position: relative; z-index: 1; }
+.chapter__en { font-family: var(--font-mono); font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-accent);
+  margin-bottom: var(--s-4); }
+.chapter__title { font-size: var(--fs-section-h2); font-weight: 600; margin-bottom: var(--s-4); }
+.chapter__line { max-width: var(--text-col); color: var(--fg-muted); }
+.chapter__rail { position: absolute; right: var(--safe); top: 50%; transform: translateY(-50%);
+  writing-mode: vertical-rl; font-family: var(--font-mono); font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--line);
+  pointer-events: none; }
+
+/* ── 核心项目（V3 §27：收起态必须有强主视觉）──────────── */
+.project { position: relative; }
+/* ── 项目边界与吸顶栏（用户 2026-09-17：项目之间界限不清晰、浏览困难）──
+   做法：①每个项目一条通栏细线，明确"这里换项目了"
+        ②左侧大编号改为吸顶，滚动整个项目期间一直告诉你现在在第几个项目
+        ③NEXT 衔接带独立底色，充当章节结束标记 */
+.project { border-top: 1px solid var(--line); }
+.project.is-light { border-top-color: var(--line); }
+
+.project__rail {
+  position: sticky; top: 108px; align-self: start;
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-3);
+}
+.project__railname {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--ls-label);
+  text-transform: uppercase; color: var(--fg-muted);
+  writing-mode: vertical-rl; text-orientation: mixed;
+  max-height: 176px; overflow: hidden;
+}
+.project.is-light .project__railname { color: #8B8D90; }
+.project__rail::after {
+  content: ''; width: 1px; height: 44px;
+  background: linear-gradient(180deg, var(--line), transparent);
+}
+.project.is-light .project__rail::after { background: linear-gradient(180deg, var(--line), transparent); }
+
+.next-preview {
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.is-light .next-preview { border-color: var(--line); }
+
+.project__grid { display: grid; grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 48px); align-items: start; }
+.project__num { font-family: var(--font-mono); font-weight: 600; line-height: .82;
+  font-size: clamp(64px, 9vw, 150px); color: var(--line); user-select: none; }
+.project__en { margin-bottom: var(--s-3); }
+.project__title { font-size: var(--fs-project-h1); font-weight: 600; line-height: 1.06;
+  margin-bottom: var(--s-4); }
+.project__tags { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-6); }
+.project__media { margin-bottom: var(--s-6); }
+.project__media figcaption { font-size: var(--fs-caption); color: var(--fg-muted);
+  margin-top: var(--s-3); }
+.project__lede { font-size: var(--fs-lead); line-height: 1.62; margin-bottom: var(--s-5); }
+.project__aux { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4); margin-bottom: var(--s-6); }
+
+/* ── 展开步骤 ─────────────────────────────────────────── */
+.steps { display: grid; gap: var(--s-8); margin-top: var(--s-7); }
+.step__idx { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--c-accent); letter-spacing: var(--ls-label); margin-bottom: var(--s-3); }
+.step__title { font-size: var(--fs-h3); font-weight: 600; margin-bottom: var(--s-3); }
+.step__body { max-width: var(--text-col); }
+.step__body ul { margin: var(--s-3) 0 0; padding-left: 1.1em; }
+.step__body li { margin-bottom: var(--s-2); }
+.step__media { margin-top: var(--s-5); }
+.step__note { font-size: var(--fs-caption); color: var(--fg-muted); margin-top: var(--s-2); }
+.step__pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); }
+
+/* Fixed / Controlled / Free 三态示意（DesignDNA 用，本期先出样式）*/
+.states { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); margin-top: var(--s-4); }
+.states button {
+  text-align: left; padding: var(--s-4); cursor: pointer; color: var(--fg);
+  background: transparent; border: 1px solid var(--line); border-radius: var(--r-card);
+  font-family: var(--font-sans); font-size: var(--fs-caption);
+  transition: border-color var(--t-hover) var(--ease-out),
+              background var(--t-hover) var(--ease-out);
+}
+.states button b { display: block; font-size: var(--fs-body); margin-bottom: 4px; }
+.states button[aria-pressed="true"] { border-color: var(--c-accent);
+  background: var(--c-accent-soft); }
+.states button[aria-pressed="true"] b { color: var(--c-accent); }
+
+/* ── 项目展开区（在浅色章节内，需要自己的纵向留白）────── */
+.project-expand .wrap { padding-bottom: var(--section-py); }
+
+/* ── 项目衔接 NEXT（V3 §15.5）────────────────────────── */
+.next-preview { display: block; text-decoration: none; color: inherit;
+  padding-block: var(--s-8); border-top: 1px solid var(--line); }
+.next-preview__row { display: flex; justify-content: space-between; align-items: flex-end;
+  gap: var(--s-6); }
+.next-preview__en { margin-bottom: var(--s-3); }
+.next-preview__title { font-size: var(--fs-section-h2); font-weight: 600;
+  transition: color var(--t-hover) var(--ease-out); }
+.next-preview:hover .next-preview__title { color: var(--c-accent); }
+.next-preview__tags { margin-top: var(--s-3); }
+.next-preview__thumb { width: clamp(160px, 22vw, 300px); flex: none; }
+
+/* ── Experience（V3 §29–§36）──────────────────────────── */
+.exp__list { display: grid; gap: var(--s-4); margin-top: var(--s-7); }
+.exp__card { background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-container); padding: var(--s-5) var(--s-6); }
+.exp__head { display: flex; justify-content: space-between; align-items: baseline;
+  gap: var(--s-5); flex-wrap: wrap; }
+.exp__org { margin-bottom: var(--s-2); }
+.exp__role { font-size: var(--fs-h3); font-weight: 600; }
+.exp__when { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); margin-left: var(--s-3); }
+.exp__nums { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); white-space: nowrap; }
+.exp__nums b { color: var(--c-accent); font-weight: 500; }
+.exp__lede { max-width: var(--text-col); margin: var(--s-4) 0 0; }
+.exp__toggle { margin-top: var(--s-4); }
+.exp__body { padding-top: var(--s-5); }
+.exp__mod { padding-top: var(--s-5); border-top: 1px solid var(--line-weak); }
+.exp__mod:first-child { border-top: 0; padding-top: 0; }
+.exp__mod h4 { font-size: var(--fs-body); font-weight: 600; margin-bottom: var(--s-2); }
+.exp__mod h4 span { font-family: var(--font-mono); color: var(--c-accent);
+  margin-right: var(--s-2); font-weight: 400; }
+.exp__mod p, .exp__mod li { color: var(--fg-muted); }
+.exp__mod ul { margin: 0; padding-left: 1.1em; }
+.exp__chain { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); line-height: 2; }
+.exp__chain em { font-style: normal; color: var(--c-accent); }
+.exp__next { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); margin-top: var(--s-5); }
+
+/* ── 待建占位（本阶段样板用，阶段四替换）──────────────── */
+.todo-band {
+  padding-block: var(--s-6); border-block: 1px dashed var(--line);
+  background: color-mix(in srgb, var(--c-accent) 5%, transparent);
+}
+.todo-band .label-en { color: var(--c-accent); }
+.todo-band p { margin: var(--s-2) 0 0; font-size: var(--fs-caption); color: var(--fg-muted); }
+
+/* ── 响应式（V3 §43：移动端必须单独设计）──────────────── */
+@media (max-width: 1080px) {
+  .ability__grid { grid-template-columns: 1fr; }
+  .ability__card { min-height: 0; padding-left: 0; }
+  .ability__card + .ability__card { padding-left: 0; }
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__portrait { order: -1; width: min(100%, 420px); }
+}
+@media (max-width: 720px) {
+  .nav__links { gap: var(--s-4); }
+  .nav__links a { font-size: 12px; }
+  .project__grid { grid-template-columns: 1fr; gap: var(--s-4); }
+  .project__num { font-size: 56px; }
+  .project__aux, .step__pair, .states { grid-template-columns: 1fr; }
+  .chapter__rail { display: none; }
+  .next-preview__row { flex-direction: column; align-items: flex-start; }
+  .next-preview__thumb { width: 100%; }
+  .exp__card { padding: var(--s-5); }
+  .exp__nums { white-space: normal; }
+  .hero__portrait { width: 100%; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   阶段四新增组件
+   ══════════════════════════════════════════════════════════ */
+
+/* ── 状态标识（V3 §27：机器人必须出现 RUNNING PROTOTYPE）── */
+.status-badge {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  font-family: var(--font-mono); font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label); text-transform: uppercase;
+  color: var(--fg);
+  border: 1px solid rgba(255,106,26,.45); border-radius: var(--r-pill);
+  padding: 7px 14px; background: rgba(255,106,26,.10);
+}
+.status-badge__dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--c-accent);
+  animation: pulse 2.4s var(--ease-inout) infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+
+/* ── 步骤内的标记与小组件 ── */
+.mark-done, .mark-next {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--ls-label);
+  padding: 3px 9px; border-radius: var(--r-pill); vertical-align: 4px;
+  margin-left: var(--s-3);
+}
+.mark-done { color: #7FD39A; border: 1px solid rgba(127,211,154,.4); background: rgba(127,211,154,.1); }
+.mark-next { color: var(--fg-muted); border: 1px solid var(--line); }
+.chain-row { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-4); }
+.chain-tag {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--c-accent); border: 1px solid rgba(255,106,26,.45);
+}
+.spec { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+  gap: var(--s-3); list-style: none; padding: 0; margin: var(--s-5) 0 var(--s-3); }
+.spec li { border-top: 1px solid var(--line); padding-top: var(--s-3); }
+.spec b { display: block; font-size: 19px; letter-spacing: -.01em; }
+.spec span { font-size: var(--fs-caption); color: var(--fg-muted); }
+ol.numlist { margin: var(--s-3) 0; padding-left: 1.3em; }
+ol.numlist li { margin-bottom: 4px; }
+
+/* ── 表格（DesignDNA 对照）── */
+.tbl-wrap { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 var(--s-3); }
+.tbl caption { text-align: left; font-size: var(--fs-caption); color: var(--fg-muted);
+  padding-bottom: var(--s-3); }
+.tbl th, .tbl td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line);
+  vertical-align: top; line-height: 1.6; }
+.tbl th { font-size: var(--fs-caption); letter-spacing: var(--ls-label); color: var(--fg-muted);
+  font-weight: 500; white-space: nowrap; }
+.tbl td:first-child { color: var(--fg-muted); white-space: nowrap; }
+.tbl code, .step code { font-family: var(--font-mono); font-size: .92em;
+  color: var(--c-accent); background: rgba(255,106,26,.09);
+  border-radius: 4px; padding: 2px 6px; }
+.is-light .tbl th, .is-light .tbl td { border-color: var(--line); }
+
+/* ── 引导句统一限宽（版面放宽后，长行会伤可读性）──
+   正文阅读列沿用 V3 §47 的 520–680 区间，只有图片与版式元素突破。 */
+.hero__lede, .chapter__line, .lead, .next-preview__title { max-width: var(--text-col); }
+.hero__lede { font-size: var(--fs-lead); }
+@media (max-width: 720px) {
+  .hero__lede, .chapter__line, .lead { max-width: none; }
+}
+
+/* ── More Work：不规则网格（V3 §30）── */
+.morework__grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 168px; gap: var(--s-4); margin-top: var(--s-7);
+}
+/* 缩略图 + 下方文字：素材是作品集页渲染（自带大量文字），
+   叠加标签会和大字撞在一起，所以文字放到图外、默认常驻可见。 */
+.mw {
+  display: flex; flex-direction: column; overflow: hidden;
+  width: 100%; padding: 0; margin: 0; border: 0; background: transparent;
+  border-radius: 0; cursor: pointer; text-align: left;
+  appearance: none; -webkit-appearance: none; font: inherit; color: inherit;
+}
+.mw img {
+  width: 100%; flex: 1 1 auto; min-height: 0; display: block;
+  border-radius: var(--r-card); background: var(--surface);
+  object-fit: cover; object-position: top center;   /* 页渲染：顶部信息量最大 */
+  transition: transform var(--t-image) var(--ease-out),
+              filter var(--t-image) var(--ease-out);
+}
+.mw:hover img, .mw:focus-visible img { transform: scale(1.015); filter: brightness(1.04); }
+.mw__info { display: block; padding: var(--s-3) 0 0; }
+.mw__info b { display: block; font-size: 15.5px; font-weight: 600; letter-spacing: -.005em; }
+.mw__info i { font-style: normal; display: block; margin-top: 2px;
+  font-size: var(--fs-caption); color: var(--fg-muted); }
+.mw__links { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-3); }
+.mw__links a { font-size: var(--fs-caption); color: var(--c-accent); text-decoration: none;
+  border-bottom: 1px solid rgba(255,106,26,.4); }
+.mw--play { cursor: default; }
+
+/* ── About（V3 §31）── */
+.about { background: var(--c-surface); padding-block: var(--section-py); }
+.about__lede { margin: var(--s-5) 0 0; font-size: clamp(24px, 2.6vw, 38px); max-width: 22ch; }
+.about__grid { display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-8) var(--s-7); margin-top: var(--s-8); }
+.about__col h4 { font-size: var(--fs-caption); letter-spacing: var(--ls-label);
+  color: var(--c-accent); text-transform: uppercase;
+  font-family: var(--font-mono); font-weight: 500;
+  border-bottom: 1px solid var(--line); padding-bottom: var(--s-3); margin-bottom: var(--s-4); }
+.about__col p { margin: 0 0 var(--s-2); line-height: 1.75; }
+.about__col .caption { color: var(--fg-muted); font-size: var(--fs-caption); }
+
+/* ── Contact / Footer（V3 §42）── */
+.contact { background: var(--c-bg); padding-block: var(--section-py); border-top: 1px solid var(--line); }
+.contact__title { font-size: clamp(34px, 5vw, 72px); letter-spacing: -.02em; max-width: 18ch; }
+.contact__en { margin-top: var(--s-4); }
+.contact__rows { display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-5) var(--s-7); margin-top: var(--s-8); }
+.contact__rows div { display: flex; gap: var(--s-4); align-items: baseline;
+  border-top: 1px solid var(--line); padding-top: var(--s-4); }
+.contact__rows span { font-family: var(--font-mono); font-size: var(--fs-caption);
+  color: var(--fg-muted); letter-spacing: var(--ls-label); min-width: 62px; }
+.contact__rows b, .contact__rows a { font-size: 18px; font-weight: 600;
+  color: var(--fg); text-decoration: none; }
+.contact__rows a:hover { color: var(--c-accent); }
+.contact__cta { margin-top: var(--s-8); }
+
+/* ── 顶部阅读进度条 + 当前章节高亮（用户：浏览定位困难）── */
+.pbar {
+  position: fixed; left: 0; top: 0; height: 2px; width: 100%; z-index: 60;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: var(--c-accent); pointer-events: none;
+}
+.nav__link[aria-current="true"] { color: var(--fg); }
+.nav__link[aria-current="true"]::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -8px;
+  height: 2px; background: var(--c-accent);
+}
+.nav__link { position: relative; }
+
+/* ── Lightbox（V3 §39）── */
+.lb {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(6,7,9,.94);
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(20px, 4vw, 56px);
+}
+.lb[hidden] { display: none; }
+.lb__fig { margin: 0; max-width: min(1400px, 100%); max-height: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-4); }
+.lb__img { max-width: 100%; max-height: 78vh; object-fit: contain;
+  border-radius: var(--r-media); }
+.lb__cap { font-size: var(--fs-caption); color: var(--fg-muted); }
+.lb__close {
+  position: absolute; top: clamp(14px,3vw,28px); right: clamp(14px,3vw,28px);
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(21,23,26,.9);
+  color: var(--fg); font-size: 16px; cursor: pointer;
+}
+.lb__close:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+/* ── 响应式（V3 §43）── */
+@media (max-width: 1080px) {
+  .morework__grid { grid-auto-rows: 150px; }
+}
+@media (max-width: 720px) {
+  .morework__grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .morework__grid .mw { grid-column: span 1 !important; grid-row: auto !important; }
+  .mw img { height: 210px; }
+  .about__grid { grid-template-columns: 1fr; gap: var(--s-7); }
+  .contact__rows { grid-template-columns: 1fr; }
+  .spec { grid-template-columns: repeat(2, 1fr); }
+}

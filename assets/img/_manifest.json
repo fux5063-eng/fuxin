@@ -1,0 +1,343 @@
+[
+ {
+  "file": "ai/robot-hero.png",
+  "size": [
+   1279,
+   1706
+  ],
+  "png_kb": 1408,
+  "webp_kb": 161,
+  "src": "PRJ-20-Robot-AI/real-photos-2026-09-08/02-当前双眼与扬声器-实拍.jpg",
+  "note": "本人实拍 · 已运行原型（裸开发板，待补整机照）"
+ },
+ {
+  "file": "ai/robot-screen.png",
+  "size": [
+   1279,
+   1706
+  ],
+  "png_kb": 1048,
+  "webp_kb": 97,
+  "src": "PRJ-20-Robot-AI/real-photos-2026-09-08/03-当前双眼屏幕-实拍.jpg",
+  "note": "本人实拍 · 辅助"
+ },
+ {
+  "file": "designdna/mvp-01-dna.png",
+  "size": [
+   2000,
+   1104
+  ],
+  "png_kb": 858,
+  "webp_kb": 107,
+  "src": "DesignDNA 工作台实际界面截图（本人工具）",
+  "note": "理解·Product DNA；左栏已收起、右下浮标已裁"
+ },
+ {
+  "file": "designdna/mvp-02-constraints.png",
+  "size": [
+   2000,
+   1104
+  ],
+  "png_kb": 880,
+  "webp_kb": 106,
+  "src": "DesignDNA 工作台实际界面截图（本人工具）",
+  "note": "锁定·约束地图；左栏已收起、右下浮标已裁"
+ },
+ {
+  "file": "designdna/mvp-03-strategies.png",
+  "size": [
+   2000,
+   1104
+  ],
+  "png_kb": 906,
+  "webp_kb": 109,
+  "src": "DesignDNA 工作台实际界面截图（本人工具）",
+  "note": "探索·概念策略；左栏已收起、右下浮标已裁"
+ },
+ {
+  "file": "designdna/mvp-04-review.png",
+  "size": [
+   2000,
+   1104
+  ],
+  "png_kb": 635,
+  "webp_kb": 55,
+  "src": "DesignDNA 工作台实际界面截图（本人工具）",
+  "note": "评审·对照打分；左栏已收起、右下浮标已裁"
+ },
+ {
+  "file": "designdna/mvp-05-canvas.png",
+  "size": [
+   2000,
+   1104
+  ],
+  "png_kb": 635,
+  "webp_kb": 55,
+  "src": "DesignDNA 工作台实际界面截图（本人工具）",
+  "note": "画布·单图；左栏已收起、右下浮标已裁"
+ },
+ {
+  "file": "designdna/mvp-06-dna-kettle.png",
+  "size": [
+   2000,
+   1104
+  ],
+  "png_kb": 680,
+  "webp_kb": 85,
+  "src": "DesignDNA 工作台实际界面截图（本人工具）",
+  "note": "跨品类对照·水壶；左栏已收起、右下浮标已裁"
+ },
+ {
+  "file": "exp/ubtech-walker-c1.png",
+  "size": [
+   1920,
+   1080
+  ],
+  "png_kb": 948,
+  "webp_kb": 109,
+  "src": "UBTECH 官网 Walker C1 页面（公开图）",
+  "note": "**官方营销图，非本人拍摄或设计**；仅用于经历展开，页面不得暗示归属，不加署名"
+ },
+ {
+  "file": "hero/portrait.png",
+  "size": [
+   1086,
+   1357
+  ],
+  "png_kb": 1511,
+  "webp_kb": 120,
+  "src": "career/personal-assets/付昕-证件照-20260917.png",
+  "note": "本人证件照，裁胸像 + 轻微冷调；1086×1357"
+ },
+ {
+  "file": "id/doggie-back.png",
+  "size": [
+   1600,
+   901
+  ],
+  "png_kb": 1054,
+  "webp_kb": 43,
+  "src": "PRJ-03-DOGGIE/.../06-后部功能展示.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/doggie-brush.png",
+  "size": [
+   1600,
+   901
+  ],
+  "png_kb": 1245,
+  "webp_kb": 57,
+  "src": "PRJ-03-DOGGIE/.../07-清洁刷拆分.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/doggie-cmf.png",
+  "size": [
+   1600,
+   900
+  ],
+  "png_kb": 1283,
+  "webp_kb": 41,
+  "src": "PRJ-03-DOGGIE/.../11-CMF配色.png",
+  "note": "本人作品 · CMF"
+ },
+ {
+  "file": "id/doggie-detail-1.png",
+  "size": [
+   1400,
+   788
+  ],
+  "png_kb": 1014,
+  "webp_kb": 45,
+  "src": "PRJ-03-DOGGIE/.../08-功能特写1.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/doggie-detail-3.png",
+  "size": [
+   1400,
+   788
+  ],
+  "png_kb": 929,
+  "webp_kb": 41,
+  "src": "PRJ-03-DOGGIE/.../10-功能特写3.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/doggie-explode.png",
+  "size": [
+   1600,
+   900
+  ],
+  "png_kb": 1167,
+  "webp_kb": 57,
+  "src": "PRJ-03-DOGGIE/.../05-爆炸图.png",
+  "note": "本人作品 · 分件与结构"
+ },
+ {
+  "file": "id/doggie-front.png",
+  "size": [
+   1400,
+   788
+  ],
+  "png_kb": 715,
+  "webp_kb": 38,
+  "src": "PRJ-03-DOGGIE/.../02-正视图.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/doggie-hero.png",
+  "size": [
+   2000,
+   1125
+  ],
+  "png_kb": 1606,
+  "webp_kb": 38,
+  "src": "PRJ-03-DOGGIE/selected-originals/01-主页主渲染.png",
+  "note": "本人作品 · 收起态主图"
+ },
+ {
+  "file": "id/doggie-side.png",
+  "size": [
+   1400,
+   788
+  ],
+  "png_kb": 603,
+  "webp_kb": 32,
+  "src": "PRJ-03-DOGGIE/.../03-侧视图.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/doggie-transparent.png",
+  "size": [
+   1132,
+   1226
+  ],
+  "png_kb": 893,
+  "webp_kb": 64,
+  "src": "PRJ-03-DOGGIE/.../12-透明背景产品图.png",
+  "note": "本人作品"
+ },
+ {
+  "file": "id/lumora-detail.png",
+  "size": [
+   612,
+   792
+  ],
+  "png_kb": 386,
+  "webp_kb": 25,
+  "src": "PRJ-11-Lumora/03-产品细节.png",
+  "note": "本人作品 · 分辨率仅 612×792，待补"
+ },
+ {
+  "file": "id/lumora-hero.png",
+  "size": [
+   1235,
+   1092
+  ],
+  "png_kb": 1029,
+  "webp_kb": 63,
+  "src": "PRJ-11-Lumora/05-主场景-座椅阅读.png",
+  "note": "本人作品 · 场景图（AI 辅助场景表达，需标注）"
+ },
+ {
+  "file": "id/lumora-views.png",
+  "size": [
+   1600,
+   2263
+  ],
+  "png_kb": 2825,
+  "webp_kb": 104,
+  "src": "PRJ-11-Lumora/02-产品外观与多视图.png",
+  "note": "本人作品展板 · 含文字，不能直接当单品图；待补干净单品主视觉"
+ },
+ {
+  "file": "id/wateralarm-01-early.png",
+  "size": [
+   1537,
+   855
+  ],
+  "png_kb": 878,
+  "webp_kb": 138,
+  "src": "大学资料/落水报警终端设计/渲染/图/...Snipaste_02-06-24.png",
+  "note": "商业项目 · **不脱敏原图直出（用户 2026-09-17 决定）** · 4 方向并排"
+ },
+ {
+  "file": "id/wateralarm-02-refine.png",
+  "size": [
+   1920,
+   1080
+  ],
+  "png_kb": 1003,
+  "webp_kb": 130,
+  "src": "PRJ-12-Wenning/04-造型对比.png",
+  "note": "商业项目 · 不脱敏原图直出"
+ },
+ {
+  "file": "id/wateralarm-03-new.png",
+  "size": [
+   1920,
+   1080
+  ],
+  "png_kb": 532,
+  "webp_kb": 62,
+  "src": "PRJ-12-Wenning/01-产品正面与品牌.png",
+  "note": "商业项目 · 不脱敏原图直出 · 收起态主图"
+ },
+ {
+  "file": "id/wateralarm-04-scene.png",
+  "size": [
+   1920,
+   1080
+  ],
+  "png_kb": 2544,
+  "webp_kb": 279,
+  "src": "PRJ-12-Wenning/02-穿戴与海上场景.png",
+  "note": "商业项目 · 不脱敏原图直出 · 场景"
+ },
+ {
+  "file": "id/wateralarm-05-cmf.png",
+  "size": [
+   1600,
+   900
+  ],
+  "png_kb": 597,
+  "webp_kb": 78,
+  "src": "PRJ-12-Wenning/05-配色方案.png",
+  "note": "商业项目 · 不脱敏原图直出"
+ },
+ {
+  "file": "id/wateralarm-06-material.png",
+  "size": [
+   1600,
+   900
+  ],
+  "png_kb": 1001,
+  "webp_kb": 57,
+  "src": "PRJ-12-Wenning/03-材质造型说明.png",
+  "note": "商业项目 · 不脱敏原图直出"
+ },
+ {
+  "file": "robot/walker-c1-hero-1280.png",
+  "size": [
+   1280,
+   720
+  ],
+  "png_kb": 604,
+  "webp_kb": 60,
+  "src": "同上（官网公开图）",
+  "note": "备用 1280 版"
+ },
+ {
+  "file": "robot/walker-c1-hero.png",
+  "size": [
+   1920,
+   1080
+  ],
+  "png_kb": 948,
+  "webp_kb": 101,
+  "src": "同上（官网公开图）",
+  "note": "备用；归属同上"
+ }
+]

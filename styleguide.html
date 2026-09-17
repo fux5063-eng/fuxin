@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>付昕｜新站视觉系统 Styleguide</title>
+<link rel="stylesheet" href="./assets/css/tokens.css">
+<style>
+  /* 仅样式指南自身的排版，不属于站点系统 */
+  .sg-nav { position: sticky; top: 0; z-index: 60; background: #0B0C0E;
+    border-bottom: 1px solid var(--c-line-dark); padding: 10px 0; }
+  .sg-nav a { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--c-muted); text-decoration: none;
+    margin-right: 18px; }
+  .sg-nav a:hover { color: var(--c-accent); }
+  .sg-block { border-bottom: 1px solid var(--line-weak); }
+  .sg-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .sg-head .idx { font-family: var(--font-mono); font-size: 13px; color: var(--c-accent);
+    letter-spacing: .12em; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+  .sw { border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+  .sw .chip { height: 74px; }
+  .sw .meta { padding: 10px 12px; }
+  .sw .meta b { display: block; font-size: 13px; font-weight: 600; }
+  .sw .meta code { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); }
+  .sw .meta em { display: block; font-style: normal; font-size: 11px; color: var(--fg-muted); margin-top: 4px; }
+  table.spec { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.spec th, table.spec td { text-align: left; padding: 9px 12px 9px 0;
+    border-bottom: 1px solid var(--line-weak); vertical-align: top; }
+  table.spec th { font-weight: 500; color: var(--fg-muted); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase; font-family: var(--font-mono); }
+  table.spec code { font-family: var(--font-mono); font-size: 12px; color: var(--c-accent); }
+  .demo { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .radius-demo { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; }
+  .radius-demo div { height: 78px; background: var(--surface); border: 1px solid var(--line);
+    display: grid; place-items: center; font-family: var(--font-mono); font-size: 11px;
+    color: var(--fg-muted); }
+  .motion-row { display: grid; grid-template-columns: 150px 1fr; gap: 14px;
+    align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line-weak); }
+  .dot { width: 14px; height: 14px; background: var(--c-accent); border-radius: 50%;
+    transition: transform var(--t-hover) var(--ease-out); }
+  .motion-row:hover .dot { transform: translateX(150px) scale(1.4); }
+  .grid-demo { display: grid; grid-template-columns: repeat(12, 1fr); gap: 6px; }
+  .grid-demo span { height: 26px; background: var(--c-accent-soft);
+    border: 1px solid rgba(255,106,26,.3); border-radius: 3px; }
+  .narrow-demo { background: var(--surface); border: 1px dashed var(--line);
+    display: grid; place-items: center; min-height: 120px; font-family: var(--font-mono);
+    font-size: 11px; color: var(--fg-muted); }
+</style>
+</head>
+<body>
+
+<!-- ═══ 样式指南导航 ═══ -->
+<nav class="sg-nav"><div class="wrap" style="display:flex;flex-wrap:wrap;gap:6px">
+  <a href="#c">01 色彩</a><a href="#t">02 字阶</a><a href="#l">03 栅格与间距</a>
+  <a href="#r">04 圆角</a><a href="#sec">05 明暗节奏</a><a href="#btn">06 按钮</a>
+  <a href="#nav">07 导航</a><a href="#proj">08 项目收起态</a><a href="#exp">09 展开</a>
+  <a href="#ex">10 Experience</a><a href="#next">11 项目衔接</a>
+  <a href="#more">12 More Work</a><a href="#lb">13 Lightbox</a>
+  <a href="#mo">14 动效</a><a href="#mob">15 移动端</a>
+</div></nav>
+
+<!-- ═══ 标题 ═══ -->
+<header class="section" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="label-en">Design System · v1 · 2026-09-17</div>
+    <h1 style="margin:14px 0 10px">付昕作品集新站 · 视觉系统</h1>
+    <p class="lead measure">方向锁定 <b>Dark Industrial × Warm Orange × Dynamic System</b>。
+      本页是第二阶段交付：所有 token 与组件的可视化核对表。数值全部来自 V3 交接文档，
+      标「派生」的是我补齐的中间值。</p>
+    <p class="caption">Token 源文件：<span class="mono">assets/css/tokens.css</span>　·　本页只读取 token，不写入新数值</p>
+  </div>
+</header>
+
+<!-- ═══ 01 色彩 ═══ -->
+<section class="section sg-block" id="c" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">01</span><h2 style="font-size:34px">色彩 Token</h2></div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0B0C0E"></div><div class="meta"><b>主深色</b><code>--c-bg #0B0C0E</code><em>V3 §23 · 整站底色</em></div></div>
+      <div class="sw"><div class="chip" style="background:#15171A"></div><div class="meta"><b>次深色</b><code>--c-surface #15171A</code><em>V3 §23 · 深底卡面</em></div></div>
+      <div class="sw"><div class="chip" style="background:#F3F3F0"></div><div class="meta"><b>浅色背景</b><code>--c-light #F3F3F0</code><em>V3 §23 · 工业设计章节</em></div></div>
+      <div class="sw"><div class="chip" style="background:#F5F5F2"></div><div class="meta"><b>深底主文字</b><code>--c-text-dark #F5F5F2</code><em>V3 §23</em></div></div>
+      <div class="sw"><div class="chip" style="background:#111214"></div><div class="meta"><b>浅底主文字</b><code>--c-text-light #111214</code><em>V3 §23</em></div></div>
+      <div class="sw"><div class="chip" style="background:#8B8D90"></div><div class="meta"><b>次级文字</b><code>--c-muted #8B8D90</code><em>V3 §23 · 深浅共用</em></div></div>
+      <div class="sw"><div class="chip" style="background:#292B2F"></div><div class="meta"><b>深底分割线</b><code>--c-line-dark #292B2F</code><em>V3 §23</em></div></div>
+      <div class="sw"><div class="chip" style="background:#D8D8D4"></div><div class="meta"><b>浅底分割线</b><code>--c-line-light #D8D8D4</code><em>V3 §23</em></div></div>
+      <div class="sw"><div class="chip" style="background:#FF6A1A"></div><div class="meta"><b>强调橙</b><code>--c-accent #FF6A1A</code><em>V3 §23</em></div></div>
+      <div class="sw"><div class="chip" style="background:#FF7C32"></div><div class="meta"><b>Hover 橙</b><code>--c-accent-hover #FF7C32</code><em>V3 §23</em></div></div>
+      <div class="sw"><div class="chip" style="background:#1C1F23"></div><div class="meta"><b>深底卡片</b><code>--c-surface-2 #1C1F23</code><em>派生</em></div></div>
+      <div class="sw"><div class="chip" style="background:#6B6D70"></div><div class="meta"><b>浅底次级文字</b><code>--c-muted-light #6B6D70</code><em>派生</em></div></div>
+    </div>
+
+    <h3 style="margin-top:44px;font-size:22px">橙色的使用范围（V3 §23）</h3>
+    <p class="measure">仅用于：<b>编号 · 当前状态 · 链路激活 · Hover · 局部关键词 · 按钮反馈</b>。
+      <span class="accent">禁止大面积橙色背景。</span></p>
+    <div class="demo" style="margin-top:16px">
+      <span class="tag">正确：编号 <b class="accent mono">03</b></span>
+      <span class="tag">正确：当前状态 <b class="accent">●</b></span>
+      <span class="tag" style="border-color:#FF6A1A;color:#FF6A1A">正确：Hover 反馈</span>
+      <span class="btn btn--primary">正确：按钮（触控 ≥44px）</span>
+      <span class="tag" style="background:#FF6A1A;color:#0B0C0E;border-color:transparent">✕ 反例：橙色满底块</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 字阶 ═══ -->
+<section class="section is-light sg-block" id="t" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">02</span><h2 style="font-size:34px">字体层级</h2></div>
+    <p class="measure" style="margin-bottom:26px">V3 §21 要求「必须明显主次」。每级都是 <span class="mono">clamp()</span>，
+      桌面取 V3 给的上限，窄屏自动下探。</p>
+
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">Hero Name · 64–72px</div>
+      <div style="font-size:var(--fs-hero-name);font-weight:600;line-height:1.06;letter-spacing:-.02em">付昕</div>
+    </div>
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">Hero Role · 28–32px</div>
+      <div style="font-size:var(--fs-hero-role);color:var(--fg)">产品设计 <span class="accent">×</span> AI <span class="accent">×</span> 智能硬件</div>
+    </div>
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">Project H1 · 56–72px</div>
+      <div style="font-size:var(--fs-project-h1);font-weight:600;line-height:1.08">多功能宠物牵引绳</div>
+    </div>
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">Section H2 · 44–56px</div>
+      <div style="font-size:var(--fs-section-h2);font-weight:600">核心项目</div>
+    </div>
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">H3 · 26–32px</div>
+      <div style="font-size:var(--fs-h3);font-weight:600">关键决策与行动</div>
+    </div>
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">Lead · 18–20px</div>
+      <p class="lead measure" style="margin:0">从产品设计出发，将商业设计、机器人实践与 AI 智能硬件推进为可验证产品。</p>
+    </div>
+    <div style="border-bottom:1px solid var(--line-weak);padding-bottom:22px;margin-bottom:22px">
+      <div class="label-en" style="margin-bottom:8px">Body · 16–18px</div>
+      <p class="measure" style="margin:0">在真实商业需求下深度参与外观推进，经历多方向造型发散、客户反馈筛选与约 6 轮定向优化，使方案逐步收敛至更符合客户需求的方向。</p>
+    </div>
+    <div>
+      <div class="label-en" style="margin-bottom:8px">Caption · 12–14px　＋　等宽只用于编号 / 技术串 / 时间</div>
+      <div class="caption">辅助说明文字，用于图注与元信息。</div>
+      <div class="mono" style="font-size:13px;margin-top:8px">
+        <span class="accent">03</span>　UBTECH 2026.07–2026.09　ESP32　ASR → LLM → TTS　09-09 15:53
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;font-size:22px">字体族（V3 §21）</h3>
+    <table class="spec" style="margin-top:12px">
+      <tr><th>用途</th><th>取值</th><th>说明</th></tr>
+      <tr><td>中文</td><td><code>思源黑体 / 苹方类</code></td><td>当前走系统栈，后续可自托管思源黑体子集</td></tr>
+      <tr><td>英文</td><td><code>Inter / Helvetica</code></td><td>承担视觉节奏与数字</td></tr>
+      <tr><td>等宽</td><td><code>JetBrains Mono 系</code></td><td>只用于 01/05、ESP32、ASR→LLM→TTS、时间、英文辅助标签</td></tr>
+      <tr><td>禁止</td><td><code>—</code></td><td>不要全站中文等宽</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ 03 栅格与间距 ═══ -->
+<section class="section sg-block" id="l" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">03</span><h2 style="font-size:34px">栅格 · 宽度 · 间距</h2></div>
+    <p class="measure" style="margin-bottom:24px">V3 §20 的核心规则：<b>视觉接近全宽，信息仍然克制</b>。
+      不做中间窄柱，两侧必须参与构图。</p>
+
+    <h3 style="font-size:20px;margin-bottom:12px">主工作区 1320px ＋ 两侧安全边距 56–64px</h3>
+    <div class="grid-demo" style="margin-bottom:26px">
+      <span style="grid-column:span 1"></span><span style="grid-column:span 10"></span><span style="grid-column:span 1"></span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:30px">
+      <div>
+        <div class="label-en" style="margin-bottom:8px">正确：1320 主区，两侧有辅助元素</div>
+        <div style="border:1px solid var(--line);border-radius:var(--r-card);padding:16px">
+          <div style="display:flex;gap:12px;align-items:stretch">
+            <div class="rail-num" style="font-size:52px">03</div>
+            <div style="flex:1"><div class="hairline" style="margin:10px 0"></div>
+              <div style="font-size:13px;color:var(--fg-muted)">内容列 520–680px，主图可到 1100px</div>
+              <div class="hairline" style="margin:10px 0"></div></div>
+            <div class="rail-en" style="font-size:11px">Process</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="label-en" style="margin-bottom:8px">反例：中间窄柱（V3 §55 已作废）</div>
+        <div class="narrow-demo" style="min-height:120px">✕ 两侧长期留白</div>
+      </div>
+    </div>
+
+    <table class="spec">
+      <tr><th>Token</th><th>取值</th><th>依据</th></tr>
+      <tr><td>主工作区</td><td><code>--main-max 1320px</code></td><td>V3 §20 / §47</td></tr>
+      <tr><td>安全边距</td><td><code>--safe clamp(20px,4vw,64px)</code></td><td>V3 §20（56–64）</td></tr>
+      <tr><td>正文列</td><td><code>--text-col 640px</code></td><td>V3 §20（520–680）</td></tr>
+      <tr><td>主图区间</td><td><code>--media-min 700px / --media-max 1100px</code></td><td>V3 §20</td></tr>
+      <tr><td>Hero 人像</td><td><code>--hero-portrait clamp(260px,36vw,520px)</code></td><td>V3 §20（450–520）</td></tr>
+      <tr><td>章节纵向</td><td><code>--section-py clamp(72px,10vw,160px)</code></td><td>V3 §47（100–160）</td></tr>
+      <tr><td>间距阶梯</td><td><code>--s-1 … --s-10 (4→128)</code></td><td>派生</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ 04 圆角 ═══ -->
+<section class="section is-light sg-block" id="r" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">04</span><h2 style="font-size:34px">圆角</h2></div>
+    <p class="measure" style="margin-bottom:24px">V3 §45：<b>网站不是 SaaS 卡片站</b>。核心项目靠「大图＋排版＋留白＋结构」，
+      卡片只用于 Experience / More Work / 系统模块。</p>
+    <div class="radius-demo">
+      <div style="border-radius:var(--r-media)">主图 16px</div>
+      <div style="border-radius:var(--r-container)">大容器 20px</div>
+      <div style="border-radius:var(--r-card)">小卡 14px</div>
+      <div style="border-radius:var(--r-btn)">按钮 10px</div>
+      <div style="border-radius:var(--r-pill)">pill</div>
+      <div style="border-radius:0">0px（主图可选）</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 明暗节奏 ═══ -->
+<section class="sg-block" id="sec">
+  <div class="section" style="padding-block:56px">
+    <div class="wrap">
+      <div class="sg-head"><span class="idx">05</span><h2 style="font-size:34px">明暗节奏</h2></div>
+      <p class="measure">V3 §24 规定整页的明暗走向。下面每一条就是真实章节底色，切换靠 <span class="mono">.is-light</span> 一层变量，组件不改。</p>
+    </div>
+  </div>
+
+  <div class="section" style="padding-block:40px;background:#0B0C0E">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="label-en">01 · Hero</div><b>深色动态</b></div>
+      <div class="caption">稀疏节点 · 连线 · 缓慢漂移</div>
+    </div>
+  </div>
+
+  <div class="section is-light" style="padding-block:40px">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="label-en">02 · 工业设计（DOGGIE / Lumora / 落水报警）</div><b>浅灰 / 暖灰，大图主导</b></div>
+      <div class="caption">#F3F3F0</div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-block:40px;background:linear-gradient(#F3F3F0,#0B0C0E)">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;padding-top:28px">
+      <div><div class="label-en">03 · 工业 → AI 过渡</div><b>逐渐变暗</b></div>
+      <div class="caption">章节幕</div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-block:40px;background:#0B0C0E">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="label-en">04 · AI 产品（机器人 / DesignDNA）</div><b>石墨灰 / 深色 + 橙色系统高亮</b></div>
+      <div class="caption"><span class="accent mono">ESP32</span> · <span class="accent mono">Fixed / Controlled / Free</span></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-block:40px;background:#15171A">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="label-en">05 · Experience</div><b>深色信息区（降权）</b></div>
+      <div class="caption">3 条横向卡 + 原地展开</div>
+    </div>
+  </div>
+
+  <div class="section is-light" style="padding-block:40px">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="label-en">06 · More Work / About</div><b>浅深混合</b></div>
+      <div class="caption">不规则网格</div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-block:40px;background:#0B0C0E">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div class="label-en">07 · Contact</div><b>深色收尾</b></div>
+      <div class="caption">一起做点真正能工作的产品。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 按钮 ═══ -->
+<section class="section is-light sg-block" id="btn" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">06</span><h2 style="font-size:34px">按钮系统</h2></div>
+    <p class="measure" style="margin-bottom:24px">圆角 8–12 或 pill（V3 §45）；触控高度 ≥44px（V3 §43）。
+      Hover 200ms（V3 §26）。橙色只做反馈，不做大面积底色。</p>
+    <div class="demo" style="margin-bottom:16px">
+      <a class="btn btn--primary" href="#">下载简历 ↓</a>
+      <a class="btn btn--ghost" href="#">查看精选项目</a>
+      <a class="btn btn--ghost btn--pill" href="#">联系我</a>
+      <button class="btn btn--ghost" disabled style="opacity:.45;cursor:not-allowed">禁用态</button>
+    </div>
+    <div class="demo">
+      <button class="expand-toggle">展开项目 ↓</button>
+      <button class="expand-toggle">展开经历 ↓</button>
+      <span class="caption">文字型展开键：橙色只在 hover / 激活时出现</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 导航 ═══ -->
+<section class="section sg-block" id="nav" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">07</span><h2 style="font-size:34px">顶部导航</h2></div>
+    <p class="measure" style="margin-bottom:24px">V3 §38：Sticky Header，左「付昕 / FU XIN」，右四项，全部页内定位。
+      首屏融入背景 → 向下滚缩小 → 向上滚恢复；当前章节用橙色点标记。</p>
+    <div class="nav" data-scrolled="false" style="position:relative">
+      <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;width:100%">
+        <span style="font-weight:600">付昕 <span class="caption">/ FU XIN</span></span>
+        <span style="display:flex;gap:22px">
+          <a class="nav__link" href="#" aria-current="true">项目</a>
+          <a class="nav__link" href="#">经历</a>
+          <a class="nav__link" href="#">关于</a>
+          <a class="nav__link" href="#">简历 <span class="accent">↓</span></a>
+        </span>
+      </div>
+    </div>
+    <div class="demo" style="margin-top:18px">
+      <button class="btn btn--ghost" onclick="document.querySelectorAll('.nav')[0].dataset.scrolled=document.querySelectorAll('.nav')[0].dataset.scrolled==='true'?'false':'true'">切换「已滚动 / 缩小」态</button>
+      <span class="caption">点击切换：导航高度 64 → 54px，底部出现分割线</span>
+    </div>
+    <p class="caption" style="margin-top:14px">移动端（V3 §43）：导航项收进可折叠菜单，或底部轻导航「项目 / 简历 / 联系」。</p>
+  </div>
+</section>
+
+<!-- ═══ 08 项目收起态 ═══ -->
+<section class="section is-light sg-block" id="proj" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">08</span><h2 style="font-size:34px">核心项目 · 收起态</h2></div>
+    <p class="measure" style="margin-bottom:26px">V3 §27：收起态<b>必须有强主视觉</b> —— 1 张主图 + 最多 1 张辅助图，
+      禁止一上来就是 Gallery。项目之间靠 NEXT 自然衔接，不用返回键。</p>
+
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start">
+      <div class="rail-num" style="font-size:96px">04</div>
+      <div>
+        <div class="label-en" style="margin-bottom:10px">Industrial Design · 2025</div>
+        <h1 style="font-size:var(--fs-project-h1);margin-bottom:16px">DOGGIE 多功能宠物牵引绳</h1>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+          <span class="tag">场景研究</span><span class="tag">独立设计</span>
+          <span class="tag">多轮纸模验证</span><span class="tag">完整交付</span>
+        </div>
+        <div class="media media--zoom wide" style="margin-bottom:22px">
+          <img src="./assets/img/id/doggie-hero.webp" alt="DOGGIE 主渲染" class="is-loaded">
+        </div>
+        <div class="measure">
+          <p class="lead" style="margin-bottom:14px">把「牵引、拾便、收纳」三件事收进一件随身产品，并做完整分件与结构验证。</p>
+          <p class="caption" style="margin:0">辅助图：<span class="mono">doggie-explode.webp</span>（爆炸图）／ <span class="mono">doggie-cmf.webp</span>（CMF）</p>
+        </div>
+        <div style="margin-top:26px"><button class="expand-toggle">展开项目 ↓</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 09 展开态 ═══ -->
+<section class="section sg-block" id="exp" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">09</span><h2 style="font-size:34px">展开 / 收起</h2></div>
+    <p class="measure" style="margin-bottom:24px">V3 §26 / §34：400–500ms，标题先出现，模块依次淡入上移 8–12px，图片最后。
+      <span class="accent">不强制收起</span>，展开后可以继续往下滚（V3 §57 深度阅读）。</p>
+    <div class="card" style="max-width:760px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div><div class="label-en">03 · Lumora 光健康伴护仪</div><b style="font-size:20px">为什么做</b></div>
+        <button class="expand-toggle" aria-expanded="false" onclick="sgToggle(this)">展开 ↓</button>
+      </div>
+      <div class="disclosure" data-open="false" style="margin-top:16px">
+        <div class="disclosure__inner">
+          <p>疗养灯的现有形态与居家空间冲突：占地大、收纳难、光线状态与使用场景脱节。</p>
+          <p style="margin-bottom:0">目标是把「照明 / 收纳 / 移动」三件事整合进一件能与家具共处的产品。</p>
+          <div class="hairline" style="margin:18px 0"></div>
+          <div class="caption">这一段演示真实展开时序：容器高度 450ms 展开，内容依次淡入上移。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10 Experience ═══ -->
+<section class="section is-light sg-block" id="ex" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">10</span><h2 style="font-size:34px">Experience · 两层</h2></div>
+    <p class="measure" style="margin-bottom:26px">V3 §29–§36：默认态 5–10 秒可扫完三段；展开后分 3 个模块。
+      图片原则：<b>项目用图片证明能力，实习用图片证明真实性</b>；实习默认图片 0–1 张、非必须。</p>
+    <div style="display:grid;gap:14px">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+          <div>
+            <div class="label-en">01 · 优必选 UBTECH｜Walker C1 机器人产品组</div>
+            <b style="font-size:19px">产品实习生</b>
+            <span class="mono caption">2026.07–2026.09｜暑期实习</span>
+          </div>
+          <div class="mono" style="font-size:14px">
+            <span class="accent">3 个版本</span> ｜ 约 12 项问题 ｜ 15+ 产品资料
+          </div>
+        </div>
+        <p class="measure" style="margin:12px 0 0">参与 Walker C1 真实版本迭代、实机配置、产品验证与问题闭环。</p>
+        <div style="margin-top:14px"><button class="expand-toggle" onclick="sgToggle(this)">展开经历 ↓</button></div>
+        <div class="disclosure" data-open="false" style="margin-top:14px">
+          <div class="disclosure__inner">
+            <div class="caption" style="margin-bottom:10px">展开后 3 模块（V3 §30）：01 版本测试与问题闭环 · 02 机器人配置与 Demo · 03 产品资料与技术任务</div>
+            <div class="media" style="max-width:420px"><img src="./assets/img/exp/ubtech-walker-c1.webp" alt="Walker C1 公开产品照" class="is-loaded"></div>
+            <p class="caption" style="margin-top:8px">Walker C1 官方公开产品照（非内部拍摄；页面不得暗示由本人拍摄或设计）</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+          <div>
+            <div class="label-en">02 · 深圳壹点设计</div>
+            <b style="font-size:19px">产品设计兼职</b>
+            <span class="mono caption">2026.03–2026.09｜兼职</span>
+          </div>
+          <div class="mono" style="font-size:14px"><span class="accent">10+ 商业任务</span> ｜ 深度参与 ｜ 手板 / 专利</div>
+        </div>
+        <p class="measure" style="margin:12px 0 0">从设计想法进入模型、方案修改与视觉交付，在真实客户反馈中持续推进产品方案。</p>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap">
+          <div>
+            <div class="label-en">03 · 东莞市鸿元金属制品有限公司</div>
+            <b style="font-size:19px">CNC 数控加工实习</b>
+            <span class="mono caption">2024.07–2024.08｜暑期实习</span>
+          </div>
+          <div class="mono" style="font-size:14px">2 个月 ｜ CNC 实操 ｜ 多工序轮岗</div>
+        </div>
+        <p class="measure" style="margin:12px 0 0">进入真实制造现场，建立产品设计与实际加工之间的直接工艺认知。</p>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:18px">Experience 之间同样有 <span class="mono">NEXT EXPERIENCE / 02 →</span> 衔接（V3 §35）。</p>
+  </div>
+</section>
+
+<!-- ═══ 11 项目衔接 ═══ -->
+<section class="section sg-block" id="next" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">11</span><h2 style="font-size:34px">项目衔接 NEXT</h2></div>
+    <p class="measure" style="margin-bottom:24px">V3 §15.5：项目结尾露出下一个项目的局部预览，滚动自然进入 —— 不出现「返回」或「Next 按钮」。</p>
+    <a href="#next" style="text-decoration:none;color:inherit;display:block">
+      <div class="hairline" style="margin-bottom:22px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+        <div>
+          <div class="label-en" style="margin-bottom:8px">Next Project · 05</div>
+          <div style="font-size:clamp(24px,3vw,44px);font-weight:600">Lumora 光健康伴护仪</div>
+          <div class="caption" style="margin-top:8px">适老设计｜空间整合｜多状态设计</div>
+        </div>
+        <div class="media" style="width:220px;flex:none">
+          <img src="./assets/img/id/lumora-hero.webp" alt="下一项目预览" class="is-loaded">
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ 12 More Work ═══ -->
+<section class="section is-light sg-block" id="more" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">12</span><h2 style="font-size:34px">More Work</h2></div>
+    <p class="measure" style="margin-bottom:26px">V3 §40：证明实践量，不做长叙事。不规则网格、卡片大小有变化、Hover 出名字、点击进 Lightbox、不进独立页面。</p>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
+      <div class="card" style="grid-column:span 3;padding:0;overflow:hidden" onmouseover="this.querySelector('.t').style.color='var(--c-accent)'" onmouseout="this.querySelector('.t').style.color='var(--fg)'">
+        <div style="height:150px;background:#E7E7E2"></div>
+        <div style="padding:14px 16px"><b class="t">智能锁系列商业设计</b><div class="caption">商业产品 · Rhino / KeyShot / 专利多视图</div></div>
+      </div>
+      <div class="card" style="grid-column:span 2;padding:0;overflow:hidden" onmouseover="this.querySelector('.t').style.color='var(--c-accent)'" onmouseout="this.querySelector('.t').style.color='var(--fg)'">
+        <div style="height:150px;background:#DEDED8"></div>
+        <div style="padding:14px 16px"><b class="t">个人 AI 设计工具组</b><div class="caption">AIGC Skill Hub · Design Camera 等</div></div>
+      </div>
+      <div class="card" style="grid-column:span 1;padding:0;overflow:hidden" onmouseover="this.querySelector('.t').style.color='var(--c-accent)'" onmouseout="this.querySelector('.t').style.color='var(--fg)'">
+        <div style="height:150px;background:#E7E7E2"></div>
+        <div style="padding:14px 16px"><b class="t">航标灯</b><div class="caption">商业产品</div></div>
+      </div>
+      <div class="card" style="grid-column:span 2;padding:0;overflow:hidden" onmouseover="this.querySelector('.t').style.color='var(--c-accent)'" onmouseout="this.querySelector('.t').style.color='var(--fg)'">
+        <div style="height:130px;background:#DEDED8"></div>
+        <div style="padding:14px 16px"><b class="t">三款可玩网页原型</b><div class="caption">其他 AI 原型 · 可现场玩</div></div>
+      </div>
+      <div class="card" style="grid-column:span 4;padding:0;overflow:hidden" onmouseover="this.querySelector('.t').style.color='var(--c-accent)'" onmouseout="this.querySelector('.t').style.color='var(--fg)'">
+        <div style="height:130px;background:#E7E7E2"></div>
+        <div style="padding:14px 16px"><b class="t">视觉设计与其他课程作品</b><div class="caption">平面 / 品牌标识 / 产品练习</div></div>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:16px">移动端：不规则网格降为单列（V3 §43），Hover 全部换成点击。</p>
+  </div>
+</section>
+
+<!-- ═══ 13 Lightbox ═══ -->
+<section class="section sg-block" id="lb" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">13</span><h2 style="font-size:34px">Lightbox</h2></div>
+    <p class="measure" style="margin-bottom:20px">V3 §39：深色背景、图片尽可能大、左右切图、Esc 关闭、移动端滑动、关闭后回到原滚动位置。</p>
+    <div class="demo">
+      <button class="btn btn--primary" onclick="sgLightbox(true)">打开 Lightbox</button>
+      <span class="caption">按 Esc 或点背景关闭</span>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="sg-lb" data-open="false" onclick="sgLightbox(false)">
+  <div style="position:absolute;top:22px;right:26px" class="mono caption">Esc 关闭 ✕</div>
+  <div style="position:absolute;left:30px;top:50%;transform:translateY(-50%)" class="mono accent">‹</div>
+  <div style="position:absolute;right:30px;top:50%;transform:translateY(-50%)" class="mono accent">›</div>
+  <img src="./assets/img/id/wateralarm-04-scene.webp" alt="Lightbox 示例">
+</div>
+
+<!-- ═══ 14 动效 ═══ -->
+<section class="section is-light sg-block" id="mo" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">14</span><h2 style="font-size:34px">动效</h2></div>
+    <p class="measure" style="margin-bottom:24px">V3 §25：动态必须保留并升级 —— 但背景动态只做<b>稀疏节点、连线、缓慢漂移</b>，明确禁止满屏粒子与高速运动。
+      V3 §26 / §47 的时长全部落成 token。</p>
+    <table class="spec" style="margin-bottom:26px">
+      <tr><th>场景</th><th>Token</th><th>取值</th><th>依据</th></tr>
+      <tr><td>Hover</td><td><code>--t-hover</code></td><td>200ms</td><td>V3 §26（180–220）</td></tr>
+      <tr><td>UI transition</td><td><code>--t-ui</code></td><td>250ms</td><td>V3 §26（200–300）</td></tr>
+      <tr><td>图片淡入</td><td><code>--t-image</code></td><td>500ms</td><td>V3 §26（400–600）</td></tr>
+      <tr><td>Expand</td><td><code>--t-expand</code></td><td>450ms</td><td>V3 §26（400–500）</td></tr>
+      <tr><td>Section reveal</td><td><code>--t-section</code></td><td>700ms</td><td>V3 §26（600–800）</td></tr>
+      <tr><td>Hero 进入</td><td>—</td><td>约 1s，<b>无 Loading</b>，随时可滚</td><td>V3 §26</td></tr>
+    </table>
+    <div class="label-en" style="margin-bottom:10px">Hover 实演（把鼠标移到行上）</div>
+    <div class="motion-row"><span class="mono caption">--t-hover 200ms</span><span class="dot"></span></div>
+    <div class="label-en" style="margin:24px 0 10px">滚动揭示 · 图片淡入</div>
+    <div class="demo">
+      <button class="btn btn--ghost" onclick="sgReveal()">重播揭示</button>
+      <div class="reveal" id="sg-reveal" style="padding:10px 14px;border:1px solid var(--line);border-radius:var(--r-card)">
+        <div class="label-en">Section reveal 700ms</div><b>标题淡入 + 轻上移</b>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:16px">背景动态规格（V3 §25）：Hero 稀疏节点 / 连线 / 缓慢漂移 / 鼠标靠近轻微响应；移动端降级（V3 §43）；
+      并遵守 <span class="mono">prefers-reduced-motion</span>（V3 §44）。</p>
+  </div>
+</section>
+
+<!-- ═══ 15 移动端 ═══ -->
+<section class="section sg-block" id="mob" style="padding-top:56px;padding-bottom:56px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">15</span><h2 style="font-size:34px">移动端与性能红线</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+      <div>
+        <h3 style="font-size:20px;margin-bottom:12px">移动端必须单独设计（V3 §43）</h3>
+        <ul class="measure" style="padding-left:18px;margin:0">
+          <li>Hero 人物图大面积，姓名定位紧跟</li>
+          <li>单列内容，项目主图全宽</li>
+          <li><b>取消两侧 Rail</b>（已在本页 ≤720px 生效）</li>
+          <li>Hover 交互全部有点击替代</li>
+          <li>Experience 展开变单列</li>
+          <li>Lightbox 支持手势</li>
+          <li>动态背景降级</li>
+          <li>按钮触控区足够大（≥44px）</li>
+          <li>可考虑底部轻导航：项目 / 简历 / 联系</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:20px;margin-bottom:12px">性能红线（V3 §44）</h3>
+        <ul class="measure" style="padding-left:18px;margin:0">
+          <li>首屏快速可见，<b>不做大型 Loading</b></li>
+          <li>图片懒加载 · WebP / AVIF</li>
+          <li>手机动效降级 · prefers-reduced-motion</li>
+          <li>动态背景不能掉帧</li>
+          <li class="accent">禁止：2–3 秒强制开场 · 重型 WebGL 卡顿 · 滚动锁定 · 每屏复杂动画</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 收口：验收对照 ═══ -->
+<footer class="section is-light" style="padding-top:56px;padding-bottom:80px">
+  <div class="wrap">
+    <div class="sg-head"><span class="idx">✓</span><h2 style="font-size:34px">V3 §57 验收对照</h2></div>
+    <table class="spec">
+      <tr><th>验收项</th><th>本视觉系统如何满足</th></tr>
+      <tr><td>10 秒测试</td><td>Hero 姓名 64–72 + 定位 28–32 + 证据三组，层级差拉到 2.2 倍以上</td></tr>
+      <tr><td>30 秒测试</td><td>明暗节奏把「工业设计」与「AI 产品」分成两段，滚动即可感知成长逻辑</td></tr>
+      <tr><td>项目测试</td><td>NEXT 衔接条自带下一项目预览，无返回键</td></tr>
+      <tr><td>深度阅读</td><td>展开态不强制收起，展开后仍可继续下滚</td></tr>
+      <tr><td>Experience</td><td>默认态单行关键数字（5–10 秒可扫），展开 3 模块</td></tr>
+      <tr><td>移动端</td><td>≤720px 取消 Rail、Hover 换点击、触控 ≥44px、圆角收敛</td></tr>
+      <tr><td>性能</td><td>无 Loading、图片懒加载 + WebP、reduced-motion 全量降级</td></tr>
+    </table>
+    <p class="caption" style="margin-top:22px">下一步（V3 §58 第三阶段）：高保真样板 —— Hero → 能力概览 → DOGGIE 默认+展开 → 项目 Next 衔接 → UBTECH 默认+展开。</p>
+  </div>
+</footer>
+
+<script>
+  function sgToggle(btn) {
+    var d = btn.closest('div').parentElement.querySelector('.disclosure');
+    if (!d) d = btn.parentElement.querySelector('.disclosure');
+    var open = d.getAttribute('data-open') === 'true';
+    d.setAttribute('data-open', open ? 'false' : 'true');
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    btn.textContent = open ? '展开 ↓' : '收起 ↑';
+  }
+  function sgLightbox(on) { document.getElementById('sg-lb').setAttribute('data-open', on ? 'true' : 'false'); }
+  function sgReveal() {
+    var el = document.getElementById('sg-reveal');
+    el.classList.remove('is-in');
+    void el.offsetWidth;
+    el.classList.add('is-in');
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') sgLightbox(false); });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+/* ============================================================
+   付昕｜作品集新站 · 设计 Token
+   依据：V3 交接文档 §19–§26 / §38 / §43–§47
+   规则：标「V3 §xx」= 用户给定原值，不得改动；
+        标「派生」= V3 未给、由我补齐的中间值，可调。
+   ============================================================ */
+
+:root {
+  /* ── 色彩（V3 §23 原值）────────────────────────────── */
+  --c-bg:            #0B0C0E;   /* 主深色 */
+  --c-surface:       #15171A;   /* 次深色 */
+  --c-light:         #F3F3F0;   /* 浅色背景 */
+  --c-text-dark:     #F5F5F2;   /* 深底主文字 */
+  --c-text-light:    #111214;   /* 浅底主文字 */
+  --c-muted:         #8B8D90;   /* 次级文字（深浅共用）*/
+  --c-line-dark:     #292B2F;   /* 深底分割线 */
+  --c-line-light:    #D8D8D4;   /* 浅底分割线 */
+  --c-accent:        #FF6A1A;   /* 强调橙 */
+  --c-accent-hover:  #FF7C32;   /* Hover 橙 */
+
+  /* 派生（V3 未给，我补）*/
+  --c-surface-2:     #1C1F23;   /* 派生：深底卡片 */
+  --c-muted-light:   #6B6D70;   /* 派生：浅底次级文字 */
+  --c-accent-soft:   rgba(255, 106, 26, 0.14);  /* 派生：橙色低透明底 */
+  --c-line-dark-2:   #1F2226;   /* 派生：深底更弱分割线 */
+  --c-focus:         #FF6A1A;   /* 派生：焦点环＝强调橙 */
+
+  /* 橙色的使用范围（V3 §23）：编号 / 当前状态 / 链路激活 / Hover /
+     局部关键词 / 按钮反馈。禁止大面积橙色背景。*/
+
+  /* ── 字体（V3 §21）──────────────────────────────────── */
+  --font-cn: "Source Han Sans SC", "Noto Sans SC", "PingFang SC",
+             "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  --font-en: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-en), var(--font-cn);   /* 英文优先回落中文 */
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas,
+               "Liberation Mono", monospace;     /* 仅用于：01/05、ESP32、
+               ASR→LLM→TTS、时间、英文辅助标签；禁止全站中文等宽 */
+
+  /* ── 字号层级（V3 §21 / §47：桌面区间 → clamp 自适应）── */
+  --fs-hero-name:    clamp(40px, 5vw,    72px);  /* V3: 64–72 */
+  --fs-hero-role:    clamp(20px, 2.2vw,  32px);  /* V3: 28–32 */
+  --fs-project-h1:   clamp(38px, 4.8vw,  72px);  /* V3: 56–72 */
+  --fs-section-h2:   clamp(30px, 3.8vw,  56px);  /* V3: 44–56 */
+  --fs-h3:           clamp(21px, 2.2vw,  32px);  /* V3: 26–32 */
+  --fs-lead:         clamp(17px, 1.4vw,  20px);  /* V3: 18–20 */
+  --fs-body:         clamp(16px, 1.25vw, 18px);  /* V3: 16–18 */
+  --fs-caption:      clamp(12px, 1vw,    14px);  /* V3: 12–14 */
+
+  --lh-tight: 1.12;   /* 派生：大标题 */
+  --lh-snug:  1.32;   /* 派生：小标题 */
+  --lh-body:  1.75;   /* 派生：中文正文行高 */
+
+  --ls-tight: -0.02em;  /* 派生：大标题收紧 */
+  --ls-wide:   0.08em;  /* 派生：英文辅助标签字距 */
+  --ls-label:  0.14em;  /* 派生：全大写小节标签 */
+
+  /* ── 布局（V3 §20 / §47）────────────────────────────── */
+  /* ⚠️ 2026-09-17 用户反馈「太集中于中间、两边留了东西」：
+     以下四项在 V3 原值基础上上调/收窄，V3 原值记录在行尾注释里，可随时回退。 */
+  --main-max:    1660px;                        /* V3 原值 1320 */
+  --safe:        clamp(18px, 2.4vw, 44px);      /* V3 原值 clamp(20px,4vw,64px) 安全边距 56–64 */
+  --text-col:    640px;                         /* V3: 正文列 520–680 —— 正文仍限宽保可读性 */
+  --media-min:   760px;                         /* V3 原值 700 */
+  --media-max:   1300px;                        /* V3 原值 1100 */
+  --hero-portrait: clamp(280px, 36vw, 640px);   /* V3 原值 450–520；随版面放宽同比例上调 */
+  --section-py:  clamp(72px, 10vw, 160px);      /* V3: 章节纵向 100–160 */
+  --nav-h:       64px;                          /* 派生 */
+
+  /* 间距阶梯（派生：V3 未给数值，按 4 的倍数）*/
+  --s-1: 4px;  --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 24px; --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+  --s-9: 96px; --s-10: 128px;
+
+  /* ── 圆角（V3 §45）──────────────────────────────────── */
+  --r-media: 16px;      /* V3: 主图 0–16 */
+  --r-container: 20px;  /* V3: 大容器 16–20 */
+  --r-card: 14px;       /* V3: 小卡 12–16 */
+  --r-btn: 10px;        /* V3: 按钮 8–12 */
+  --r-pill: 999px;      /* V3: 或 pill */
+
+  /* ── 动效（V3 §26 / §47）────────────────────────────── */
+  --t-hover:   200ms;   /* V3: Hover 180–220 */
+  --t-ui:      250ms;   /* V3: UI transition 200–300 */
+  --t-image:   500ms;   /* V3: 图片淡入 400–600 */
+  --t-expand:  450ms;   /* V3: Expand 400–500 */
+  --t-section: 700ms;   /* V3: Section reveal 600–800 */
+  --ease-out:  cubic-bezier(0.22, 0.61, 0.36, 1);    /* 派生 */
+  --ease-inout: cubic-bezier(0.65, 0.05, 0.36, 1);   /* 派生：展开/收起 */
+
+  /* ── 分区主题：明暗节奏（V3 §24）─────────────────────
+     Hero 深 → 工业设计浅 → 过渡渐暗 → AI 深+橙 →
+     Experience 深 → More/About 浅深混合 → Contact 深 */
+  --bg:        var(--c-bg);
+  --fg:        var(--c-text-dark);
+  --fg-muted:  var(--c-muted);
+  --line:      var(--c-line-dark);
+  --line-weak: var(--c-line-dark-2);
+  --surface:   var(--c-surface);
+}
+
+/* 浅色章节：只换这一层变量，组件无需改 */
+.is-light {
+  --bg:        var(--c-light);
+  --fg:        var(--c-text-light);
+  --fg-muted:  var(--c-muted-light);
+  --line:      var(--c-line-light);
+  --line-weak: #E4E4E0;                 /* 派生 */
+  --surface:   #FFFFFF;                 /* 派生 */
+}
+
+/* ── 基础排版 ─────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+  transition: background var(--t-ui) var(--ease-out),
+              color var(--t-ui) var(--ease-out);
+}
+
+/* 章节容器：明暗由 .is-dark / .is-light 决定 */
+.section {
+  background: var(--bg);
+  color: var(--fg);
+  padding-block: var(--section-py);
+}
+
+.wrap {                       /* 主工作区 1320，两侧安全边距 */
+  width: min(var(--main-max), 100% - var(--safe) * 2);
+  margin-inline: auto;
+}
+
+.measure { max-width: var(--text-col); }   /* 正文阅读宽度 */
+.wide    { max-width: var(--media-max); }  /* 主图允许突破文字列 */
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;          /* 中文标题避免尾行孤字 */
+}
+.lead, .hero__lede, .project__lede, .measure p { text-wrap: pretty; }
+h1 { font-size: var(--fs-project-h1); }
+h2 { font-size: var(--fs-section-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-snug); letter-spacing: 0; }
+p  { margin: 0 0 var(--s-4); }
+
+.lead    { font-size: var(--fs-lead); line-height: 1.6; }
+.caption { font-size: var(--fs-caption); color: var(--fg-muted); }
+
+/* 英文辅助标签：全大写 + 宽字距，只做视觉节奏 */
+.label-en {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* 编号 / 技术串 / 时间：等宽 */
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* 强调橙的克制用法（V3 §23）*/
+.accent { color: var(--c-accent); }
+
+/* 极细辅助线（V3 §46：两侧参与构图）*/
+.hairline { height: 1px; background: var(--line); border: 0; }
+
+/* ── 按钮（V3 §45：8–12 或 pill）────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 12px 22px;
+  min-height: 44px;                 /* V3 §43：触控区足够大 */
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  border-radius: var(--r-btn);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--t-hover) var(--ease-out),
+              border-color var(--t-hover) var(--ease-out),
+              color var(--t-hover) var(--ease-out),
+              transform var(--t-hover) var(--ease-out);
+}
+.btn--primary { background: var(--c-accent); color: #0B0C0E; }
+.btn--primary:hover { background: var(--c-accent-hover); }
+.btn--ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--c-accent); color: var(--c-accent); }
+.btn--pill { border-radius: var(--r-pill); }
+.btn:active { transform: translateY(1px); }
+
+/* 文字型「展开」按钮：橙色下划线只做状态 */
+.expand-toggle {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  background: none; border: 0; padding: 8px 0; min-height: 44px;
+  color: var(--fg); font-size: var(--fs-body); font-family: var(--font-sans);
+  cursor: pointer; border-bottom: 1px solid var(--line);
+  transition: color var(--t-hover) var(--ease-out),
+              border-color var(--t-hover) var(--ease-out);
+}
+.expand-toggle:hover { color: var(--c-accent); border-color: var(--c-accent); }
+
+/* ── 标签 / 元信息 ────────────────────────────────────── */
+.tag {
+  display: inline-block; padding: 4px 10px;
+  font-size: var(--fs-caption); font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+}
+
+/* ── 展开/收起（V3 §26：400–500ms）──────────────────────
+   注：不用 grid-template-rows 0fr→1fr（实测在本结构下恒为 0），
+   改为由 JS 实测内容高度驱动的 height 过渡；无 JS 时按 auto 展开。 */
+.disclosure {
+  height: 0; overflow: hidden;
+  transition: height var(--t-expand) var(--ease-inout);
+}
+.disclosure[data-open="true"] { height: auto; }
+/* 首帧：内容整体轻微下移 + 透明，展开后归位（V3 §34：上移 8–12px）*/
+.disclosure__inner > * {
+  opacity: 0; transform: translateY(10px);
+  transition: opacity var(--t-expand) var(--ease-out),
+              transform var(--t-expand) var(--ease-out);
+}
+.disclosure[data-open="true"] .disclosure__inner > * { opacity: 1; transform: none; }
+
+/* ── 滚动揭示（V3 §25：标题淡入 + 轻上移）──────────────
+   安全前提：只有 JS 确认可用（html.js-reveal）时才隐藏内容。
+   脚本未执行 / 执行出错时，页面按「全部可见」渲染，绝不白屏。 */
+.reveal { opacity: 1; transform: none; }
+.js-reveal .reveal { opacity: 0; transform: translateY(18px); }
+.js-reveal .reveal { transition: opacity var(--t-section) var(--ease-out),
+                                transform var(--t-section) var(--ease-out); }
+.js-reveal .reveal.is-in { opacity: 1; transform: none; }
+
+/* ── 图片：淡入 + 轻缩放（V3 §25 / §26）──────────────── */
+.media { overflow: hidden; border-radius: var(--r-media); background: var(--surface); }
+.media img { display: block; width: 100%; height: auto;
+  opacity: 0; transition: opacity var(--t-image) var(--ease-out),
+                          transform var(--t-image) var(--ease-out); }
+.media img.is-loaded { opacity: 1; }
+.media--zoom img { transform: scale(1); }
+.media--zoom:hover img { transform: scale(1.035); }   /* hover 轻缩放；常态不裁边 */
+
+/* ── 导航（V3 §38）────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  backdrop-filter: blur(10px);                        /* 派生 */
+  background: color-mix(in srgb, var(--c-bg) 78%, transparent); /* 派生 */
+  border-bottom: 1px solid transparent;
+  transition: height var(--t-ui) var(--ease-out),
+              background var(--t-ui) var(--ease-out),
+              border-color var(--t-ui) var(--ease-out);
+}
+/* 向下滚缩小、向上滚恢复（V3 §38）*/
+.nav[data-scrolled="true"] {
+  height: 54px;                                        /* 派生 */
+  border-bottom-color: var(--c-line-dark);
+}
+.nav__link { position: relative; color: var(--fg); text-decoration: none;
+  padding: 8px 2px; font-size: var(--fs-caption);
+  transition: color var(--t-hover) var(--ease-out); }
+.nav__link:hover { color: var(--c-accent); }
+/* 当前章节：橙色点（V3 §38）*/
+.nav__link[aria-current="true"]::after {
+  content: ""; position: absolute; left: 50%; bottom: -6px;
+  width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%;
+  background: var(--c-accent);
+}
+
+/* ── 卡片（V3 §45：卡片只用于 Experience / More Work / 系统模块）── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: var(--s-5);
+}
+
+/* 收起态主视觉（V3 §27：1 主图 + 最多 1 辅助图）*/
+.project-hero-media { border-radius: var(--r-media); overflow: hidden; }
+.project-hero-media img { display: block; width: 100%; height: auto; }
+
+/* ── 两侧 Rail（V3 §20 / §46）─────────────────────────── */
+.rail-num {                       /* 超大编号 */
+  font-family: var(--font-mono);
+  font-size: clamp(64px, 9vw, 160px);
+  line-height: 1; color: var(--line); font-weight: 600;
+  user-select: none; pointer-events: none;
+}
+.rail-en {                        /* 章节英文 */
+  writing-mode: vertical-rl;
+  font-family: var(--font-mono); font-size: var(--fs-caption);
+  letter-spacing: var(--ls-label); text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ── Lightbox（V3 §39）────────────────────────────────── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(11, 12, 14, 0.94);                 /* 深色背景 */
+  display: grid; place-items: center; padding: var(--s-6);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--t-ui) var(--ease-out), visibility var(--t-ui);
+}
+.lightbox[data-open="true"] { opacity: 1; visibility: visible; }
+.lightbox img { max-width: 92vw; max-height: 84vh; object-fit: contain; }
+
+/* ── 无障碍与降级（V3 §44）────────────────────────────── */
+:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .media img { opacity: 1; }
+}
+
+/* ── 移动端（V3 §43：必须单独设计）────────────────────── */
+@media (max-width: 720px) {
+  :root { --nav-h: 56px; --r-media: 10px; --r-container: 14px; }
+  .rail-num, .rail-en { display: none; }   /* 取消两侧 Rail */
+  .media--zoom:hover img { transform: none; }  /* Hover 无意义，交给点击 */
+  .project-hero-media, .media { border-radius: var(--r-media); }
+}

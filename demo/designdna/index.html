@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DesignDNA 界面走查 · 付昕</title>
+<style>
+  :root{--ink:#0e0f12;--panel:#16181d;--line:#282b32;--txt:#e8eaee;--mut:#8f959f;--accent:#ff6a1a}
+  *{box-sizing:border-box}
+  body{margin:0;background:#0b0c0e;color:var(--txt);font-family:"Inter","Helvetica Neue","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.7}
+  a{color:inherit}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,12,14,.9);backdrop-filter:blur(8px);z-index:20}
+  .brand{font-weight:650;display:flex;align-items:center;gap:10px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .back{font-size:13.5px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none}
+  .back:hover{color:var(--txt);border-color:#4a4f58}
+  main{max-width:1280px;margin:0 auto;padding:30px 24px 60px;display:grid;grid-template-columns:290px 1fr;gap:34px}
+  @media(max-width:940px){main{grid-template-columns:1fr;gap:20px}}
+  h1{font-size:26px;margin:0 0 6px}
+  .lead{color:var(--mut);font-size:14.5px;margin:0 0 22px}
+  .steps{list-style:none;margin:0;padding:0}
+  .steps li{margin-bottom:8px}
+  .steps button{width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:12px 14px;cursor:pointer;font-family:inherit;font-size:14px;transition:.18s}
+  .steps button:hover{border-color:#464c56}
+  .steps button[aria-current="true"]{border-color:var(--accent);background:#1d1712}
+  .steps span{display:block;color:var(--mut);font-size:12.5px;margin-top:3px}
+  .stage{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .stage__img{background:#000;cursor:zoom-in;display:grid;place-items:center;min-height:300px;position:relative}
+  /* 关键①：按页面原始比例 16:9 预留高度，切换时不再「加载完才跳」 */
+  .stage__img img{width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#000}
+  .stage__body{padding:20px 22px;border-top:1px solid var(--line)}
+  .stage__body h2{font-size:19px;margin:0 0 8px}
+  .stage__body p{margin:0 0 10px;color:#c9cdd5;font-size:14.5px}
+  .stage__body ul{margin:0;padding-left:1.1em;color:var(--mut);font-size:13.5px}
+  .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .ctrl{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+  .ctrl button{background:var(--panel);border:1px solid var(--line);color:var(--txt);border-radius:999px;padding:9px 20px;cursor:pointer;font-family:inherit;font-size:14px}
+  .ctrl button:hover{border-color:var(--accent);color:#fff}
+  .ctrl .count{color:var(--mut);font-size:13px}
+  .note{margin-top:26px;border-left:2px solid var(--line);padding-left:14px;color:var(--mut);font-size:13px}
+  .lb{position:fixed;inset:0;background:rgba(5,6,8,.95);display:none;align-items:center;justify-content:center;z-index:60;cursor:zoom-out}
+  .lb[open]{display:flex}
+  .lb img{max-width:96vw;max-height:94vh}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> DesignDNA · 界面走查</div>
+  <a class="back" href="../../index.html#ai/designdna">← 返回作品集</a>
+</header>
+
+<main>
+  <div>
+    <h1>界面走查</h1>
+    <p class="lead">DesignDNA 是把 AI 改款任务变成可评审流程的工作台。这里按真实使用顺序，用工具截图走一遍完整流程。</p>
+    <ul class="steps" id="steps"></ul>
+    <p class="note">本页是流程走查（真实工具截图 + 说明），不是在线可操作的工具本身。工具运行在本地，截图取自 Fusion Audio 音响改款任务的真实记录。</p>
+  </div>
+
+  <div>
+    <div class="stage">
+      <div class="stage__img" id="imgwrap"><img id="shot" src="" alt=""></div>
+      <div class="stage__body">
+        <div class="kicker" id="kicker"></div>
+        <h2 id="title"></h2>
+        <p id="desc"></p>
+        <ul id="points"></ul>
+      </div>
+    </div>
+    <div class="ctrl">
+      <button id="prev">← 上一步</button>
+      <span class="count" id="count"></span>
+      <button id="next">下一步 →</button>
+    </div>
+  </div>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* 关键②：用站内已经优化过的 webp（含小档），不再拉 .jpg 原图 */
+const SIZES = '(max-width:940px) 92vw, 900px';
+const STEPS = [
+  {
+    k: 'STEP 01 · 任务简报', t: '输入改款任务',
+    img: '../../assets/img/ai/designdna-p18.webp',
+    ss: '../../assets/img/ai/designdna-p18-md.webp 1200w, ../../assets/img/ai/designdna-p18.webp 1500w',
+    d: '四步流程串起任务简报、约束地图、变体树与评审记录，每一步都能回溯。工具先从任务简报开始建立这次改款的上下文。',
+    p: ['任务：高端户外便携音响的箱体轮廓、提手与表面分层重构', '每次探索都挂在同一条任务记录下，方便回看']
+  },
+  {
+    k: 'STEP 02 · 产品 DNA', t: '先定义约束，再开始生成',
+    img: '../../assets/img/ai/designdna-p20.webp',
+    ss: '../../assets/img/ai/designdna-p20-md.webp 1200w, ../../assets/img/ai/designdna-p20.webp 1500w',
+    d: '约束地图区分「必须保留 / 可控变化 / 自由探索」，把生成范围框在设计判断内，而不是让模型自由发挥。',
+    p: ['保留：双扬声器开孔、顶部控制、承重提手', '可控：箱体比例、侧向护梁、边角和表面层级', '自由：色彩、材料、表面处理']
+  },
+  {
+    k: 'STEP 03 · 变体树', t: '在硬约束内拉开轮廓差异',
+    img: '../../assets/img/ai/designdna-p22.webp',
+    ss: '../../assets/img/ai/designdna-p22-md.webp 1200w, ../../assets/img/ai/designdna-p22.webp 1500w',
+    d: '九个方向共享双单元、顶部交互与可携提的基础，先拉开轮廓差异，再判断取舍。',
+    p: ['跨品类参考转化为可执行语言：运动鞋的防护分层、智能手表的精密边界', 'CMF 阶段建立系列识别：矿物色、沙岩色、石墨色与户外包胶关系']
+  },
+  {
+    k: 'STEP 04 · 评审记录', t: '每一轮都保留约束、版本与结论',
+    img: '../../assets/img/ai/designdna-p25.webp',
+    ss: '../../assets/img/ai/designdna-p25-md.webp 1200w, ../../assets/img/ai/designdna-p25.webp 1500w',
+    d: '一条可回溯的设计评审链：从输入图到候选方案，每一轮都留下约束、版本和评审结果。',
+    p: ['按识别度、握持可行性、分件合理性与系列延展收敛', '最终收敛为石墨灰与矿物橙两个主要方向']
+  },
+  {
+    k: 'STEP 05 · 真实验证', t: '用一个真实改款任务验证完整流程',
+    img: '../../assets/img/ai/designdna-p19.webp',
+    ss: '../../assets/img/ai/designdna-p19-md.webp 1200w, ../../assets/img/ai/designdna-p19.webp 1500w',
+    d: 'Fusion Audio 用一个真实改款任务验证完整工作流：保留双扬声器、顶部控制区与可携提结构，重构箱体轮廓、提手与表面分层。',
+    p: ['目标：高端户外便携音响', '产出：造型方向、CMF 与可追溯的评审记录']
+  }
+];
+
+const $ = id => document.getElementById(id);
+let i = 0, token = 0;
+
+$('steps').innerHTML = STEPS.map((s, k) =>
+  `<li><button data-k="${k}">${s.t}<span>${s.k}</span></button></li>`).join('');
+
+/* 关键③：进页面就把 5 张图全部预载（走同一套 srcset/sizes，取到的就是实际会用的那一档） */
+function preloadAll() {
+  STEPS.forEach(s => {
+    const im = new Image();
+    im.decoding = 'async';
+    im.sizes = SIZES;
+    im.srcset = s.ss;
+    im.src = s.img;
+  });
+}
+if ('requestIdleCallback' in window) requestIdleCallback(preloadAll, { timeout: 1200 });
+else setTimeout(preloadAll, 60);
+
+/* 关键④：双缓冲——新图就绪后才换上去，旧图在这期间一直显示，不会闪白 */
+function setShot(s) {
+  const el = $('shot');
+  const my = ++token;
+  const probe = new Image();
+  probe.decoding = 'async';
+  probe.sizes = SIZES;
+  probe.srcset = s.ss;
+  probe.src = s.img;
+  const commit = () => { if (my !== token) return; el.sizes = SIZES; el.srcset = s.ss; el.src = s.img; };
+  if (probe.decode) probe.decode().then(commit).catch(commit);
+  else { probe.onload = commit; probe.onerror = commit; }
+}
+
+function show(k) {
+  i = (k + STEPS.length) % STEPS.length;
+  const s = STEPS[i];
+  setShot(s);                       /* 图片：就绪才换 */
+  $('kicker').textContent = s.k;    /* 文字：立即更新 */
+  $('title').textContent = s.t;
+  $('desc').textContent = s.d;
+  $('points').innerHTML = (s.p || []).map(x => `<li>${x}</li>`).join('');
+  $('count').textContent = `${i + 1} / ${STEPS.length}`;
+  [...document.querySelectorAll('.steps button')].forEach((b, k2) =>
+    b.setAttribute('aria-current', k2 === i ? 'true' : 'false'));
+}
+$('prev').onclick = () => show(i - 1);
+$('next').onclick = () => show(i + 1);
+$('steps').onclick = e => { const b = e.target.closest('button'); if (b) show(+b.dataset.k); };
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') show(i - 1);
+  if (e.key === 'ArrowRight') show(i + 1);
+  if (e.key === 'Escape') $('lb').removeAttribute('open');
+});
+$('imgwrap').onclick = () => { const el = $('shot'); $('lbimg').sizes = SIZES; $('lbimg').srcset = el.srcset; $('lbimg').src = el.currentSrc || el.src; $('lb').setAttribute('open', ''); };
+$('lb').onclick = () => $('lb').removeAttribute('open');
+show(0);
+</script>
+</body>
+</html>
