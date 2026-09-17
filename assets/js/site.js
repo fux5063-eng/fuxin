@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v15-v41-done';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v16-v42-b1';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -176,38 +176,6 @@
   });
 
   /* ══ V4 第三批：项目专属交互（V4 原话：把交互需求写进网页 ≠ 实现交互需求）══ */
-
-  /* ── 1. Lumora：使用态 / 收纳态 真切换 ── */
-  (function () {
-    var sw = document.getElementById('lumora-switch');
-    if (!sw) return;
-    var img = sw.querySelector('.state-switch__img');
-    var cap = sw.querySelector('.state-switch__cap');
-    var btns = [].slice.call(sw.querySelectorAll('.state-switch__btn'));
-    var CAPS = {
-      open: '展开最高 1280mm · 可调灯臂',
-      stowed: '收纳总高 572mm · 折叠 + 脚轮移动'
-    };
-    btns.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var st = b.getAttribute('data-state');
-        if (sw.getAttribute('data-state') === st) return;
-        sw.setAttribute('data-state', st);
-        btns.forEach(function (x) { x.classList.toggle('is-on', x === b); });
-        if (cap) cap.textContent = CAPS[st] || '';
-        img.classList.add('is-fading');
-        var pre = new Image();
-        var done = function () {
-          img.src = pre.src;
-          img.alt = b.getAttribute('data-alt') || '';
-          img.classList.remove('is-fading');
-        };
-        pre.onload = done;
-        pre.onerror = done;
-        pre.src = b.getAttribute('data-src');
-      });
-    });
-  })();
 
   /* ── 2. Robot：系统链路真点亮（进入视口自动跑一次 + 悬停看节点说明）── */
   (function () {
@@ -386,7 +354,7 @@
     }
     function groupOf(im) {
       var sec = im.closest('section') || document.body;
-      return [].slice.call(sec.querySelectorAll('.media--zoom img, .cover__main, .state-switch__img'));
+      return [].slice.call(sec.querySelectorAll('.media--zoom img, .cover__main'));
     }
     function show(i) {
       if (!lbGroup.length) return;
@@ -415,7 +383,7 @@
       document.body.style.overflow = '';
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
-    [].slice.call(document.querySelectorAll('.media--zoom img, .cover__main, .state-switch__img'))
+    [].slice.call(document.querySelectorAll('.media--zoom img, .cover__main'))
       .forEach(function (im) {
         im.addEventListener('click', function () { lbOpen(im); });
       });
