@@ -40,7 +40,7 @@
   /* ── 字号层级（V3 §21 / §47：桌面区间 → clamp 自适应）── */
   --fs-hero-name:    clamp(40px, 5vw,    72px);  /* V3: 64–72 */
   --fs-hero-role:    clamp(20px, 2.2vw,  32px);  /* V3: 28–32 */
-  --fs-project-h1:   clamp(38px, 4.8vw,  72px);  /* V3: 56–72 */
+  --fs-project-h1:   clamp(28px, 2.85vw, 46px);  /* V4.2：原 72px 使最长中文词（9字）需 648px > 文字列 482px，词被迫劈开 */  /* V3: 56–72 */
   --fs-section-h2:   clamp(30px, 3.8vw,  56px);  /* V3: 44–56 */
   --fs-h3:           clamp(21px, 2.2vw,  32px);  /* V3: 26–32 */
   --fs-lead:         clamp(17px, 1.4vw,  20px);  /* V3: 18–20 */

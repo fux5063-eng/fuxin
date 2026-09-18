@@ -456,7 +456,9 @@ ol.numlist li { margin-bottom: 4px; }
 .ability__card { padding-block: var(--s-2) var(--s-3); }
 /* 项目标题断行：避免「多功/能」这种把词劈开（V4：项目第一眼要强）*/
 .project__title, .about__lede, .contact__title, .chapter__title { text-wrap: balance; }
-.project__title { word-break: normal; overflow-wrap: break-word; /* V4.2 §21-4：原为 keep-all，中文长标题无处可断会顶出容器 → 1440 下横向溢出 25px */ }
+.project__title { word-break: keep-all; overflow-wrap: anywhere; }
+/* V4.2：keep-all 保证中文词不被劈开（「多功/能」）；overflow-wrap:anywhere 兜底，
+   极端情况下也不会顶出容器造成横向滚动 */
 .project__lede, .hero__lede, .lead { text-wrap: pretty; }
 
 /* ══════════════════════════════════════════════════════════
