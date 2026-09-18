@@ -848,3 +848,7 @@ ol.numlist li { margin-bottom: 4px; }
    为控总高（§30），小图比主视觉缩一档、间距收紧。 */
 #p-wateralarm .project__aux--pair { max-width: 820px; gap: var(--s-3); margin-top: var(--s-4); }
 #p-wateralarm .project__aux--pair figcaption { font-size: var(--fs-caption); }
+
+/* ══ V4.2 §14：step__pair 只剩一张图时铺满整列（禁止「一张很小的图 + 大片空白」）══ */
+.step__pair:has(> figure:only-child) { grid-template-columns: minmax(0, 1fr); }
+.step__pair:has(> figure:only-child) figure img { width: 100%; height: auto; }
