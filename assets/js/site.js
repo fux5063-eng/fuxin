@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v22-v43';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v23-herofx';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -354,7 +354,7 @@
       minN: MOBILE ? 30 : 40,
       link: MOBILE ? 108 : 130,
       linkAlpha: MOBILE ? .34 : .44,
-      bandBase: .52, bandAmp: .34, bandWidth: 132, freeRatio: .42, speed: 1.95,
+      bandBase: .52, bandAmp: .34, bandWidth: 142, freeRatio: .44, speed: 1.95,
       dpr: 1.25, dotScale: 1,
       dot: 'rgba(226,236,246,.7)',
       accent: 'rgba(255,158,102,.85)',
@@ -385,6 +385,12 @@
           w2: .00028 + Math.random() * .00042,
           wa: .55 + Math.random() * .75
         });
+      /* 让非自由粒子一开始就落在带上：首屏即成"带状流动"，而不是整屏随机散开后慢慢聚 */
+      for (var b2 = 0; b2 < parts.length; b2++) {
+        var q2 = parts[b2];
+        /* 非自由粒子直接落在带上；自由粒子也靠近带出生（只散开一点），避免首屏整屏零散 */
+        if (!q2.free) q2.y = bandY(q2.x, 0) + q2.band;
+      }
       }
     }
 
@@ -427,7 +433,7 @@
           p.vy += (Math.random() - .5) * .0062 * dt;
         } else {
           p.vx += ((.95 - Math.abs(p.vy) * .22) * p.sp * O.speed - p.vx) * .02 * dt;
-          p.vy += (bandY(p.x, ts) + p.band - p.y) * .0022 * dt;
+          p.vy += (bandY(p.x, ts) + p.band - p.y) * .0026 * dt;
           p.vy += wander * .009 * dt;
         }
         if (mouse.on) {
