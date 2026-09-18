@@ -15,6 +15,8 @@
   --c-muted:         #8B8D90;   /* 次级文字（深浅共用）*/
   --c-line-dark:     #292B2F;   /* 深底分割线 */
   --c-line-light:    #D8D8D4;   /* 浅底分割线 */
+  /* 无障碍：浅底上的小字用深一档品牌橙（#FF6A1A 在浅底仅 2.57:1，需 4.5）*/
+  --c-accent-ink: #C2410C;
   --c-accent:        #FF6A1A;   /* 强调橙 */
   --c-accent-hover:  #FF7C32;   /* Hover 橙 */
 
