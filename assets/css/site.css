@@ -691,7 +691,7 @@ ol.numlist li { margin-bottom: 4px; }
 #p-wateralarm {
   background: linear-gradient(180deg,
     var(--bg) 0%,
-    var(--bg) calc(100% - 190px),
+    var(--bg) calc(100% - 100px),
     var(--c-bg) 100%);
   padding-bottom: clamp(120px, 12vw, 200px);
 }
@@ -778,3 +778,81 @@ ol.numlist li { margin-bottom: 4px; }
 /* ══ V4.2 §14：step__pair 只剩一张图时铺满整列（禁止「一张很小的图 + 大片空白」）══ */
 .step__pair:has(> figure:only-child) { grid-template-columns: minmax(0, 1fr); }
 .step__pair:has(> figure:only-child) figure img { width: 100%; height: auto; }
+
+/* ═════ V4.3 §36 图片四级尺度 ═════
+   A Cover / B Evidence / C Portrait / D Board
+   原则：容器占满列 ≠ 图片占满列；由 modifier 控制图片本身尺度。 */
+.media--cover { max-height: min(650px, 70vh); }
+.media--cover img { max-height: min(650px, 70vh); width: auto; max-width: 100%; height: auto; display: block; margin-inline: auto; }
+
+.media--evidence { max-width: 960px; margin-inline: auto; }
+.media--evidence img { max-height: 520px !important; width: auto !important; max-width: 100%; height: auto !important; display: block; margin-inline: auto; }
+
+.media--portrait { width: min(100%, 440px); margin-inline: auto; }
+.media--portrait img { width: 100% !important; height: auto !important; }
+
+.media--board { height: clamp(280px, 28vw, 420px); max-width: 960px; margin-inline: auto; }
+.media--board img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: top center !important; }
+
+/* Lumora 双竖图整组收窄并居中（§15.1：单张 360–440、整组 ≤900）*/
+#p-lumora .step__pair:has(figure.media--portrait) { max-width: 900px; margin-inline: auto; }
+
+/* Water Alarm 细高主图高度封顶（§17：520–650）与展开长竖图按 Level B（320–460）*/
+#p-wateralarm .project__media { max-height: 620px; }
+#p-wateralarm .project__media img { max-height: 620px; }
+#p-wateralarm .step__media img { max-height: 460px !important; width: auto !important; height: auto !important; display: block; margin-inline: auto; }
+
+/* ═════ V4.3 §3–§8 全站明暗章节 ═════
+   深（INTRO）→ 浅（PHYSICAL）→ 深（SYSTEM / AI / EXPERIENCE 直到 Footer）
+   全站只保留两次主要明暗转换；背景表达"能力阶段"，不跟单个项目走。 */
+#top              { background: #0B0C0E !important; }   /* HERO      */
+#ability          { background: #15171A !important; }   /* ABILITY   */
+#p-doggie         { background: #F3F3F0 !important; }   /* PHYSICAL  */
+#p-lumora         { background: #EFEFEB !important; }
+#p-wateralarm     { background: #F3F3F0 !important; }
+#p-robot          { background: #0B0C0E !important; }   /* SYSTEM    */
+#p-designdna      { background: #111315 !important; }
+#experience       { background: #15171A !important; }
+#more             { background: #111315 !important; }   /* 不再回浅 */
+#about            { background: #15171A !important; }
+.site-foot, footer { background: #0B0C0E; }
+
+/* Ability 深色内部（§28）：分隔线 #292B2F、编号与箭头用橙 */
+#ability .ability__card { border-color: #292B2F; }
+#ability .ability__num, #ability .ability__arrow { color: var(--c-accent); }
+#ability .ability__sep, #ability .ability__rule { background: #292B2F; }
+
+/* More Work 深色内部（§26）：主文字 #F5F5F2、次文字 #8B8D90、小分类/编号用橙 */
+#more .mw__info b { color: #F5F5F2; }
+#more .mw__info i { color: #8B8D90; }
+#more .mw--play .mw__links a { color: var(--c-accent); }
+
+/* ═════ V4.3 §19–§26 暖橙品牌线索 ═════
+   目标：正常滚动时几乎每屏都有一个明确但克制的橙色锚点；
+   不做大面积橙底（橙色占比 5–8%）。 */
+.tag--key { border-color: rgba(255, 106, 26, .45); background: rgba(255, 106, 26, .10); color: #C2410C; }
+.is-light .tag--key { border-color: rgba(194, 65, 12, .40); background: rgba(194, 65, 12, .07); color: #C2410C; }
+.section:not(.is-light) .tag--key { border-color: rgba(255, 106, 26, .45); background: rgba(255, 106, 26, .12); color: #FF8A4C; }
+#p-robot .tag--key, #p-designdna .tag--key, #ability .tag--key, #more .tag--key, #experience .tag--key { border-color: rgba(255, 106, 26, .45); background: rgba(255, 106, 26, .12); color: #FF8A4C; }
+
+/* §21 项目标题旁橙色短线（大编号保持弱水印，不转橙）*/
+.project__num::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--c-accent);
+  margin-bottom: 12px;
+}
+
+/* §23 展开按钮默认就有橙色线索 */
+.expand-toggle__arrow { color: var(--c-accent); }
+.is-light .expand-toggle__arrow { color: var(--c-accent-ink); }
+
+/* §25 经历区只突出数字 / 核心结果 */
+#experience b { color: var(--c-accent); }
+.is-light #experience b { color: var(--c-accent-ink); }
+
+/* §26 More Work 小分类编号用橙 */
+.mw__idx { color: var(--c-accent); margin-right: 8px; font-variant-numeric: tabular-nums; }
