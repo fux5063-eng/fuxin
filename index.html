@@ -27,7 +27,6 @@
   <link rel="preload" as="image" href="./assets/img/hero/portrait-720.webp"
         imagesrcset="./assets/img/hero/portrait-720.webp 720w, ./assets/img/hero/portrait.webp 1086w" imagesizes="(max-width: 1080px) 100vw, 38vw">
 <style>
-/* ══ V4.2 性能：tokens.css 内联（5.8KB，gzip 后约 1.5KB）—— 省一次渲染阻塞往返 ══ */
 /* ============================================================
    付昕｜作品集新站 · 设计 Token
    依据：V3 交接文档 §19–§26 / §38 / §43–§47
@@ -45,6 +44,8 @@
   --c-muted:         #8B8D90;   /* 次级文字（深浅共用）*/
   --c-line-dark:     #292B2F;   /* 深底分割线 */
   --c-line-light:    #D8D8D4;   /* 浅底分割线 */
+  /* 无障碍：浅底上的小字用深一档品牌橙（#FF6A1A 在浅底仅 2.57:1，需 4.5）*/
+  --c-accent-ink: #C2410C;
   --c-accent:        #FF6A1A;   /* 强调橙 */
   --c-accent-hover:  #FF7C32;   /* Hover 橙 */
 
