@@ -889,19 +889,20 @@ alt="落水报警终端材质与形态语言" loading="lazy"><figcaption>圆润�
   <div class="disclosure project-expand" id="robot-body" data-open="false">
     <div class="disclosure__inner">
       <div class="wrap"><div class="project__grid"><div></div><div class="steps">
-<div class="step step--split">
-<div class="step__main">
+<div class="step">
+
 <div class="step__idx">01 · 用户与场景</div>
 <h3 class="step__title">长期坐在桌前的年轻用户</h3>
 <div class="step__body">
 <p>核心用户是长期在桌面学习、工作或创作的青年——大学生、初入职场的程序员、设计师与内容创作者。场景是个人桌面；出发点是这些能力当前分散在手机、电脑、音箱和不同软件里。</p>
 <p class="step__note">边界：不覆盖儿童陪伴与老人陪护场景。</p>
 </div>
-</div>
-<figure class="media media--zoom media--portrait step__side">
-<img src="./assets/img/ai/robot-faces.webp" width="536" height="658"
-alt="屏幕表情系统角色形象设计" loading="lazy"><figcaption>屏幕表情系统 · 角色形象设计</figcaption>
-</figure>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-mvp.webp" width="1500" height="844"
+                 alt="项目假设与 MVP：目标用户、核心任务与优先级" loading="lazy">
+            <figcaption>项目假设与 MVP：目标用户、核心任务与优先级</figcaption>
+          </figure>
+
 </div>
 <div class="step">
 <div class="step__idx">02 · 产品概念与模块化</div>
@@ -915,10 +916,16 @@ alt="屏幕表情系统角色形象设计" loading="lazy"><figcaption>屏幕表�
 </ul>
 <p>原则：<b>状态表达清楚 &gt; 复杂人形动作</b>。</p>
 </div>
-<figure class="media media--zoom media--evidence step__media">
-<img src="./assets/img/ai/robot-loop.webp" width="1500" height="844"
-alt="桌面陪伴机器人用户体验闭环" loading="lazy"><figcaption>一次交互必须完整结束，才能成为可重复的体验</figcaption>
-</figure>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-parts.webp" width="1500" height="844"
+                 alt="从零件组合开始：主控 / 扩展 / 显示" loading="lazy">
+            <figcaption>从零件组合开始：主控 / 扩展 / 显示</figcaption>
+          </figure>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-eyes.webp" width="1500" height="844"
+                 alt="双眼状态反馈：8 种表情与状态映射" loading="lazy">
+            <figcaption>双眼状态反馈：8 种表情与状态映射</figcaption>
+          </figure>
 </div>
 <div class="step">
 <div class="step__idx">03 · 系统架构</div>
@@ -926,10 +933,16 @@ alt="桌面陪伴机器人用户体验闭环" loading="lazy"><figcaption>一次�
 <div class="step__body">
 <p>机器人本体 / 私人后台 / 控制层 / 执行模块。私人后台承担硬件通信、状态同步、ASR、LLM、TTS、模型接入、动作与设备控制指令，以及执行结果回传。</p>
 </div>
-<figure class="media media--zoom media--evidence step__media">
-<img src="./assets/img/ai/robot-system.webp" width="1500" height="844"
-alt="机器人系统链路与反馈分支" loading="lazy"><figcaption>浏览器与硬件共用回答管线，设备完成真实输入与输出</figcaption>
-</figure>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-arch.webp" width="1500" height="844"
+                 alt="从设备到服务的产品架构" loading="lazy">
+            <figcaption>从设备到服务的产品架构</figcaption>
+          </figure>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-loop2.webp" width="1500" height="844"
+                 alt="一次对话的完整闭环" loading="lazy">
+            <figcaption>一次对话的完整闭环</figcaption>
+          </figure>
 <div class="step__pair step__media">
 <figure class="media media--zoom media--portrait">
 <img src="./assets/img/ai/robot-screen.webp" width="1279" height="1706"
@@ -952,6 +965,16 @@ alt="机器人屏幕状态反馈" loading="lazy"><figcaption>屏幕状态：倾�
 <li>硬件与浏览器端双闭环</li>
 </ul>
 </div>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-proto.webp" width="1500" height="844"
+                 alt="当前原型：ESP32-S3 · 2.0 英寸屏 · 外接扬声器" loading="lazy">
+            <figcaption>当前原型：ESP32-S3 · 2.0 英寸屏 · 外接扬声器</figcaption>
+          </figure>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-done.webp" width="1500" height="844"
+                 alt="原型完成度与验证重点" loading="lazy">
+            <figcaption>原型完成度与验证重点</figcaption>
+          </figure>
 </div>
 <div class="step">
 <div class="step__idx">05 · NEXT</div>
@@ -964,6 +987,11 @@ alt="机器人屏幕状态反馈" loading="lazy"><figcaption>屏幕状态：倾�
 <li>用户测试：<b>计划 8–12 名</b>长期桌面学习 / 工作 / 创作用户</li>
 </ul>
 </div>
+          <figure class="media media--zoom media--evidence step__media">
+            <img src="./assets/img/ai/robot-plan.webp" width="1500" height="844"
+                 alt="验证计划：从功能闭环到稳定体验" loading="lazy">
+            <figcaption>验证计划：从功能闭环到稳定体验</figcaption>
+          </figure>
 </div>
 </div></div></div>
     </div>
