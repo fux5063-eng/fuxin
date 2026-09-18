@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v17-v42-b2';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v18-v42-done';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -240,102 +240,7 @@
 
   /* ── 4. 工业 → AI 过渡：产品轮廓 → 拆成节点 → 出现连线 ──
      纯 canvas 2D、滚动驱动、不锁滚动、快速滚动直接跳到该有的状态。 */
-  (function () {
-    var sec = document.querySelector('[data-transition="product-to-system"]');
-    var cv = document.getElementById('transition-canvas');
-    if (!sec || !cv) return;
-    if (reduce.matches || (window.matchMedia && matchMedia('(max-width: 720px)').matches)) {
-      cv.style.display = 'none';
-      return;
-    }
-    var ctx = cv.getContext('2d');
-    var W = 1, H = 1, SCALE = 1, N = 9, nodes = [];
-    function size() {
-      var r = sec.getBoundingClientRect();
-      W = Math.max(1, Math.round(r.width));
-      H = Math.max(1, Math.round(r.height));
-      SCALE = Math.min(window.devicePixelRatio || 1, 1);
-      cv.width = Math.round(W * SCALE);
-      cv.height = Math.round(H * SCALE);
-      ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
-      nodes = [];
-      for (var i = 0; i < N; i++) {
-        nodes.push({
-          x: W * (0.09 + i * 0.102),
-          y: H * (0.5 + Math.sin(i * 0.95 + 0.6) * 0.19)
-        });
-      }
-    }
-    function progress() {
-      var r = sec.getBoundingClientRect();
-      return Math.max(0, Math.min(1, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
-    }
-    function draw() {
-      var p = progress();
-      ctx.clearRect(0, 0, W, H);
-      /* ① 产品轮廓（0 → 0.34 淡出）*/
-      var a1 = Math.max(0, 1 - p / 0.34);
-      if (a1 > 0.02) {
-        ctx.globalAlpha = a1 * 0.55;
-        ctx.strokeStyle = '#FF6A1A';
-        ctx.lineWidth = 1.3;
-        var bw = Math.min(W * 0.26, 320), bh = Math.min(H * 0.46, 200);
-        var x0 = W / 2 - bw / 2, y0 = H / 2 - bh / 2 + H * 0.06, rr = 26;
-        ctx.beginPath();
-        ctx.moveTo(x0 + rr, y0);
-        ctx.arcTo(x0 + bw, y0, x0 + bw, y0 + bh, rr);
-        ctx.arcTo(x0 + bw, y0 + bh, x0, y0 + bh, rr);
-        ctx.arcTo(x0, y0 + bh, x0, y0, rr);
-        ctx.arcTo(x0, y0, x0 + bw, y0, rr);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x0 + bw * 0.32, y0);
-        ctx.lineTo(x0 + bw * 0.68, y0);
-        ctx.stroke();
-      }
-      /* ② 连线（0.52 → 1）*/
-      var a3 = Math.max(0, Math.min(1, (p - 0.52) / 0.48));
-      ctx.globalAlpha = 1;
-      for (var i = 1; i < nodes.length; i++) {
-        var ln = Math.max(0, Math.min(1, a3 * (nodes.length - 1) - (i - 1)));
-        if (ln <= 0) continue;
-        var a = nodes[i - 1], b = nodes[i];
-        ctx.globalAlpha = ln * 0.42;
-        ctx.strokeStyle = '#8B8D90';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(a.x + (b.x - a.x) * ln, a.y + (b.y - a.y) * ln);
-        ctx.stroke();
-      }
-      /* ③ 节点（0.18 → 0.66 依次出现）*/
-      var a2 = Math.max(0, Math.min(1, (p - 0.18) / 0.48));
-      for (var k = 0; k < nodes.length; k++) {
-        var ap = Math.max(0, Math.min(1, a2 * nodes.length - k));
-        if (ap <= 0) continue;
-        ctx.globalAlpha = ap * 0.85;
-        ctx.fillStyle = (k % 3 === 0) ? '#FF6A1A' : '#B9BBC0';
-        ctx.beginPath();
-        ctx.arc(nodes[k].x, nodes[k].y, (k % 3 === 0) ? 3.2 : 2.1, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-    }
-    size();
-    draw();
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        var r = sec.getBoundingClientRect();
-        if (r.bottom > -120 && r.top < window.innerHeight + 120) draw();
-        ticking = false;
-      });
-    }, { passive: true });
-    window.addEventListener('resize', function () { size(); draw(); });
-  })();
+  
 
   /* ── 5. Lightbox gallery（V4 P1-01：项目图分组、前后翻、序号、键盘、滑动、关闭回原位）── */
   var lb = document.getElementById('lb');

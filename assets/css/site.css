@@ -74,25 +74,11 @@
   margin-bottom: var(--s-5); }
 .ability__cn { font-size: var(--fs-h3); font-weight: 600; margin: var(--s-3) 0 var(--s-2);
   position: relative; z-index: 1; }
-.ability__en { margin-bottom: var(--s-4); position: relative; z-index: 1; }
 .ability__chain { font-family: var(--font-mono); font-size: var(--fs-caption);
   color: var(--fg-muted); line-height: 1.9; position: relative; z-index: 1; }
 .ability__chain em { font-style: normal; color: var(--c-accent); }
 .ability__rep { font-size: var(--fs-caption); color: var(--fg-muted);
   margin-top: var(--s-3); position: relative; z-index: 1; }
-
-/* ── 章节幕（工业设计过渡 / 工业→AI 过渡）──────────────── */
-.chapter { position: relative; overflow: hidden; }
-.chapter__inner { position: relative; z-index: 1; }
-.chapter__en { font-family: var(--font-mono); font-size: var(--fs-caption);
-  letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-accent);
-  margin-bottom: var(--s-4); }
-.chapter__title { font-size: var(--fs-section-h2); font-weight: 600; margin-bottom: var(--s-4); }
-.chapter__line { max-width: var(--text-col); color: var(--fg-muted); }
-.chapter__rail { position: absolute; right: var(--safe); top: 50%; transform: translateY(-50%);
-  writing-mode: vertical-rl; font-family: var(--font-mono); font-size: var(--fs-caption);
-  letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--line);
-  pointer-events: none; }
 
 /* ── 核心项目（V3 §27：收起态必须有强主视觉）──────────── */
 .project { position: relative; }
@@ -132,8 +118,6 @@
 .project__media figcaption { font-size: var(--fs-caption); color: var(--fg-muted);
   margin-top: var(--s-3); }
 .project__lede { font-size: var(--fs-lead); line-height: 1.62; margin-bottom: var(--s-5); }
-.project__aux { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s-4); margin-bottom: var(--s-6); }
 
 /* ── 展开步骤 ─────────────────────────────────────────── */
 .steps { display: grid; gap: var(--s-8); margin-top: var(--s-7); }
@@ -194,14 +178,6 @@
 .exp__next { font-family: var(--font-mono); font-size: var(--fs-caption);
   color: var(--fg-muted); margin-top: var(--s-5); }
 
-/* ── 待建占位（本阶段样板用，阶段四替换）──────────────── */
-.todo-band {
-  padding-block: var(--s-6); border-block: 1px dashed var(--line);
-  background: color-mix(in srgb, var(--c-accent) 5%, transparent);
-}
-.todo-band .label-en { color: var(--c-accent); }
-.todo-band p { margin: var(--s-2) 0 0; font-size: var(--fs-caption); color: var(--fg-muted); }
-
 /* ── 响应式（V3 §43：移动端必须单独设计）──────────────── */
 @media (max-width: 1080px) {
   .ability__grid { grid-template-columns: 1fr; }
@@ -240,22 +216,6 @@
   animation: pulse 2.4s var(--ease-inout) infinite;
 }
 @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
-
-/* ── 步骤内的标记与小组件 ── */
-.mark-done, .mark-next {
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--ls-label);
-  padding: 3px 9px; border-radius: var(--r-pill); vertical-align: 4px;
-  margin-left: var(--s-3);
-}
-.mark-done { color: #7FD39A; border: 1px solid rgba(127,211,154,.4); background: rgba(127,211,154,.1); }
-.mark-next { color: var(--fg-muted); border: 1px solid var(--line); }
-.chain-row { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-4); }
-.chain-tag {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 22px; height: 22px; border-radius: 50%;
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--c-accent); border: 1px solid rgba(255,106,26,.45);
-}
 .spec { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
   gap: var(--s-3); list-style: none; padding: 0; margin: var(--s-5) 0 var(--s-3); }
 .spec li { border-top: 1px solid var(--line); padding-top: var(--s-3); }
@@ -263,21 +223,9 @@
 .spec span { font-size: var(--fs-caption); color: var(--fg-muted); }
 ol.numlist { margin: var(--s-3) 0; padding-left: 1.3em; }
 ol.numlist li { margin-bottom: 4px; }
-
-/* ── 表格（DesignDNA 对照）── */
-.tbl-wrap { overflow-x: auto; }
-.tbl { width: 100%; border-collapse: collapse; font-size: 15px; margin: 0 0 var(--s-3); }
-.tbl caption { text-align: left; font-size: var(--fs-caption); color: var(--fg-muted);
-  padding-bottom: var(--s-3); }
-.tbl th, .tbl td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line);
-  vertical-align: top; line-height: 1.6; }
-.tbl th { font-size: var(--fs-caption); letter-spacing: var(--ls-label); color: var(--fg-muted);
-  font-weight: 500; white-space: nowrap; }
-.tbl td:first-child { color: var(--fg-muted); white-space: nowrap; }
 .tbl code, .step code { font-family: var(--font-mono); font-size: .92em;
   color: var(--c-accent); background: rgba(255,106,26,.09);
   border-radius: 4px; padding: 2px 6px; }
-.is-light .tbl th, .is-light .tbl td { border-color: var(--line); }
 
 /* ── 引导句统一限宽（版面放宽后，长行会伤可读性）──
    正文阅读列沿用 V3 §47 的 520–680 区间，只有图片与版式元素突破。 */
@@ -489,8 +437,6 @@ ol.numlist li { margin-bottom: 4px; }
 }
 .project__media img { width: 100%; height: 100%; object-fit: cover; }
 .project__media figcaption, .cover figcaption { padding-top: var(--s-2); }
-.project__body > .project__aux { max-width: 330px; margin-top: var(--s-5); }
-.project__body > .project__aux figure { margin: 0; }
 .project__body > .project__tags { margin-bottom: var(--s-3); }
 .project__body > .project__lede { margin-top: var(--s-4); }
 
@@ -510,7 +456,7 @@ ol.numlist li { margin-bottom: 4px; }
 .ability__card { padding-block: var(--s-2) var(--s-3); }
 /* 项目标题断行：避免「多功/能」这种把词劈开（V4：项目第一眼要强）*/
 .project__title, .about__lede, .contact__title, .chapter__title { text-wrap: balance; }
-.project__title { word-break: keep-all; }
+.project__title { word-break: normal; overflow-wrap: break-word; /* V4.2 §21-4：原为 keep-all，中文长标题无处可断会顶出容器 → 1440 下横向溢出 25px */ }
 .project__lede, .hero__lede, .lead { text-wrap: pretty; }
 
 /* ══════════════════════════════════════════════════════════
@@ -568,14 +514,6 @@ ol.numlist li { margin-bottom: 4px; }
   margin-top: var(--s-3); min-height: 1.7em;
   font-size: var(--fs-caption); color: var(--fg-muted);
 }
-
-/* ── P0-12 工业 → AI 过渡：本地画布（不锁滚动、不进 WebGL）── */
-.chapter { position: relative; overflow: hidden; }
-.chapter__canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  pointer-events: none; z-index: 0;
-}
-.chapter__inner { position: relative; z-index: 2; }
 
 /* ── P1-01 项目图可点开（Lightbox gallery）── */
 /* ── P1-01 Lightbox：前后翻 + 序号 ── */
@@ -680,10 +618,6 @@ ol.numlist li { margin-bottom: 4px; }
   grid-column: auto; grid-row: auto; max-width: 1080px; margin: var(--s-6) auto 0;
 }
 #p-wateralarm .project__lede { max-width: var(--text-col); }
-#p-wateralarm .project__aux--pair {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--s-5); max-width: 1080px; margin: var(--s-5) auto 0;
-}
 .project__iteration {
   max-width: 1080px; margin: var(--s-4) auto 0; font-size: var(--fs-caption);
   color: var(--fg-muted); letter-spacing: .02em;
@@ -713,7 +647,6 @@ ol.numlist li { margin-bottom: 4px; }
 #p-lumora .project__body,
 #p-robot .project__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
 #p-wateralarm .project__body > .project__media { max-width: 920px; }
-#p-wateralarm .project__aux--pair { max-width: 920px; gap: var(--s-4); }
 .project__iteration { max-width: 920px; }
 #p-designdna .project__body > .project__media { max-width: 1120px; }
 
@@ -725,7 +658,6 @@ ol.numlist li { margin-bottom: 4px; }
 #p-designdna .project__lede { margin-top: var(--s-4); }
 #p-designdna .tstates { margin-top: var(--s-4); }
 #p-wateralarm .project__lede { margin-top: var(--s-4); }
-#p-wateralarm .project__aux--pair { margin-top: var(--s-4); }
 
 /* V4.1 §9.3：落水报警产品本体是竖长形态（宽高比 0.42）。
    容器按产品决定 —— 用 2:3 让产品占满并居中，而不是硬塞 4:3 让产品缩在中间。 */
@@ -743,7 +675,6 @@ ol.numlist li { margin-bottom: 4px; }
   grid-column: 1; grid-row: 1 / span 60; margin: 0; max-width: 100% !important;
 }
 #p-wateralarm .project__body > *:not(.project__media) { grid-column: 2; }
-#p-wateralarm .project__aux--pair { max-width: 100%; margin-top: var(--s-5); }
 #p-wateralarm .project__iteration { max-width: 100%; }
 #p-wateralarm .project__lede { max-width: 560px; }
 
@@ -763,13 +694,6 @@ ol.numlist li { margin-bottom: 4px; }
   padding-bottom: clamp(120px, 12vw, 200px);
 }
 #p-robot { padding-top: clamp(72px, 7vw, 120px); }
-
-/* ══ V4.1 §23：消除「小图 + 大片空白」 ══
-   DOGGIE 的辅助图是 16:9 宽幅（1600×900），被限在 150px 小框里既看不清、右边又空一大片。
-   让它铺满文字列宽度（约 560px），信息可读且不留空。 */
-#p-doggie .project__aux { max-width: 100%; }
-#p-doggie .project__aux .media { margin: 0; }
-#p-doggie .project__aux img { width: 100%; height: auto; }
 
 /* ══ V4.1 §24：More Work 两级卡片、统一比例 ══ */
 .morework__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -813,11 +737,6 @@ ol.numlist li { margin-bottom: 4px; }
 }
 .morework__grid > .mw--cover:hover img { transform: scale(1.02); }
 
-/* ② 项目辅助图：.project__aux 是 2 列栅格，只有 1 张图时只占一半宽（实测 286px 而非铺满）。
-      单张时改成 1 列。 */
-.project__aux > figure:only-child { grid-column: 1 / -1; }
-#p-doggie .project__aux { grid-template-columns: 1fr; }
-
 /* ③ NEXT 行：min-height 与 padding 叠加导致实测 115px（§22 要求 48–72px）。 */
 /* NEXT 再收紧：实测 85px，§22 要求 48–72px */
 /* ④ 根因：.morework__grid 行高写死 168px（旧的不规则网格留下的），
@@ -843,11 +762,6 @@ ol.numlist li { margin-bottom: 4px; }
 #p-designdna .tstates { margin-top: var(--s-4); max-width: 780px; }
 .tstates__row { padding: 9px 0; min-height: 38px; }
 .tstates__note { margin-top: var(--s-2); }
-
-/* 用户 2026-09-17 拍板：客户品牌可保留 → §13.2 的两张迭代小图回到收起态。
-   为控总高（§30），小图比主视觉缩一档、间距收紧。 */
-#p-wateralarm .project__aux--pair { max-width: 820px; gap: var(--s-3); margin-top: var(--s-4); }
-#p-wateralarm .project__aux--pair figcaption { font-size: var(--fs-caption); }
 
 /* ══ V4.2 §14：step__pair 只剩一张图时铺满整列（禁止「一张很小的图 + 大片空白」）══ */
 .step__pair:has(> figure:only-child) { grid-template-columns: minmax(0, 1fr); }
