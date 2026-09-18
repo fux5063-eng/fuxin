@@ -765,6 +765,17 @@ ol.numlist li { margin-bottom: 4px; }
 .tstates__row { padding: 9px 0; min-height: 38px; }
 .tstates__note { margin-top: var(--s-2); }
 
+/* ══ V4.2 无障碍修正（axe 实测）：浅底上的小字对比度 ══
+   品牌橙 #FF6A1A 在浅底 #F3F3F0 上只有 2.57:1（需 4.5:1）→ 浅底小字改用深一档 #C2410C（4.67:1）
+   导轨名 #8B8D90 为 2.99:1 → 改 #6B6D70（4.68:1）
+   装饰性巨型编号（.project__num，父级 aria-hidden）保留水印设计意图，记为已知例外。 */
+:root { --c-accent-ink: #C2410C; }
+.work-head .label-en { color: var(--c-accent-ink); }
+.is-light .step__idx { color: var(--c-accent-ink); }
+.project.is-light .project__railname { color: #6B6D70; }
+/* 移动端点击区域（axe：22px < 24px）*/
+#more .mw--play a { padding-block: 5px; display: inline-block; }
+
 /* ══ V4.2 §14：step__pair 只剩一张图时铺满整列（禁止「一张很小的图 + 大片空白」）══ */
 .step__pair:has(> figure:only-child) { grid-template-columns: minmax(0, 1fr); }
 .step__pair:has(> figure:only-child) figure img { width: 100%; height: auto; }
