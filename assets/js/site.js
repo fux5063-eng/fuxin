@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v18-v42-done';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v19-perf';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -544,7 +544,12 @@
     }
 
     size(true);
-    start();
+    /* V4.2 性能：延后到首屏之后启动，避免与首屏渲染抢 CPU（start 内含 running 守卫，重复调用安全）*/
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function () { start(); }, { timeout: 1200 });
+    } else {
+      setTimeout(start, 260);
+    }
 
     /* 指针 → 画布局部坐标（rect 缓存，滚动/缩放才重测，避免每次移动都强制布局）*/
     window.addEventListener('pointermove', function (e) {
