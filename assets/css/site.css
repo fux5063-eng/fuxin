@@ -856,3 +856,11 @@ ol.numlist li { margin-bottom: 4px; }
 
 /* §26 More Work 小分类编号用橙 */
 .mw__idx { color: var(--c-accent); margin-right: 8px; font-variant-numeric: tabular-nums; }
+
+/* ── V4.4：两栏步骤（文字 | 配图），减少展开区右侧空白 ── */
+.step--split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(24px,3vw,56px);align-items:start}
+.step--split .step__side{margin-top:4px}
+@media (max-width:960px){.step--split{grid-template-columns:minmax(0,1fr)}}
+/* More Work 卡片等高与说明对齐 */
+.mw--cover img{aspect-ratio:4/3;object-fit:cover;object-position:top center}
+.mw__info{min-height:72px}
