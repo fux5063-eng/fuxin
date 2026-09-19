@@ -88,15 +88,14 @@
   "note": "跨品类对照·水壶；左栏已收起、右下浮标已裁"
  },
  {
-  "file": "exp/ubtech-walker-c1.png",
+  "file": "exp/ubtech-walker-c1.webp",
   "size": [
-   1920,
-   1080
+   1500,
+   844
   ],
-  "png_kb": 948,
-  "webp_kb": 109,
-  "src": "UBTECH 官网 Walker C1 页面（公开图）",
-  "note": "**官方营销图，非本人拍摄或设计**；仅用于经历展开，页面不得暗示归属，不加署名"
+  "webp_kb": 23,
+  "src": "career/portfolio-prep/05-Robot-AI/official-reference/01-Walker-C1-官方主视觉.jpg",
+  "note": "V7 用户点名换图 · 官方公开主视觉，非内部拍摄；仅用于经历展开，不暗示设计归属"
  },
  {
   "file": "hero/portrait.png",
@@ -253,15 +252,14 @@
   "note": "本人作品展板 · 含文字，不能直接当单品图；待补干净单品主视觉"
  },
  {
-  "file": "id/wateralarm-01-early.png",
+  "file": "id/wateralarm-01-early-site.webp",
   "size": [
-   1537,
-   855
+   1500,
+   844
   ],
-  "png_kb": 878,
-  "webp_kb": 138,
-  "src": "大学资料/落水报警终端设计/渲染/图/...Snipaste_02-06-24.png",
-  "note": "商业项目 · **不脱敏原图直出（用户 2026-09-17 决定）** · 4 方向并排"
+  "webp_kb": 70,
+  "src": "大学资料/落水报警终端设计/渲染/2.0/{落水报警终端-戎镜,落水报警终端-澜盾}/.../2.0/3.png + 温宁最终选定版/图/1.png",
+  "note": "V7 用户纠正 · 戎镜 / 澜盾 / 温宁三条真实造型路线；仅保留白底产品主体，统一尺寸与中心线；品牌按既有决定保留"
  },
  {
   "file": "id/wateralarm-02-refine.png",
@@ -339,5 +337,117 @@
   "webp_kb": 101,
   "src": "同上（官网公开图）",
   "note": "备用；归属同上"
+ },
+ {
+  "file": "id/doggie-process-sketch.webp",
+  "size": [560, 700],
+  "webp_kb": 37,
+  "src": "career/portfolio-prep/02-DOGGIE/ready-originals/process/05-造型草图精选.png",
+  "note": "V7 过程证据 · 草图筛选"
+ },
+ {
+  "file": "id/doggie-process-proportion.webp",
+  "size": [1015, 1120],
+  "webp_kb": 25,
+  "src": "career/portfolio-prep/02-DOGGIE/ready-originals/process/02-基础比例推敲.png",
+  "note": "V7 过程证据 · 握持比例比较"
+ },
+ {
+  "file": "id/doggie-process-surface.webp",
+  "size": [1200, 714],
+  "webp_kb": 14,
+  "src": "career/portfolio-prep/02-DOGGIE/ready-originals/process/03-初步曲面模型.png",
+  "note": "V7 过程证据 · 曲面建立"
+ },
+ {
+  "file": "id/doggie-process-final.webp",
+  "size": [1200, 676],
+  "webp_kb": 15,
+  "src": "career/portfolio-prep/02-DOGGIE/ready-originals/process/04-最终外观侧视图.png",
+  "note": "V7 过程证据 · 最终整合"
+ },
+ {
+  "file": "id/lumora-detail-control.webp",
+  "size": [1097, 974],
+  "webp_kb": 196,
+  "src": "career/portfolio-prep/01-Lumora/ready-originals/details/01-物理控制区.png",
+  "note": "V7 部件证据 · 物理控制"
+ },
+ {
+  "file": "id/lumora-detail-drawer.webp",
+  "size": [847, 842],
+  "webp_kb": 26,
+  "src": "career/portfolio-prep/01-Lumora/ready-originals/details/02-抽屉打开.png",
+  "note": "V7 部件证据 · 随手收纳"
+ },
+ {
+  "file": "id/lumora-detail-shield.webp",
+  "size": [594, 682],
+  "webp_kb": 86,
+  "src": "career/portfolio-prep/01-Lumora/ready-originals/details/03-灯臂收纳挡板.png",
+  "note": "V7 部件证据 · 收纳挡板"
+ },
+ {
+  "file": "id/lumora-detail-casters.webp",
+  "size": [661, 558],
+  "webp_kb": 54,
+  "src": "career/portfolio-prep/01-Lumora/ready-originals/details/04-底部移动脚轮.png",
+  "note": "V7 部件证据 · 室内移动"
+ },
+ {
+  "file": "id/lumora-detail-arm.webp",
+  "size": [937, 862],
+  "webp_kb": 37,
+  "src": "career/portfolio-prep/01-Lumora/ready-originals/details/05-灯臂收纳关系.png",
+  "note": "V7 部件证据 · 灯臂关系"
+ },
+ {
+  "file": "id/lumora-detail-emitter.webp",
+  "size": [987, 778],
+  "webp_kb": 23,
+  "src": "career/portfolio-prep/01-Lumora/ready-originals/details/06-灯头发光面.png",
+  "note": "V7 部件证据 · 照明端"
+ },
+ {
+  "file": "id/wateralarm-iteration-final.webp",
+  "size": [1200, 676],
+  "webp_kb": 24,
+  "src": "E:/大学资料/工作文档/落水报警终端设计/温宁最终选定版/图/1.png",
+  "note": "V7 商业迭代证据 · 定稿；品牌信息按用户决定保留"
+ },
+ {
+  "file": "designdna/case-baseline.webp",
+  "size": [1200, 746],
+  "webp_kb": 17,
+  "src": "career/portfolio-prep/04-DesignDNA/ready/01-基准产品图.png",
+  "note": "V7 真实案例 · 基准输入"
+ },
+ {
+  "file": "designdna/case-conservative.webp",
+  "size": [1024, 1024],
+  "webp_kb": 19,
+  "src": "career/portfolio-prep/04-DesignDNA/ready/02-保守方案.png",
+  "note": "V7 真实案例 · 保守探索"
+ },
+ {
+  "file": "designdna/case-balanced.webp",
+  "size": [1024, 1024],
+  "webp_kb": 11,
+  "src": "career/portfolio-prep/04-DesignDNA/ready/03-平衡方案.png",
+  "note": "V7 真实案例 · 平衡探索"
+ },
+ {
+  "file": "designdna/case-failed.webp",
+  "size": [1024, 1024],
+  "webp_kb": 18,
+  "src": "career/portfolio-prep/04-DesignDNA/ready/04-实验失败样本.png",
+  "note": "V7 真实案例 · 失败样本"
+ },
+ {
+  "file": "designdna/case-review.webp",
+  "size": [1200, 676],
+  "webp_kb": 49,
+  "src": "career/portfolio-prep/04-DesignDNA/ready/08-真实评审界面-清晰版.png",
+  "note": "V7 真实评审证据 · Fixed 约束未满足"
  }
 ]

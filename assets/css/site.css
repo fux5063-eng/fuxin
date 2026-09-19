@@ -951,6 +951,140 @@ ol.numlist li { margin-bottom: 4px; }
 
 #ability{padding-block:clamp(26px,2.3vw,34px)}
 
+/* ── V7 内容证据补强：统一证据图语法，不改变既有项目版式 ── */
+.evidence-grid {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-top: var(--s-5);
+}
+.evidence-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.evidence-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.evidence-card {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.evidence-card img {
+  display: block;
+  width: 100% !important;
+  height: clamp(220px, 21vw, 300px) !important;
+  object-fit: contain;
+  object-position: center;
+  background: #F7F7F5;
+}
+#p-wateralarm .evidence-card img {
+  width: 100% !important;
+  height: clamp(220px, 21vw, 300px) !important;
+  max-height: none !important;
+}
+.evidence-card figcaption {
+  min-height: 78px;
+  padding: 12px 14px 14px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+.evidence-card figcaption b,
+.evidence-card figcaption span { display: block; }
+.evidence-card figcaption b {
+  margin-bottom: 4px;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.evidence-card--failed { border-color: rgba(255, 106, 26, .48); }
+.evidence-card--failed figcaption b { color: var(--c-accent); }
+.is-light .evidence-card--failed figcaption b { color: var(--c-accent-ink); }
+
+.decision-map {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: var(--s-5);
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+.decision-map > div {
+  min-width: 0;
+  padding: clamp(16px, 2vw, 24px);
+  background: var(--bg);
+}
+.decision-map b,
+.decision-map span { display: block; }
+.decision-map b {
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--c-accent-ink);
+}
+.decision-map span { font-size: 13px; line-height: 1.65; color: var(--fg-muted); }
+
+.proof-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: var(--s-5);
+  border-block: 1px solid var(--line);
+}
+.proof-flow > div {
+  position: relative;
+  min-width: 0;
+  padding: 20px 18px 22px 0;
+}
+.proof-flow > div + div { padding-left: 18px; border-left: 1px solid var(--line); }
+.proof-flow i,
+.proof-flow b,
+.proof-flow span { display: block; }
+.proof-flow i {
+  margin-bottom: 14px;
+  color: var(--c-accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: .12em;
+}
+.proof-flow b { margin-bottom: 6px; font-size: 14px; }
+.proof-flow span { font-size: 12px; line-height: 1.55; color: var(--fg-muted); }
+.evidence-boundary {
+  margin: var(--s-3) 0 0;
+  padding-left: 13px;
+  border-left: 2px solid rgba(255, 106, 26, .55);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+
+#p-designdna .dna-case-grid .evidence-card:first-child img { object-fit: contain; }
+
+@media (max-width: 1040px) {
+  .evidence-grid--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .proof-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .proof-flow > div:nth-child(4) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 700px) {
+  .evidence-grid--three,
+  .evidence-grid--four,
+  .decision-map,
+  .proof-flow { grid-template-columns: minmax(0, 1fr); }
+  .evidence-card figcaption { min-height: 0; }
+  .evidence-card img { height: clamp(220px, 72vw, 310px) !important; }
+  #p-wateralarm .evidence-card img { height: clamp(220px, 72vw, 310px) !important; }
+  .proof-flow > div,
+  .proof-flow > div + div {
+    padding: 14px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .proof-flow > div:first-child { border-top: 0; }
+  .proof-flow i { margin-bottom: 7px; }
+}
+
 /* V6 第三批 P0：经历区次级证据行 */
 .exp__sub{margin:var(--s-2) 0 0;font-size:12.5px;letter-spacing:.03em;color:var(--fg-mute)}
 @media(min-width:860px){.exp__sub{text-align:right}}
