@@ -937,3 +937,14 @@ ol.numlist li { margin-bottom: 4px; }
 #p-wateralarm{background:linear-gradient(180deg,#F3F3F0 0%,#F3F3F0 calc(100% - 70px),#0B0C0E 100%)!important}
 
 #p-designdna .project__title{font-size:clamp(26px,2.68vw,43px)!important;overflow-wrap:anywhere}
+
+/* ── V6 P1-02：Ability 再压缩约 10%，更像能力导航 ── */
+.ability__grid{margin-top:var(--s-4)}
+.ability__card{padding-block:var(--s-3) var(--s-2)}
+.ability__rep{margin-top:var(--s-2)}
+.ability__chain{margin-top:var(--s-2)}
+/* ── V6 P1-05：Robot 降噪（RUNNING PROTOTYPE 保持唯一强状态）── */
+#p-robot .chain__node{border-color:rgba(255,255,255,.07);color:rgba(244,245,247,.44)}
+#p-robot .chain__node.is-lit{border-color:var(--c-accent);color:var(--c-accent)}
+#p-robot .project__tags .tag{border-color:rgba(255,255,255,.10);background:transparent;color:rgba(244,245,247,.60)}
+#p-robot .project__tags .tag--key{border-color:rgba(255,106,26,.30);background:rgba(255,106,26,.07);color:#D97648}
