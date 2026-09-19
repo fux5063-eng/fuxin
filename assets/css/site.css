@@ -961,3 +961,10 @@ ol.numlist li { margin-bottom: 4px; }
 /* V6 第三批 P1：DesignDNA -> Experience 章节衔接收紧（实测空段 207px，收约 22%）*/
 #p-designdna{padding-bottom:46px}
 #experience{padding-top:56px}
+
+/* V6 第三批修正：两处章节纵向节奏（实测反算，双侧同时收） */
+#experience{padding-bottom:48px}
+#more{padding-top:72px;padding-bottom:48px}
+.morework__grid{margin-bottom:0 !important}
+.morework__grid > .mw--play{margin-bottom:0}
+#contact{padding-top:72px}
