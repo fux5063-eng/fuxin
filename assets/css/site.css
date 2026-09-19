@@ -691,7 +691,7 @@ ol.numlist li { margin-bottom: 4px; }
 #p-wateralarm {
   background: linear-gradient(180deg,
     var(--bg) 0%,
-    var(--bg) calc(100% - 100px),
+    var(--bg) calc(100% - 70px),
     var(--c-bg) 100%);
   padding-bottom: clamp(120px, 12vw, 200px);
 }
@@ -872,3 +872,55 @@ ol.numlist li { margin-bottom: 4px; }
 .lum-views img{width:100%;height:auto;display:block;border-radius:6px;background:#f7f7f5}
 .lum-views figcaption{margin-top:8px;font-size:12.5px;letter-spacing:.03em;color:var(--fg-muted)}
 @media (max-width:700px){.lum-views{grid-template-columns:minmax(0,1fr)}}
+
+/* ── V6 §4：About 瘦身（目标 0.7–0.9 屏；标题不窄、2–3 行；技能词化两行）── */
+.about { padding-block: clamp(52px, 5.2vw, 80px); }
+.about__lede { max-width: none; }
+.about .lead { max-width: 1120px; }
+.about__col h3 {
+  font-size: var(--fs-caption); letter-spacing: var(--ls-label);
+  color: var(--fg-muted); text-transform: uppercase;
+  font-family: var(--font-mono); font-weight: 500; margin: 0 0 var(--s-3);
+}
+.about__skill { display: flex; gap: 12px; align-items: baseline; margin: 0 0 6px; line-height: 1.7; }
+.about__skill b {
+  flex: 0 0 116px; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .06em; color: var(--c-accent-ink); text-transform: uppercase;
+}
+.about__grid { margin-top: var(--s-6); gap: var(--s-6) var(--s-7); }
+.about__other { margin-top: var(--s-7); }
+.about__list li { padding-block: 6px; }
+@media (max-width: 720px) { .about__skill { flex-direction: column; gap: 2px; } }
+
+/* ── V6 §10：Water → Robot 过渡收到 60–80px，且内容结束后 20–30px 内开始转深 ── */
+#p-wateralarm { padding-bottom: clamp(26px, 2.8vw, 44px); }
+
+/* ── V6 §12：DesignDNA 默认态 30/70（左文字 32% ｜ 右 UI 68%），不再"上标题+下方居中大图" ── */
+@media (min-width: 1000px) {
+  #p-designdna .project__body {
+    display: grid; grid-template-columns: 32% minmax(0, 1fr);
+    column-gap: clamp(26px, 3vw, 58px); align-items: center;
+  }
+  #p-designdna .project__body > .label-en,
+  #p-designdna .project__body > .project__title,
+  #p-designdna .project__body > .project__tags,
+  #p-designdna .project__body > .project__lede,
+  #p-designdna .project__body > .project__meta,
+  #p-designdna .project__body > .expand-toggle { grid-column: 1; }
+  #p-designdna .project__body > figure.project__media {
+    grid-column: 2; grid-row: 1 / span 6; margin: 0; max-width: 100%;
+    width: 100%; justify-self: stretch;
+  }
+  #p-designdna .project__body > figure.project__media img {
+    width: 100%; height: auto; max-height: none;
+  }
+  #p-designdna .project__title { max-width: 100%; }
+}
+
+/* ── V6 §14.2：More Work 素材未齐 → 降低视觉权重（弱但干净优于巨大但廉价）── */
+.mw--cover img { aspect-ratio: 4 / 3; object-fit: cover; object-position: top center; }
+.mw__grid { gap: clamp(10px, 1.2vw, 16px); }
+.mw--cover { padding-bottom: 0; }
+.mw__info { min-height: 62px; padding-top: 9px; }
+.mw__info b { font-size: 13.5px; }
+.mw__info i { font-size: 11.5px; }
