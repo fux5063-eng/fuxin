@@ -924,3 +924,14 @@ ol.numlist li { margin-bottom: 4px; }
 .mw__info { min-height: 62px; padding-top: 9px; }
 .mw__info b { font-size: 13.5px; }
 .mw__info i { font-size: 11.5px; }
+
+/* ── V6 第一批收尾：About 再瘦身 + 过渡带收口 ── */
+.about{padding-block:clamp(40px,4vw,62px)}
+.about__grid{margin-top:var(--s-5);gap:var(--s-5) var(--s-7)}
+.about__other{margin-top:var(--s-5)}
+.about__list li{padding-block:5px}
+.about .about__col p{margin:6px 0}
+#p-wateralarm{padding-bottom:92px}
+#p-robot{padding-top:clamp(44px,4.6vw,68px)}
+
+#p-wateralarm{background:linear-gradient(180deg,#F3F3F0 0%,#F3F3F0 calc(100% - 70px),#0B0C0E 100%)!important}
