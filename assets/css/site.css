@@ -935,3 +935,5 @@ ol.numlist li { margin-bottom: 4px; }
 #p-robot{padding-top:clamp(44px,4.6vw,68px)}
 
 #p-wateralarm{background:linear-gradient(180deg,#F3F3F0 0%,#F3F3F0 calc(100% - 70px),#0B0C0E 100%)!important}
+
+#p-designdna .project__title{font-size:clamp(26px,2.68vw,43px)!important;overflow-wrap:anywhere}
