@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v48-v7-evidence-clean';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v49-morework-quickview';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
@@ -87,6 +87,62 @@
       }
     });
   });
+
+  /* ── 1.1 More Work Quick View：四张卡片共用一个展开位，一次只显示一项 ── */
+  (function () {
+    var box = document.getElementById('mw-quickview');
+    if (!box) return;
+    var triggers = [].slice.call(document.querySelectorAll('.mw-trigger[data-mw]'));
+    var panels = [].slice.call(box.querySelectorAll('[data-mw-panel]'));
+    var activeKey = '';
+
+    function mark(key) {
+      triggers.forEach(function (btn) {
+        var on = btn.getAttribute('data-mw') === key;
+        btn.classList.toggle('is-active', on);
+        btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+    }
+    function select(key) {
+      panels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute('data-mw-panel') !== key;
+      });
+    }
+    function closeQuickView() {
+      if (!activeKey) return;
+      activeKey = '';
+      mark('');
+      setOpen(box, false);
+    }
+    function openQuickView(key) {
+      if (key === activeKey) { closeQuickView(); return; }
+      var wasOpen = box.getAttribute('data-open') === 'true';
+      if (wasOpen) {
+        clearTimer(box);
+        box.style.height = box.scrollHeight + 'px';
+      }
+      activeKey = key;
+      select(key);
+      mark(key);
+      if (!wasOpen) {
+        setOpen(box, true);
+      } else if (reduce.matches) {
+        box.style.height = 'auto';
+      } else {
+        box.getBoundingClientRect();
+        box.style.height = box.scrollHeight + 'px';
+        timers.set(box, window.setTimeout(function () {
+          if (box.getAttribute('data-open') === 'true') box.style.height = 'auto';
+        }, 520));
+      }
+    }
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () { openQuickView(btn.getAttribute('data-mw')); });
+    });
+    box.querySelectorAll('.mw-close').forEach(function (btn) {
+      btn.addEventListener('click', closeQuickView);
+    });
+  })();
 
   /* ── 2. 滚动揭示（V3 §26：600–800ms）──
      用几何检测驱动，不依赖 IntersectionObserver 回调时机，
@@ -258,8 +314,8 @@
       return (c && c.textContent.trim()) || im.getAttribute('alt') || '';
     }
     function groupOf(im) {
-      var sec = im.closest('section') || document.body;
-      return [].slice.call(sec.querySelectorAll('.media--zoom img, .cover__main'));
+      var scope = im.closest('.mw-panel') || im.closest('section') || document.body;
+      return [].slice.call(scope.querySelectorAll('.media--zoom img, .cover__main'));
     }
     function show(i) {
       if (!lbGroup.length) return;

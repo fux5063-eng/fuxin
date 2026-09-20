@@ -376,7 +376,7 @@ p  { margin: 0 0 var(--s-4); }
   .project-hero-media, .media { border-radius: var(--r-media); }
 }
 </style>
-<link rel="stylesheet" href="./assets/css/site.css">
+<link rel="stylesheet" href="./assets/css/site.css?v=49">
 </head>
 <body>
 
@@ -1308,43 +1308,102 @@ alt="三档探索策略与九宫格发散" loading="lazy"><figcaption>探索阶�
   </div>
 </section>
 
-<!-- ══════════════ 11 More Work（V3 §30：不规则网格 + Lightbox） ══════════════ -->
+<!-- ══════════════ 11 More Work（V8：四类能力 + 单项 Quick View） ══════════════ -->
 <section class="section morework" id="more">
   <div class="wrap">
     <div class="label-en reveal">More Work</div>
     <h2 class="reveal" style="margin:var(--s-4) 0 0">还有这些</h2>
     <p class="lead measure reveal" style="margin-top:var(--s-4)">
-      商业产品、AI 工具与练习产出——不展开长叙事，但都是真实做过的。</p>
+      核心商业系列、AI 工具与专业实践——以成果快速展示能力宽度。</p>
 
     <div class="morework__grid">
-      <button class="mw mw--cover" type="button" data-lb="./assets/img/more/cover-smartlock-site.webp" data-lb-cap="智能锁系列商业设计">
-        <img src="./assets/img/more/cover-smartlock-site.webp"
-             srcset="./assets/img/more/cover-smartlock-site-600.webp 600w, ./assets/img/more/cover-smartlock-site.webp 1264w"
-             sizes="(max-width: 720px) 100vw, 33vw" width="1264" height="948"
+      <button class="mw mw--cover mw-trigger" type="button" data-mw="smartlock" aria-controls="mw-quickview" aria-expanded="false">
+        <img src="./assets/img/more/cover-smartlock-v8.webp"
+             srcset="./assets/img/more/cover-smartlock-v8-600.webp 600w, ./assets/img/more/cover-smartlock-v8.webp 1200w"
+             sizes="(max-width: 720px) 100vw, 33vw" width="1200" height="900"
              alt="智能锁系列商业设计" loading="lazy">
-        <span class="mw__info"><b><span class="mw__idx">01</span>智能锁系列商业设计</b><i>3D 效果 · 海报 · 包装 · 专利多视图</i></span>
+        <span class="mw__info"><b><span class="mw__idx">01</span>智能锁系列商业设计</b><i>造型 · CMF · 渲染 · 商业交付</i></span>
       </button>
-      <button class="mw mw--cover" type="button" data-lb="./assets/img/more/cover-tools-site.webp" data-lb-cap="个人 AI 设计工具组">
-        <img src="./assets/img/more/cover-tools-site.webp"
-             srcset="./assets/img/more/cover-tools-site-600.webp 600w, ./assets/img/more/cover-tools-site.webp 1236w"
-             sizes="(max-width: 720px) 100vw, 33vw" width="1236" height="927"
-             alt="个人 AI 设计工具组" loading="lazy">
-        <span class="mw__info"><b><span class="mw__idx">02</span>个人 AI 设计工具组</b><i>Skill Hub · Design Camera · 环境切换</i></span>
+      <button class="mw mw--cover mw-trigger" type="button" data-mw="tools" aria-controls="mw-quickview" aria-expanded="false">
+        <img src="./assets/img/more/cover-tools-v8.webp"
+             srcset="./assets/img/more/cover-tools-v8-600.webp 600w, ./assets/img/more/cover-tools-v8.webp 1200w"
+             sizes="(max-width: 720px) 100vw, 33vw" width="1200" height="900"
+             alt="个人 AI 工具与工作流" loading="lazy">
+        <span class="mw__info"><b><span class="mw__idx">02</span>个人 AI 工具与工作流</b><i>Skill Hub · 模式切换 · 可复用工作流</i></span>
       </button>
-      <button class="mw mw--cover" type="button" data-lb="./assets/img/more/cover-navlight-site.webp" data-lb-cap="航标灯 Navigation Lights">
-        <img src="./assets/img/more/cover-navlight-site.webp"
-             srcset="./assets/img/more/cover-navlight-site-600.webp 600w, ./assets/img/more/cover-navlight-site.webp 1234w"
-             sizes="(max-width: 720px) 100vw, 33vw" width="1234" height="925"
+      <button class="mw mw--cover mw-trigger" type="button" data-mw="navlight" aria-controls="mw-quickview" aria-expanded="false">
+        <img src="./assets/img/more/cover-navlight-v8.webp"
+             srcset="./assets/img/more/cover-navlight-v8-600.webp 600w, ./assets/img/more/cover-navlight-v8.webp 1200w"
+             sizes="(max-width: 720px) 100vw, 33vw" width="1200" height="900"
              alt="航标灯 Navigation Lights" loading="lazy">
-        <span class="mw__info"><b><span class="mw__idx">03</span>商业产品协作改款</b><i>航标灯等既有平台上的外观协作推进</i></span>
+        <span class="mw__info"><b><span class="mw__idx">03</span>航标灯外观改款</b><i>既有平台下的造型推进与方案收敛</i></span>
       </button>
-      <button class="mw mw--cover" type="button" data-lb="./assets/img/more/cover-visual-site.webp" data-lb-cap="视觉设计与练习产出">
-        <img src="./assets/img/more/cover-visual-site.webp"
-             srcset="./assets/img/more/cover-visual-site-600.webp 600w, ./assets/img/more/cover-visual-site.webp 1251w"
-             sizes="(max-width: 720px) 100vw, 33vw" width="1251" height="938"
-             alt="视觉设计与练习产出" loading="lazy">
-        <span class="mw__info"><b><span class="mw__idx">04</span>视觉设计与练习产出</b><i>平面与品牌标识 · 课程与产品练习</i></span>
+      <button class="mw mw--cover mw-trigger" type="button" data-mw="modeling" aria-controls="mw-quickview" aria-expanded="false">
+        <img src="./assets/img/more/cover-modeling-v8.webp"
+             srcset="./assets/img/more/cover-modeling-v8-600.webp 600w, ./assets/img/more/cover-modeling-v8.webp 1200w"
+             sizes="(max-width: 720px) 100vw, 33vw" width="1200" height="900"
+             alt="三维建模与视觉表现" loading="lazy">
+        <span class="mw__info"><b><span class="mw__idx">04</span>三维建模与视觉表现</b><i>Rhino 建模 · 结构拆解 · KeyShot 表达</i></span>
       </button>
+
+      <div class="mw-quickview" id="mw-quickview" data-open="false">
+        <div class="mw-quickview__inner">
+          <article class="mw-panel" data-mw-panel="smartlock" hidden>
+            <header class="mw-panel__head">
+              <div><span class="mw-panel__eyebrow">01 / CORE COMMERCIAL SERIES</span><h3>智能锁系列商业设计</h3></div>
+              <p>围绕不同门体与使用场景，完成多款智能锁的造型、CMF、多视角表达与商业交付。</p>
+            </header>
+            <div class="mw-gallery mw-gallery--feature">
+              <figure class="media--zoom mw-shot mw-shot--hero"><img src="./assets/img/more/smartlock/smartlock-scene.webp" srcset="./assets/img/more/smartlock/smartlock-scene-600.webp 600w, ./assets/img/more/smartlock/smartlock-scene.webp 1500w" sizes="(max-width:720px) 100vw, 64vw" width="1500" height="837" alt="长面板智能锁场景渲染" loading="lazy"><figcaption>长面板系列 · 场景与材质表达</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/smartlock/smartlock-cylinder-detail.webp" srcset="./assets/img/more/smartlock/smartlock-cylinder-detail-600.webp 600w, ./assets/img/more/smartlock/smartlock-cylinder-detail.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="844" alt="柱形智能锁细节方案" loading="lazy"><figcaption>柱形系列 · 细节方案</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/smartlock/smartlock-cylinder-a.webp" srcset="./assets/img/more/smartlock/smartlock-cylinder-a-600.webp 600w, ./assets/img/more/smartlock/smartlock-cylinder-a.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="1060" alt="柱形智能锁 A 方案多视角" loading="lazy"><figcaption>A 方案 · 多视角验证</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/smartlock/smartlock-cylinder-b.webp" srcset="./assets/img/more/smartlock/smartlock-cylinder-b-600.webp 600w, ./assets/img/more/smartlock/smartlock-cylinder-b.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="1060" alt="柱形智能锁 B 方案多视角" loading="lazy"><figcaption>B 方案 · 比例与 CMF</figcaption></figure>
+            </div>
+            <footer class="mw-panel__foot"><p><b>能力证据</b> 系列化设计 / 多方案推进 / CMF / 商业效果图</p><button class="mw-close" type="button">收起 ↑</button></footer>
+          </article>
+
+          <article class="mw-panel" data-mw-panel="tools" hidden>
+            <header class="mw-panel__head">
+              <div><span class="mw-panel__eyebrow">02 / PERSONAL AI WORKFLOW</span><h3>个人 AI 工具与工作流</h3></div>
+              <p>把高频操作做成可复用工具：统一管理技能入口、同步状态，并在不同模型环境间安全切换。</p>
+            </header>
+            <div class="mw-tool-grid">
+              <figure class="media--zoom mw-shot mw-shot--portrait"><img src="./assets/img/more/tools/skill-hub-overview.webp" width="420" height="700" alt="AIGC Skill Hub 工具总览界面" loading="lazy"><figcaption><b>Skill Hub</b>技能检索与集中管理</figcaption></figure>
+              <figure class="media--zoom mw-shot mw-shot--portrait"><img src="./assets/img/more/tools/skill-hub-sync.webp" width="420" height="700" alt="AIGC Skill Hub 一键同步界面" loading="lazy"><figcaption><b>一键同步</b>降低重复配置成本</figcaption></figure>
+              <figure class="media--zoom mw-shot mw-shot--wide"><img src="./assets/img/more/tools/mode-switcher-current.webp" srcset="./assets/img/more/tools/mode-switcher-current-600.webp 600w, ./assets/img/more/tools/mode-switcher-current.webp 1280w" sizes="(max-width:720px) 100vw, 34vw" width="1280" height="320" alt="Codex 模式切换器界面" loading="lazy"><figcaption><b>模式切换器</b>账号与 API 环境快速切换</figcaption></figure>
+            </div>
+            <footer class="mw-panel__foot"><p><b>能力证据</b> 工作流拆解 / 工具化思维 / UI 实现 / 本地部署</p><button class="mw-close" type="button">收起 ↑</button></footer>
+          </article>
+
+          <article class="mw-panel" data-mw-panel="navlight" hidden>
+            <header class="mw-panel__head">
+              <div><span class="mw-panel__eyebrow">03 / APPEARANCE REDESIGN</span><h3>航标灯外观改款</h3></div>
+              <p>在既有结构平台与功能边界下，从草图发散推进到比例、握持关系与最终外观方案。</p>
+            </header>
+            <div class="mw-gallery mw-gallery--navlight">
+              <figure class="media--zoom mw-shot mw-shot--hero"><img src="./assets/img/more/navlight/navlight-handle-b.webp" srcset="./assets/img/more/navlight/navlight-handle-b-600.webp 600w, ./assets/img/more/navlight/navlight-handle-b.webp 1500w" sizes="(max-width:720px) 100vw, 64vw" width="1500" height="844" alt="航标灯握持方式与最终效果方案" loading="lazy"><figcaption>最终方向 · 握持关系与整体形态</figcaption></figure>
+              <figure class="media--zoom mw-shot mw-shot--sketch"><img src="./assets/img/more/navlight/navlight-sketch.webp" srcset="./assets/img/more/navlight/navlight-sketch-600.webp 600w, ./assets/img/more/navlight/navlight-sketch.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="1999" alt="航标灯草图发散" loading="lazy"><figcaption>草图发散 · 轮廓与分件探索</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/navlight/navlight-proportion.webp" srcset="./assets/img/more/navlight/navlight-proportion-600.webp 600w, ./assets/img/more/navlight/navlight-proportion.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="844" alt="航标灯比例与结构细节方案" loading="lazy"><figcaption>方案收敛 · 比例与细节</figcaption></figure>
+            </div>
+            <footer class="mw-panel__foot"><p><b>能力证据</b> 约束内改款 / 草图推进 / Rhino / KeyShot</p><button class="mw-close" type="button">收起 ↑</button></footer>
+          </article>
+
+          <article class="mw-panel" data-mw-panel="modeling" hidden>
+            <header class="mw-panel__head">
+              <div><span class="mw-panel__eyebrow">04 / 3D &amp; VISUAL PRACTICE</span><h3>三维建模与视觉表现</h3></div>
+              <p>通过无人机、筋膜枪与汽车等练习，持续训练曲面建模、零件关系、材质和场景灯光表达。</p>
+            </header>
+            <div class="mw-gallery mw-gallery--feature">
+              <figure class="media--zoom mw-shot mw-shot--hero"><img src="./assets/img/more/modeling/drone-model.webp" srcset="./assets/img/more/modeling/drone-model-600.webp 600w, ./assets/img/more/modeling/drone-model.webp 1500w" sizes="(max-width:720px) 100vw, 64vw" width="1500" height="1000" alt="无人机三维建模过程" loading="lazy"><figcaption>无人机 · 曲面与主体建模</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/modeling/drone-exploded.webp" srcset="./assets/img/more/modeling/drone-exploded-600.webp 600w, ./assets/img/more/modeling/drone-exploded.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="1061" alt="无人机零件拆解建模" loading="lazy"><figcaption>无人机 · 零件拆解</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/modeling/massage-render.webp" srcset="./assets/img/more/modeling/massage-render-600.webp 600w, ./assets/img/more/modeling/massage-render.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="844" alt="筋膜枪材质渲染练习" loading="lazy"><figcaption>筋膜枪 · 材质与产品表达</figcaption></figure>
+              <figure class="media--zoom mw-shot"><img src="./assets/img/more/modeling/car-lighting.webp" srcset="./assets/img/more/modeling/car-lighting-600.webp 600w, ./assets/img/more/modeling/car-lighting.webp 1500w" sizes="(max-width:720px) 100vw, 28vw" width="1500" height="844" alt="汽车场景灯光渲染练习" loading="lazy"><figcaption>汽车 · 场景灯光练习</figcaption></figure>
+            </div>
+            <footer class="mw-panel__foot"><p><b>能力证据</b> 曲面建模 / 零件拆解 / 材质 / 场景灯光</p><button class="mw-close" type="button">收起 ↑</button></footer>
+          </article>
+        </div>
+      </div>
+
       <div class="mw mw--play">
         <span class="mw__info">
           <b>Experiments · 网页小实验</b>
@@ -1402,6 +1461,6 @@ alt="三档探索策略与九宫格发散" loading="lazy"><figcaption>探索阶�
 
 </div><!-- /.page -->
 
-<script src="./assets/js/site.js" defer></script>
+<script src="./assets/js/site.js?v=49" defer></script>
 </body>
 </html>
