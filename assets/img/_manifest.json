@@ -449,5 +449,82 @@
   "webp_kb": 49,
   "src": "career/portfolio-prep/04-DesignDNA/ready/08-真实评审界面-清晰版.png",
   "note": "V7 真实评审证据 · Fixed 约束未满足"
+ },
+ {
+  "file": "more/smartlock/smartlock-long-fold.webp",
+  "size": [1500, 2123],
+  "webp_kb": 17,
+  "src": "career/portfolio-prep/03B-Smart-Lock-Series/ready-originals/01-长面板锁-折弯把手原始渲染.png",
+  "note": "More Work · 长面板智能锁折弯把手方案"
+ },
+ {
+  "file": "more/smartlock/smartlock-long-moon.webp",
+  "size": [1500, 2123],
+  "webp_kb": 15,
+  "src": "career/portfolio-prep/03B-Smart-Lock-Series/ready-originals/02-长面板锁-月相把手原始渲染.png",
+  "note": "More Work · 长面板智能锁月相把手方案"
+ },
+ {
+  "file": "more/smartlock/smartlock-handle-detail.webp",
+  "size": [1280, 1810],
+  "webp_kb": 187,
+  "src": "career/portfolio-prep/03B-Smart-Lock-Series/ready-originals/06-长面板锁-把手细节.png",
+  "note": "More Work · 智能锁把手形面与材质细节"
+ },
+ {
+  "file": "more/smartlock/smartlock-cylinder-scene.webp",
+  "size": [1500, 844],
+  "webp_kb": 36,
+  "src": "career/portfolio-prep/03B-Smart-Lock-Series/ready-originals/07-柱形锁-A方案场景.png",
+  "note": "More Work · 柱形智能锁场景效果"
+ },
+ {
+  "file": "more/tools/skill-hub-management.webp",
+  "size": [590, 630],
+  "webp_kb": 60,
+  "src": "AIGC-Skill-Popup/work/ui-skill-delete.png",
+  "note": "More Work · Skill Hub 技能管理界面"
+ },
+ {
+  "file": "more/navlight/navlight-sketch-a.webp",
+  "size": [1500, 1999],
+  "webp_kb": 257,
+  "src": "航标灯草图设计提案-1(1).pptx/ppt/media/image8.jpeg",
+  "note": "More Work · 航标灯圆角框架草图方向"
+ },
+ {
+  "file": "more/navlight/navlight-sketch-b.webp",
+  "size": [1500, 1999],
+  "webp_kb": 282,
+  "src": "航标灯草图设计提案-1(1).pptx/ppt/media/image20.jpeg",
+  "note": "More Work · 航标灯放射轮廓草图方向"
+ },
+ {
+  "file": "more/modeling/drone-angle.webp",
+  "size": [1500, 1000],
+  "webp_kb": 53,
+  "src": "云尚学习案例/最终提交/无人机建模截图/1组-付昕-无人机-1.png",
+  "note": "More Work · 仿生拓扑无人机斜侧视图"
+ },
+ {
+  "file": "more/modeling/drone-top.webp",
+  "size": [1500, 1000],
+  "webp_kb": 60,
+  "src": "云尚学习案例/最终提交/无人机建模截图/1组-付昕-无人机-3.png",
+  "note": "More Work · 仿生拓扑无人机顶视图"
+ },
+ {
+  "file": "more/modeling/massage-detail.webp",
+  "size": [1500, 844],
+  "webp_kb": 57,
+  "src": "C:/Users/lenovo/Desktop/11/付昕-筋膜枪-细节01.jpg",
+  "note": "More Work · 筋膜枪透明结构细节"
+ },
+ {
+  "file": "more/modeling/car-water.webp",
+  "size": [1500, 1061],
+  "webp_kb": 224,
+  "src": "C:/Users/lenovo/Desktop/11/雪佛兰（水）.jpg",
+  "note": "More Work · 汽车材质与环境反射练习"
  }
 ]
