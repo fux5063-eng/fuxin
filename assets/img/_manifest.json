@@ -526,5 +526,19 @@
   "webp_kb": 224,
   "src": "C:/Users/lenovo/Desktop/11/雪佛兰（水）.jpg",
   "note": "More Work · 汽车材质与环境反射练习"
+ },
+ {
+  "file": "more/cover-tools-clean-v54.webp",
+  "size": [1200, 900],
+  "webp_kb": 31,
+  "src": "more/tools/mode-switcher-current.webp + more/tools/skill-hub-overview.webp",
+  "note": "More Work · 使用真实工具界面重构的干净 AI 工具封面，无额外标题与说明文字"
+ },
+ {
+  "file": "more/cover-navlight-clean-v54.webp",
+  "size": [1200, 900],
+  "webp_kb": 23,
+  "src": "more/navlight/navlight-proportion.webp",
+  "note": "More Work · 从现有方案图提取的干净航标灯产品封面"
  }
 ]
