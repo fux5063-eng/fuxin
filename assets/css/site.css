@@ -1164,9 +1164,9 @@ ol.numlist li { margin-bottom: 4px; }
   gap:10px;
 }
 .mw-gallery .mw-shot--hero{grid-row:span 2}
-.mw-gallery--navlight{grid-template-rows:repeat(2,minmax(200px,1fr))}
-.mw-gallery--navlight .mw-shot--hero{grid-row:span 2}
-.mw-gallery--navlight .mw-shot--sketch img{object-position:center 29%}
+.mw-gallery--navlight{display:block;min-height:0}
+.mw-gallery--navlight .mw-shot--hero{height:auto;min-height:0;aspect-ratio:16 / 9}
+.mw-gallery--navlight .mw-shot--hero img{object-fit:cover}
 .mw-shot{
   position:relative;
   min-width:0;
@@ -1199,6 +1199,7 @@ ol.numlist li { margin-bottom: 4px; }
 }
 .mw-more-grid .mw-shot{grid-column:span 2;aspect-ratio:4 / 3}
 .mw-more-grid .mw-shot--half{grid-column:span 3;aspect-ratio:16 / 10}
+.mw-more-grid--navlight .mw-shot{aspect-ratio:3 / 4}
 
 .mw-tool-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
 .mw-tool-grid .mw-shot{grid-column:span 2;height:430px}
@@ -1246,6 +1247,7 @@ ol.numlist li { margin-bottom: 4px; }
   .mw-proof-row{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mw-more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mw-more-grid .mw-shot,.mw-more-grid .mw-shot--half{grid-column:auto;aspect-ratio:4 / 3}
+  .mw-more-grid--navlight .mw-shot{aspect-ratio:3 / 4}
   .mw-more-grid .mw-shot:last-child:nth-child(odd){grid-column:1 / -1}
 }
 @media(max-width:700px){
@@ -1258,13 +1260,13 @@ ol.numlist li { margin-bottom: 4px; }
   .mw-gallery .mw-shot--hero,.mw-gallery--navlight .mw-shot--hero{grid-row:auto}
   .mw-gallery--feature .mw-shot--hero,.mw-gallery--navlight .mw-shot--hero{height:auto;min-height:0;aspect-ratio:4 / 3}
   .mw-gallery--feature .mw-shot:not(.mw-shot--hero),.mw-gallery--navlight .mw-shot{height:auto;aspect-ratio:4 / 3}
-  .mw-gallery--navlight .mw-shot--sketch{aspect-ratio:3 / 4}
   .mw-tool-grid .mw-shot,.mw-tool-grid .mw-shot--wide,.mw-tool-grid .mw-shot--portrait:last-child,.mw-tool-grid .mw-shot--camera,.mw-tool-grid .mw-shot--meter{grid-column:auto;height:auto;min-height:0;aspect-ratio:4 / 3}
   .mw-tool-grid .mw-shot--portrait{aspect-ratio:4 / 5}
   .mw-proof-row{grid-template-columns:1fr;gap:8px}
   .mw-proof-row > div{min-height:0;padding:14px 16px}
   .mw-more-grid{margin-top:9px}
   .mw-more-grid .mw-shot,.mw-more-grid .mw-shot--half,.mw-more-grid .mw-shot:last-child:nth-child(odd){grid-column:auto;aspect-ratio:4 / 3}
+  .mw-more-grid--navlight .mw-shot,.mw-more-grid--navlight .mw-shot:last-child:nth-child(odd){aspect-ratio:3 / 4}
   .mw-panel__foot{align-items:flex-start}
   .mw-panel__foot p{max-width:76%}
 }
