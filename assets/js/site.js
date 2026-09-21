@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v56-navlight-layout-clean';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v57-navlight-evidence-expanded';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
