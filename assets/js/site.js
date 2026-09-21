@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v54-morework-clean-covers';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v55-morework-tools-expanded';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 

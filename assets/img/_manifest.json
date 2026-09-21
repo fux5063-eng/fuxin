@@ -540,5 +540,19 @@
   "webp_kb": 23,
   "src": "more/navlight/navlight-proportion.webp",
   "note": "More Work · 从现有方案图提取的干净航标灯产品封面"
+ },
+ {
+  "file": "more/tools/codex-camera-clean.png",
+  "size": [921, 631],
+  "png_kb": 245,
+  "src": "career/build/ai-product-portfolio-v01/CodexCamera-clean-cropped.png",
+  "note": "More Work · Codex Camera 干净界面，视觉输入工具证据"
+ },
+ {
+  "file": "more/tools/codex-meter-public.png",
+  "size": [520, 590],
+  "png_kb": 179,
+  "src": "career/portfolio-assets/PRJ-16-17-AI-Workflow/codex-meter/02-用量展开页-公开脱敏.png",
+  "note": "More Work · Codex Meter 公开脱敏额度总览界面"
  }
 ]

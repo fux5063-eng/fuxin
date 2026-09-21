@@ -1205,9 +1205,12 @@ ol.numlist li { margin-bottom: 4px; }
 .mw-tool-grid .mw-shot--wide{grid-column:1 / -1;height:280px}
 .mw-tool-grid .mw-shot--wide img{object-fit:contain;padding:clamp(18px,3vw,42px);background:#0d0e10}
 .mw-tool-grid .mw-shot--portrait img{object-fit:contain;background:#111315}
+.mw-tool-grid .mw-shot--camera{grid-column:span 4;height:430px}
+.mw-tool-grid .mw-shot--meter{grid-column:span 2;height:430px}
+.mw-tool-grid .mw-shot--camera img,.mw-tool-grid .mw-shot--meter img{object-fit:contain;background:#111315}
 .mw-proof-row{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:10px;
   margin:0 0 10px;
 }
@@ -1238,6 +1241,9 @@ ol.numlist li { margin-bottom: 4px; }
   .mw-tool-grid .mw-shot{grid-column:auto}
   .mw-tool-grid .mw-shot--wide{grid-column:1 / -1;height:300px}
   .mw-tool-grid .mw-shot--portrait:last-child{grid-column:1 / -1}
+  .mw-tool-grid .mw-shot--camera{grid-column:1 / -1;height:360px}
+  .mw-tool-grid .mw-shot--meter{grid-column:1 / -1;height:420px}
+  .mw-proof-row{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mw-more-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mw-more-grid .mw-shot,.mw-more-grid .mw-shot--half{grid-column:auto;aspect-ratio:4 / 3}
   .mw-more-grid .mw-shot:last-child:nth-child(odd){grid-column:1 / -1}
@@ -1253,7 +1259,7 @@ ol.numlist li { margin-bottom: 4px; }
   .mw-gallery--feature .mw-shot--hero,.mw-gallery--navlight .mw-shot--hero{height:auto;min-height:0;aspect-ratio:4 / 3}
   .mw-gallery--feature .mw-shot:not(.mw-shot--hero),.mw-gallery--navlight .mw-shot{height:auto;aspect-ratio:4 / 3}
   .mw-gallery--navlight .mw-shot--sketch{aspect-ratio:3 / 4}
-  .mw-tool-grid .mw-shot,.mw-tool-grid .mw-shot--wide,.mw-tool-grid .mw-shot--portrait:last-child{grid-column:auto;height:auto;min-height:0;aspect-ratio:4 / 3}
+  .mw-tool-grid .mw-shot,.mw-tool-grid .mw-shot--wide,.mw-tool-grid .mw-shot--portrait:last-child,.mw-tool-grid .mw-shot--camera,.mw-tool-grid .mw-shot--meter{grid-column:auto;height:auto;min-height:0;aspect-ratio:4 / 3}
   .mw-tool-grid .mw-shot--portrait{aspect-ratio:4 / 5}
   .mw-proof-row{grid-template-columns:1fr;gap:8px}
   .mw-proof-row > div{min-height:0;padding:14px 16px}
