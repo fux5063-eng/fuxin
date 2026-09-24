@@ -50,6 +50,14 @@
 .hero__evidence b { display: block; color: var(--fg); font-size: var(--fs-body);
   font-weight: 600; font-family: var(--font-mono); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.pdf-select { position: relative; }
+.pdf-select summary { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; }
+.pdf-select summary::-webkit-details-marker { display: none; }
+.pdf-select__menu { position: absolute; left: 0; top: calc(100% + 8px); z-index: 12; min-width: 222px;
+  padding: 6px; border: 1px solid var(--line); background: var(--c-bg); box-shadow: 0 18px 44px rgba(0,0,0,.22); }
+.pdf-select__menu a { display: block; padding: 11px 12px; color: var(--fg); text-decoration: none; font-size: 14px; white-space: nowrap; }
+.pdf-select__menu a:hover, .pdf-select__menu a:focus-visible { color: var(--c-accent); background: rgba(255,255,255,.045); }
+@media (max-width: 720px) { .pdf-select__menu { position: static; margin-top: 8px; } }
 .hero__portrait { position: relative; justify-self: end; width: var(--hero-portrait); }
 /* V4.1 §7：人像改为抠图版，融入深色 Hero —— 去掉圆角白底贴片感，
    底部靠图片自带的渐隐融进 #0B0C0E，再垫一层极淡暖光把人从背景里"托"出来。 */
@@ -290,6 +298,10 @@ ol.numlist li { margin-bottom: 4px; }
   color: var(--fg); text-decoration: none; }
 .contact__rows a:hover { color: var(--c-accent); }
 .contact__cta { margin-top: var(--s-8); }
+.contact__downloads { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-8); scroll-margin-top: 90px; }
+.contact__back { margin: var(--s-5) 0 0; }
+.contact__back a { color: var(--fg-muted); text-decoration: none; font-size: var(--fs-caption); }
+.contact__back a:hover { color: var(--c-accent); }
 
 /* ── 顶部阅读进度条 + 当前章节高亮（用户：浏览定位困难）── */
 .pbar {

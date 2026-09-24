@@ -376,7 +376,7 @@ p  { margin: 0 0 var(--s-4); }
   .project-hero-media, .media { border-radius: var(--r-media); }
 }
 </style>
-<link rel="stylesheet" href="./assets/css/site.css?v=59">
+<link rel="stylesheet" href="./assets/css/site.css?v=60">
 </head>
 <body>
 
@@ -392,7 +392,7 @@ p  { margin: 0 0 var(--s-4); }
       <a class="nav__link" href="#work">项目</a>
       <a class="nav__link" href="#experience">经历</a>
       <a class="nav__link" href="#about">关于</a>
-      <a class="nav__link" href="./download/付昕-作品集.pdf" download="付昕-作品集.pdf">作品集 <span class="accent">↓</span></a>
+      <a class="nav__link" href="#downloads">求职材料 <span class="accent">↓</span></a>
     </nav>
   </div>
 </header>
@@ -419,8 +419,14 @@ p  { margin: 0 0 var(--s-4); }
       </div>
       <div class="hero__cta reveal">
         <a class="btn btn--primary" href="#work">查看精选项目 ↓</a>
-        <a class="btn btn--ghost" href="./download/付昕-作品集.pdf" download="付昕-作品集.pdf">下载作品集</a>
-        <a class="btn btn--ghost" href="./download/付昕-作品集.pdf" target="_blank" rel="noopener">在线查看</a>
+        <a class="btn btn--ghost" href="./download/付昕-简历-产品设计_AI_智能硬件.pdf" download>下载简历</a>
+        <details class="pdf-select">
+          <summary class="btn btn--ghost">作品集 PDF <span aria-hidden="true">▾</span></summary>
+          <div class="pdf-select__menu">
+            <a href="./download/付昕-工业设计作品集-2026.pdf" download>工业设计作品集</a>
+            <a href="./download/付昕-AI产品作品集-2026.pdf" download>AI 产品作品集</a>
+          </div>
+        </details>
       </div>
     </div>
     <div class="hero__portrait reveal">
@@ -1312,7 +1318,7 @@ alt="三档探索策略与九宫格发散" loading="lazy"><figcaption>探索阶�
 <section class="section morework" id="more">
   <div class="wrap">
     <div class="label-en reveal">More Work</div>
-    <h2 class="reveal" style="margin:var(--s-4) 0 0">还有这些</h2>
+    <h2 class="reveal" style="margin:var(--s-4) 0 0">更多实践</h2>
     <p class="lead measure reveal" style="margin-top:var(--s-4)">
       核心商业系列、AI 工具与专业实践——以成果快速展示能力宽度。</p>
 
@@ -1463,10 +1469,12 @@ alt="三档探索策略与九宫格发散" loading="lazy"><figcaption>探索阶�
       <div><span>城市</span><b>深圳 / 广州</b></div>
     </div>
 
-    <p class="contact__cta reveal">
-      <a class="btn btn--primary" href="./download/付昕-作品集.pdf" download="付昕-作品集.pdf">下载作品集 ↓</a>
-      <a class="btn btn--ghost" href="#top" style="margin-left:var(--s-3)">Back to Top ↑</a>
-    </p>
+    <div class="contact__downloads reveal" id="downloads" aria-label="求职材料下载">
+      <a class="btn btn--primary" href="./download/付昕-简历-产品设计_AI_智能硬件.pdf" download>简历 PDF ↓</a>
+      <a class="btn btn--ghost" href="./download/付昕-工业设计作品集-2026.pdf" download>工业设计作品集 ↓</a>
+      <a class="btn btn--ghost" href="./download/付昕-AI产品作品集-2026.pdf" download>AI 产品作品集 ↓</a>
+    </div>
+    <p class="contact__back reveal"><a href="#top">Back to Top ↑</a></p>
 
     <hr class="hairline" style="margin:var(--s-8) 0 var(--s-4)">
     <p class="caption" style="margin:0">© 2026 付昕</p>
@@ -1487,6 +1495,6 @@ alt="三档探索策略与九宫格发散" loading="lazy"><figcaption>探索阶�
 
 </div><!-- /.page -->
 
-<script src="./assets/js/site.js?v=59" defer></script>
+<script src="./assets/js/site.js?v=60" defer></script>
 </body>
 </html>

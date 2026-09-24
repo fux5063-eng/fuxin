@@ -4,7 +4,7 @@
    ============================================================ */
 (function () {
   'use strict';
-  window.__siteBuild = 'v59-tools-authentic-cover';   /* 构建标记：排查缓存用 */
+  window.__siteBuild = 'v60-dual-portfolio-downloads';   /* 构建标记：排查缓存用 */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var isMobile = function () { return window.innerWidth <= 720; };
 
